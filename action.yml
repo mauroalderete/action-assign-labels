@@ -46,7 +46,7 @@ runs:
         echo "::set-output name=action-status::STARTING"
         echo "::set-output name=action-message::"
 
-        echo "${{ inputs.github-token }}" >> $GITHUB_TOKEN
+        echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
         echo "::set-output name=action-status::STARTED"
         echo "::set-output name=action-message::"
