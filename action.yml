@@ -26,16 +26,16 @@ inputs:
 outputs:
   labels-assigned:
     description: 'List of the labels assigned'
-    value: ${{ steps.assign-labels.outputs.labels-assigned }}
+    value: ${{ steps.exit.outputs.labels-assigned }}
   labels-removed:
     description: 'List of the labels removed'
-    value: ${{ steps.remove-labels.outputs.labels-removed }}
+    value: ${{ steps.exit.outputs.labels-removed }}
   action-status:
     description: 'Execution status of the action'
-    value: ${{ steps.start.outputs.action-status }}
+    value: ${{ steps.exit.outputs.action-status }}
   action-message:
     description: 'Message associated to the current status of the action'
-    value: ${{ steps.start.outputs.action-message }}
+    value: ${{ steps.exit.outputs.action-message }}
 runs:
   using: composite
   steps:
@@ -43,23 +43,34 @@ runs:
       id: start
       shell: bash
       run: |
-        echo "::set-output name=action-status::STARTING"
-        echo "::set-output name=action-message::"
+        echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
-        echo "::set-output name=action-status::STARTED"
-        echo "::set-output name=action-message::"
+        echo "ACTION_STATUS=STARTED" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
     - name: End
+      if: ${{ success() }}
       id: end
       shell: bash
       run: |
-        echo "::set-output name=action-status::ENDING"
-        echo "::set-output name=action-message::"
+        echo "ACTION_STATUS=ENDING" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
-        echo "::set-output name=labels-assigned::"
-        echo "::set-output name=labels-removed::"
+        echo "LABELS_ASSIGNED=" >> $GITHUB_ENV
+        echo "LABELS_REMOVED=" >> $GITHUB_ENV
 
-        echo "::set-output name=action-status::ENDED"
-        echo "::set-output name=action-message::"
+        echo "ACTION_STATUS=ENDED" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
+
+    - name: Exit
+      if: ${{ always() }}
+      id: exit
+      shell: bash
+      run: |
+        echo "::set-output name=labels-assigned::$LABELS_ASSIGNED"
+        echo "::set-output name=labels-removed::$LABELS_REMOVED"
+        echo "::set-output name=action-status::$ACTION_STATUS"
+        echo "::set-output name=action-message::$ACTION_MESSAGE"
