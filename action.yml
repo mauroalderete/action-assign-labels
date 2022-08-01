@@ -43,23 +43,23 @@ runs:
       id: start
       shell: bash
       run: |
-      echo "::set-output name=action-status::STARTING"
-      echo "::set-output name=action-message::"
+        echo "::set-output name=action-status::STARTING"
+        echo "::set-output name=action-message::"
 
-      echo "${{ inputs.github-token }}" >> $GITHUB_TOKEN
+        echo "${{ inputs.github-token }}" >> $GITHUB_TOKEN
 
-      echo "::set-output name=action-status::STARTED"
-      echo "::set-output name=action-message::"
+        echo "::set-output name=action-status::STARTED"
+        echo "::set-output name=action-message::"
 
     - name: End
       id: end
       shell: bash
       run: |
-      echo "::set-output name=action-status::ENDING"
-      echo "::set-output name=action-message::"
+        echo "::set-output name=action-status::ENDING"
+        echo "::set-output name=action-message::"
 
-      echo "::set-output name=labels-assigned::"
-      echo "::set-output name=labels-removed::"
+        echo "::set-output name=labels-assigned::"
+        echo "::set-output name=labels-removed::"
 
-      echo "::set-output name=action-status::ENDED"
-      echo "::set-output name=action-message::"
+        echo "::set-output name=action-status::ENDED"
+        echo "::set-output name=action-message::"
