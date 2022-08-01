@@ -1,0 +1,76 @@
+name: 'Assign Labels From Conventional Commits'
+description: 'Assign labels to pull-request parsing conventional commits standard'
+inputs:
+  pull-request-number:
+    description: 'The pull request'' number where labels will be assigned'
+    required: true
+  github-token:
+    description: 'The Github token.'
+    required: true
+  clear-all-labels-to-start:
+    description: 'Should be removed all labels assigned to the pull request before begin.'
+    required: false
+    default: false
+  remove-labels-not-found:
+    description: 'Should be removed the labels previously assigned that don''t present a reference in the current conventional commits.'
+    required: false
+    default: true
+  conventional-commits-file:
+    description: 'YAML file that contains a list with conventional commits and the labels matching that must be assigned'
+    required: false
+    default: 'conventional-commits.yml'
+  not-apply-changes:
+    description: 'Should will executing the action without applying any change to the repository'
+    required: false
+    default: false
+outputs:
+  labels-assigned:
+    description: 'List of the labels assigned'
+    value: ${{ steps.exit.outputs.labels-assigned }}
+  labels-removed:
+    description: 'List of the labels removed'
+    value: ${{ steps.exit.outputs.labels-removed }}
+  action-status:
+    description: 'Execution status of the action'
+    value: ${{ steps.exit.outputs.action-status }}
+  action-message:
+    description: 'Message associated to the current status of the action'
+    value: ${{ steps.exit.outputs.action-message }}
+runs:
+  using: composite
+  steps:
+    - name: Preparing
+      id: start
+      shell: bash
+      run: |
+        echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
+
+        echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
+
+        echo "ACTION_STATUS=STARTED" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
+
+    - name: End
+      if: ${{ success() }}
+      id: end
+      shell: bash
+      run: |
+        echo "ACTION_STATUS=ENDING" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
+
+        echo "LABELS_ASSIGNED=" >> $GITHUB_ENV
+        echo "LABELS_REMOVED=" >> $GITHUB_ENV
+
+        echo "ACTION_STATUS=ENDED" >> $GITHUB_ENV
+        echo "ACTION_MESSAGE=" >> $GITHUB_ENV
+
+    - name: Exit
+      if: ${{ always() }}
+      id: exit
+      shell: bash
+      run: |
+        echo "::set-output name=labels-assigned::$LABELS_ASSIGNED"
+        echo "::set-output name=labels-removed::$LABELS_REMOVED"
+        echo "::set-output name=action-status::$ACTION_STATUS"
+        echo "::set-output name=action-message::$ACTION_MESSAGE"
