@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test assign labels action
+    steps:
+      - name: Execute assign labels test
+        id: execute-action-assign-labels
+        uses: ./
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          clear-all-labels-to-start: false
+          remove-labels-not-found: true
+          conventional-commits-file: 'conventional-commits.yml'
+          not-apply-changes: false
+
+      - name: assert
+        run: |
+          if [[ "${{ steps.action-assign-labels.outputs.action-status }}" != "ENDED" ]] echo "want status ENDED, got ${{ steps.action-assign-labels.outputs.action-status }}; exit 1; fi"
+          if [[ "${{ steps.action-assign-labels.outputs.action-message }}" != "" ]] echo "want message empty, got ${{ steps.action-assign-labels.outputs.action-message }}; exit 1; fi"
+
+          if [[ "${{ steps.action-assign-labels.outputs.labels-assigned }}" != "ENDED" ]] echo "want labels-assigned empty, got ${{ steps.action-assign-labels.outputs.labels-assigned }}; exit 1; fi"
+          if [[ "${{ steps.action-assign-labels.outputs.labels-removed }}" != "" ]] echo "want labels-removed empty, got ${{ steps.action-assign-labels.outputs.labels-removed }}; exit 1; fi"
