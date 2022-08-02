@@ -10,19 +10,19 @@ inputs:
   clear-all-labels-to-start:
     description: 'Should be removed all labels assigned to the pull request before begin.'
     required: false
-    default: false
+    default: 'false'
   remove-labels-not-found:
     description: 'Should be removed the labels previously assigned that don''t present a reference in the current conventional commits.'
     required: false
-    default: true
-  conventional-commits-file:
-    description: 'YAML file that contains a list with conventional commits and the labels matching that must be assigned'
+    default: 'true'
+  conventional-commits:
+    description: 'String with the YAML object or path to file YAML that contains a list with conventional commits and the labels matching that must be assigned'
     required: false
     default: 'conventional-commits.yml'
   not-apply-changes:
     description: 'Should will executing the action without applying any change to the repository'
     required: false
-    default: false
+    default: 'false'
 outputs:
   labels-assigned:
     description: 'List of the labels assigned'
@@ -43,21 +43,77 @@ runs:
       id: start
       shell: bash
       run: |
-        echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
+        #!/bin/sh
+        echo "ACTION_STATUS=VALIDATE" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
+        # Change to job working directory
+        cd ${{ github.action_path }}
+
+        INPUT_CONVENTIONAL_COMMITS=$(cat << EOF
+        ${{ inputs.conventional-commits }}
+        EOF
+        )
+
+        # Generate a temporal folder
+        TMP_FOLDER=$(mktemp -dq ./XXXXXXXX)
+        if [ $? -ne 0 ]; then
+            echo "ACTION_STATUS=FAILED" >> $GITHUB_ENV;
+            echo "ACTION_MESSAGE=can't create temp file: $0" >> $GITHUB_ENV;
+            exit 1;
+        fi
+        echo "TMP_FOLDER=$TMP_FOLDER" >> $GITHUB_ENV
+
+        # Validate input and store in temporally file yml
+        # Check the input is a valid path
+        if [[ $INPUT_CONVENTIONAL_COMMITS =~ ^([\.\/]?.*)?(\/.*)?\.((yml)|(yaml))$  ]]; then
+
+          # Validate exists resource
+          if [[ ! -f "$INPUT_CONVENTIONAL_COMMITS" ]]; then
+            echo "ACTION_STATUS=FAILED" >> $GITHUB_ENV;
+            echo "ACTION_MESSAGE=conventional commits file not founded at $INPUT_CONVENTIONAL_COMMITS" >> $GITHUB_ENV;
+            exit 1;
+          fi;
+
+          # store temporally conventional-commits file
+          cp "$INPUT_CONVENTIONAL_COMMITS" $TMP_FOLDER/conventional-commits.yml;
+          
+        else
+
+        # store temporally conventional-commits file
+        cat > $TMP_FOLDER/conventional-commits.yml <<EOF
+        ${{ inputs.conventional-commits }}
+        EOF
+
+        fi
+
+        # Store token in env to easy the Github CLI authorization
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
-        echo "ACTION_STATUS=STARTED" >> $GITHUB_ENV
+    - name: Parse YAML
+      id: parse-yaml
+      shell: bash
+      run: |
+        echo "ACTION_STATUS=PARSE" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
+        python3 -c "import sys, yaml, json; print(json.dumps(yaml.safe_load(open('$TMP_FOLDER/conventional-commits.yml')), indent=2, sort_keys=False))" >> $TMP_FOLDER/conventional-commits.json
+        if [ $? -ne 0 ]; then
+            echo "ACTION_STATUS=FAILED" >> $GITHUB_ENV;
+            echo "ACTION_MESSAGE=failed to validate conventional-commits file: $0" >> $GITHUB_ENV;
+            exit 1;
+        fi
+
     - name: End
-      if: ${{ success() }}
       id: end
       shell: bash
       run: |
         echo "ACTION_STATUS=ENDING" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
+
+        echo "testing:start"
+        echo "$CONVENTIONAL_COMMITS"
+        echo "testing:end"
 
         echo "LABELS_ASSIGNED=" >> $GITHUB_ENV
         echo "LABELS_REMOVED=" >> $GITHUB_ENV
@@ -74,3 +130,11 @@ runs:
         echo "::set-output name=labels-removed::$LABELS_REMOVED"
         echo "::set-output name=action-status::$ACTION_STATUS"
         echo "::set-output name=action-message::$ACTION_MESSAGE"
+
+    - name: Exit with error
+      if: ${{ failure() }}
+      id: exit-with-error
+      shell: bash
+      run: |
+        echo "$ACTION_STATUS, $ACTION_MESSAGE"
+        exit 1;
