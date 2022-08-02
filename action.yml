@@ -39,12 +39,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Set up repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        path: ./repo
-
     - name: Preparing
       id: start
       shell: bash
@@ -53,7 +47,7 @@ runs:
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
         echo "Change directory"
-        cd ./repo
+        cd ${{ github.action_path }}
 
         echo "Branch"
         echo "$(git branch --show-current)"
@@ -63,7 +57,7 @@ runs:
         echo "pwd"
         echo "$(pwd)"
         echo "folders"
-        echo "$(ls)"
+        echo "$(ls -la)"
 
         if [[ ! -f "&{{ inputs.conventional-commits-file }}" ]]; then
           echo "ACTION_STATUS=START_FAILED" >> $GITHUB_ENV;
