@@ -10,11 +10,11 @@ inputs:
   clear-all-labels-to-start:
     description: 'Should be removed all labels assigned to the pull request before begin.'
     required: false
-    default: false
+    default: 'false'
   remove-labels-not-found:
     description: 'Should be removed the labels previously assigned that don''t present a reference in the current conventional commits.'
     required: false
-    default: true
+    default: 'true'
   conventional-commits-file:
     description: 'YAML file that contains a list with conventional commits and the labels matching that must be assigned'
     required: false
@@ -22,7 +22,7 @@ inputs:
   not-apply-changes:
     description: 'Should will executing the action without applying any change to the repository'
     required: false
-    default: false
+    default: 'false'
 outputs:
   labels-assigned:
     description: 'List of the labels assigned'
@@ -43,27 +43,22 @@ runs:
       id: start
       shell: bash
       run: |
+        #!/bin/sh
         echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
-        echo "Change directory"
+        # Change to job working directory
         cd ${{ github.action_path }}
 
-        echo "Branch"
-        echo "$(git branch --show-current)"
-
-        echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
-
-        echo "pwd"
-        echo "$(pwd)"
-        echo "folders"
-        echo "$(ls -la)"
-
-        if [[ ! -f "&{{ inputs.conventional-commits-file }}" ]]; then
+        # Validate exists resource
+        if [[ ! -f "${{ inputs.conventional-commits-file }}" ]]; then
           echo "ACTION_STATUS=START_FAILED" >> $GITHUB_ENV;
           echo "ACTION_MESSAGE=Conventional commits file not founded at ${{ inputs.conventional-commits-file }}" >> $GITHUB_ENV;
           exit 1;
         fi
+
+        # Store token in env to easy the Github CLI authorization
+        echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
         echo "ACTION_STATUS=STARTED" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
