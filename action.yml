@@ -39,6 +39,12 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Set up repository
+      uses: checkout/checkout@v3
+      with:
+        fetch-depth: 0
+        path: ./repo
+
     - name: Preparing
       id: start
       shell: bash
@@ -46,7 +52,11 @@ runs:
         echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
-        cd $GITHUB_ACTION_PATH
+        echo "Change directory"
+        cd ./repo
+
+        echo "Branch"
+        echo "${git branch --show-current}"
 
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
