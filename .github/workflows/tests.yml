@@ -22,8 +22,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           clear-all-labels-to-start: false
           remove-labels-not-found: true
-          working-directory: './github'
-          conventional-commits-filename: 'conventional-commits.test.yml'
+          conventional-commits-file: './.github/conventional-commits.test.yml'
           not-apply-changes: false
 
       - name: assert
