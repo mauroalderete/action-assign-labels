@@ -15,11 +15,7 @@ inputs:
     description: 'Should be removed the labels previously assigned that don''t present a reference in the current conventional commits.'
     required: false
     default: true
-  working-directory:
-    description: 'Working directory'
-    required: false
-    default: ''
-  conventional-commits-filename:
+  conventional-commits-file:
     description: 'YAML file that contains a list with conventional commits and the labels matching that must be assigned'
     required: false
     default: 'conventional-commits.yml'
@@ -43,10 +39,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
     - name: Preparing
       id: start
       shell: bash
@@ -54,44 +46,20 @@ runs:
         echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
-        echo "action_path ${{ github.action_path }}"
-        echo "env action_path wrapped ${GITHUB_ACTION_PATH}"
-        echo "env action_path $GITHUB_ACTION_PATH"
-
-        echo "context:start"
-        CONTEXT=$(cat << EOF
-          ${{ toJson(github) }}
-          EOF
-          )
-        echo $CONTEXT
-        echo "context:end"
-        
+        cd $GITHUB_ACTION_PATH
 
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
-        if [[ "&{{ inputs.working-directory }}" != "" ]]; then
-
-          if [[ ! -f "&{{ inputs.working-directory }}" ]]; then
-            echo "ACTION_STATUS=START_FAILED" >> $GITHUB_ENV;
-            echo "ACTION_MESSAGE=Not found working directory setted: ${{ inputs.working-directory }}" >> $GITHUB_ENV;
-            exit 1;
-          fi
-          
-          cd &{{ inputs.working-directory }}
-        fi
-
         echo "pwd"
-        echo ${pwd}
+        echo "${pwd}"
         echo "folders"
-        echo ${ls}
+        echo "${ls}"
 
         if [[ ! -f "&{{ inputs.conventional-commits-file }}" ]]; then
           echo "ACTION_STATUS=START_FAILED" >> $GITHUB_ENV;
           echo "ACTION_MESSAGE=Conventional commits file not founded at ${{ inputs.conventional-commits-file }}" >> $GITHUB_ENV;
           exit 1;
         fi
-
-        cd "${ dirname \"&{{ inputs.working-directory }}\" }"
 
         echo "ACTION_STATUS=STARTED" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
