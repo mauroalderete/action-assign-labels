@@ -40,6 +40,7 @@ runs:
   using: composite
   steps:
     - name: Preparing
+      continue-on-error: true
       id: start
       shell: bash
       run: |
@@ -48,11 +49,18 @@ runs:
 
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
+        if [[ ! -f "&{{ inputs.conventional-commits-file }}" ]]; then
+          echo "ACTION_STATUS=STARTING_FAIL" >> $GITHUB_ENV;
+          echo "ACTION_MESSAGE=Conventional commits file not founded at ${{ inputs.conventional-commits-file }}" >> $GITHUB_ENV;
+          exit 1;
+        fi
+
         echo "ACTION_STATUS=STARTED" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
     - name: End
       if: ${{ success() }}
+      continue-on-error: true
       id: end
       shell: bash
       run: |
@@ -74,3 +82,8 @@ runs:
         echo "::set-output name=labels-removed::$LABELS_REMOVED"
         echo "::set-output name=action-status::$ACTION_STATUS"
         echo "::set-output name=action-message::$ACTION_MESSAGE"
+
+        if [[ ${{ failure() }} ]]; then
+          echo "$ACTION_STATUS, $ACTION_MESSAGE"
+          exit 1;
+        fi

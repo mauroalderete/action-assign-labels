@@ -22,7 +22,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           clear-all-labels-to-start: false
           remove-labels-not-found: true
-          conventional-commits-file: 'conventional-commits.yml'
+          conventional-commits-file: '../conventional-commits.yml'
           not-apply-changes: false
 
       - name: assert
