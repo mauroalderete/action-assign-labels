@@ -54,10 +54,18 @@ runs:
         echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
-        echo "pwd"
-        echo ${pwd}
-        echo "folders"
-        echo ${ls}
+        echo "action_path ${{ github.action_path }}"
+        echo "env action_path wrapped ${GITHUB_ACTION_PATH}"
+        echo "env action_path $GITHUB_ACTION_PATH"
+
+        echo "context:start"
+        CONTEXT=$(cat << EOF
+          ${{ toJson(github) }}
+          EOF
+          )
+        echo $CONTEXT
+        echo "context:end"
+        
 
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
