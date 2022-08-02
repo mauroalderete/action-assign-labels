@@ -1,0 +1,12 @@
+%YAML 1.2
+
+conventional-commits:
+  - fix:
+      commit: ["fix", "fixed", "FIX", "FIXED"]
+      labels: ["bug"]
+  - feature:
+      commit: ["feat", "feature", "FEAT", "FEATURE"]
+      labels: ["enhacement"]
+  - breaking_change:
+      commit: ["BREAKING CHANGE"]
+      labels: ["BREAKING CHANGE"]
