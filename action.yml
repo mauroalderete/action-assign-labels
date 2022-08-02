@@ -16,7 +16,7 @@ inputs:
     required: false
     default: 'true'
   conventional-commits:
-    description: 'YAML object or YAML file that contains a list with conventional commits and the labels matching that must be assigned'
+    description: 'String with the YAML object or path to file YAML that contains a list with conventional commits and the labels matching that must be assigned'
     required: false
     default: 'conventional-commits.yml'
   not-apply-changes:
