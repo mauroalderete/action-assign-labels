@@ -56,14 +56,14 @@ runs:
         cd ./repo
 
         echo "Branch"
-        echo "${git branch --show-current}"
+        echo "$(git branch --show-current)"
 
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
         echo "pwd"
-        echo "${pwd}"
+        echo "$(pwd)"
         echo "folders"
-        echo "${ls}"
+        echo "$(ls)"
 
         if [[ ! -f "&{{ inputs.conventional-commits-file }}" ]]; then
           echo "ACTION_STATUS=START_FAILED" >> $GITHUB_ENV;
