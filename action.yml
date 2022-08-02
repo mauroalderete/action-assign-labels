@@ -15,7 +15,11 @@ inputs:
     description: 'Should be removed the labels previously assigned that don''t present a reference in the current conventional commits.'
     required: false
     default: true
-  conventional-commits-file:
+  working-directory:
+    description: 'Working directory'
+    required: false
+    default: ''
+  conventional-commits-filename:
     description: 'YAML file that contains a list with conventional commits and the labels matching that must be assigned'
     required: false
     default: 'conventional-commits.yml'
@@ -39,28 +43,52 @@ outputs:
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
     - name: Preparing
-      continue-on-error: true
       id: start
       shell: bash
       run: |
         echo "ACTION_STATUS=STARTING" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
+        echo "pwd"
+        echo ${pwd}
+        echo "folders"
+        echo ${ls}
+
         echo "GITHUB_TOKEN=${{ inputs.github-token }}" >> $GITHUB_ENV
 
+        if [[ "&{{ inputs.working-directory }}" != "" ]]; then
+
+          if [[ ! -f "&{{ inputs.working-directory }}" ]]; then
+            echo "ACTION_STATUS=START_FAILED" >> $GITHUB_ENV;
+            echo "ACTION_MESSAGE=Not found working directory setted: ${{ inputs.working-directory }}" >> $GITHUB_ENV;
+            exit 1;
+          fi
+          
+          cd &{{ inputs.working-directory }}
+        fi
+
+        echo "pwd"
+        echo ${pwd}
+        echo "folders"
+        echo ${ls}
+
         if [[ ! -f "&{{ inputs.conventional-commits-file }}" ]]; then
-          echo "ACTION_STATUS=STARTING_FAIL" >> $GITHUB_ENV;
+          echo "ACTION_STATUS=START_FAILED" >> $GITHUB_ENV;
           echo "ACTION_MESSAGE=Conventional commits file not founded at ${{ inputs.conventional-commits-file }}" >> $GITHUB_ENV;
           exit 1;
         fi
+
+        cd "${ dirname \"&{{ inputs.working-directory }}\" }"
 
         echo "ACTION_STATUS=STARTED" >> $GITHUB_ENV
         echo "ACTION_MESSAGE=" >> $GITHUB_ENV
 
     - name: End
-      if: ${{ success() }}
-      continue-on-error: true
       id: end
       shell: bash
       run: |
@@ -83,7 +111,10 @@ runs:
         echo "::set-output name=action-status::$ACTION_STATUS"
         echo "::set-output name=action-message::$ACTION_MESSAGE"
 
-        if [[ ${{ failure() }} ]]; then
-          echo "$ACTION_STATUS, $ACTION_MESSAGE"
-          exit 1;
-        fi
+    - name: Exit with error
+      if: ${{ failure() }}
+      id: exit-with-error
+      shell: bash
+      run: |
+        echo "$ACTION_STATUS, $ACTION_MESSAGE"
+        exit 1;
