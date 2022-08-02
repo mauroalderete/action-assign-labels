@@ -2,11 +2,14 @@
 ---
 conventional-commits:
   - fix:
-      commit: ['fix', 'fixed', 'FIX', 'FIXED']
+      commit: ['fix', 'fixed']
       labels: ['bug']
   - feature:
-      commit: ['feat', 'feature', 'FEAT', 'FEATURE']
+      commit: ['feat', 'feature']
       labels: ['enhacement']
   - breaking_change:
-      commit: ['BREAKING CHANGE']
+      commit: ['breaking change']
       labels: ['BREAKING CHANGE']
+  - documentation:
+      commit: ['doc', 'docs', 'docu', 'documentation']
+      labels: ['documentation']

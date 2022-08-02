@@ -22,17 +22,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           clear-all-labels-to-start: false
           remove-labels-not-found: true
-          conventional-commits: |
-            conventional-commits:
-              - fix:
-                  commit: ['fix', 'fixed', 'FIX', 'FIXED']
-                  labels: ['bug']
-              - feature:
-                  commit: ['feat', 'feature', 'FEAT', 'FEATURE']
-                  labels: ['enhacement']
-              - breaking_change:
-                  commit: ['BREAKING CHANGE']
-                  labels: ['BREAKING CHANGE']
+          conventional-commits: './.github/conventional-commits.test.yml'
           not-apply-changes: false
 
       - name: assert

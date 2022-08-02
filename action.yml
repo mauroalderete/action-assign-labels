@@ -104,6 +104,15 @@ runs:
             exit 1;
         fi
 
+    - name: Analyze Labels
+      id: analyze-labels
+      shell: bash
+      run: |
+        # get list of labels assigned to pr
+        # save current labels
+        # get list of commits
+        
+
     - name: End
       id: end
       shell: bash
