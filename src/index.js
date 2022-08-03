@@ -1,5 +1,5 @@
 const core = require('@actions/core')
-const core = require('@actions/github')
+const github = require('@actions/github')
 
 try {
     const pullRequestNumber = core.getInput('pull-request-number')
