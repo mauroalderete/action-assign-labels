@@ -38,4 +38,4 @@ outputs:
     description: 'Message associated to the current status of the action'
 runs:
   using: 'node16'
-  main: 'src/index.js'
+  main: 'dist/index.js'
