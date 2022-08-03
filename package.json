@@ -1,0 +1,32 @@
+{
+  "name": "action-assign-labels-from-conventionals-commit",
+  "version": "0.3.0",
+  "description": "Assign labels to pull-request parsing conventional commits standard",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit.git"
+  },
+  "keywords": [
+    "Github",
+    "Actions",
+    "labels",
+    "pull_request"
+  ],
+  "author": "Mauro Alderete <alderete.mauro@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/issues"
+  },
+  "homepage": "https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit#readme",
+  "volta": {
+    "node": "16.16.0",
+    "npm": "8.11.0"
+  }
+}
