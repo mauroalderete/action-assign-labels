@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "build": "ncc build ./src/index.js --license license.txt --minify",
+    "lint": "eslint -c .eslintrc.json src/**/*.js __tests__/**/*.js",
+    "build": "npm run lint && ncc build ./src/index.js --license license.txt --minify",
     "test": "jest"
   },
   "repository": {
@@ -35,6 +36,9 @@
     "@actions/github": "^5.0.3"
   },
   "devDependencies": {
+    "eslint": "^8.21.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "jest": "^28.1.3"
   }
 }
