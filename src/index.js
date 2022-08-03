@@ -2,18 +2,17 @@
 /* eslint-disable no-console */
 const core = require('@actions/core');
 const github = require('@actions/github');
-const inputValidator = require('./inputsValidator');
+const inputPullRequestNumber = require('./inputs/pullRequestNumber');
+const inputGithubToken = require('./inputs/githubToken');
 
 try {
-  const pullRequestNumber = core.getInput('pull-request-number');
-  const githubToken = core.getInput('github-token');
-  const clearAllLabelsToStart = core.getInput('clear-all-labels-to-start');
-  const removeLabelsNotFound = core.getInput('remove-labels-not-found');
-  const conventionalCommits = core.getInput('conventional-commits');
-  const notApplyChanges = core.getInput('not-apply-changes');
+  const pullRequestNumber = inputPullRequestNumber.parse(core.getInput('pull-request-number'));
+  const githubToken = inputGithubToken.parse(core.getInput('github-token'));
 
-  inputValidator.pullRequestNumber(pullRequestNumber);
-  inputValidator.githubToken(githubToken);
+  // const clearAllLabelsToStart = core.getInput('clear-all-labels-to-start');
+  // const removeLabelsNotFound = core.getInput('remove-labels-not-found');
+  // const conventionalCommits = core.getInput('conventional-commits');
+  // const notApplyChanges = core.getInput('not-apply-changes');
 
   const payload = JSON.stringify(github.context.payload, undefined, 2);
 
