@@ -1,5 +1,6 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
+const inputValidator = require('./inputsValidator')
 
 try {
     const pullRequestNumber = core.getInput('pull-request-number')
@@ -8,6 +9,9 @@ try {
     const removeLabelsNotFound = core.getInput('remove-labels-not-found')
     const conventionalCommits = core.getInput('conventional-commits')
     const notApplyChanges = core.getInput('not-apply-changes')
+
+    inputValidator.pullRequestNumber(pullRequestNumber)
+    inputValidator.githubToken(githubToken)
 
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`Payload: ${payload}`)
