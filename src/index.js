@@ -16,10 +16,10 @@ const inputApplyChanges = 'apply-changes';
 const inputConventionalCommits = 'conventional-commits';
 
 try {
-  core.setOutput('labels-before-update', []);
-  core.setOutput('labels-added', []);
-  core.setOutput('labels-removed', []);
-  core.setOutput('labels-after-update', []);
+  core.setOutput('labels-before-update', '');
+  core.setOutput('labels-added', '');
+  core.setOutput('labels-removed', '');
+  core.setOutput('labels-after-update', '');
   core.setOutput('action-status', 'STARTED');
   core.setOutput('action-message', '');
 

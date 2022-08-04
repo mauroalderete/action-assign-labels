@@ -39,6 +39,3 @@ jobs:
         run: |
           if [[ "${{ steps.action-assign-labels.outputs.action-status }}" != "ENDED" ]]; then echo "want status ENDED, got ${{ steps.action-assign-labels.outputs.action-status }}"; exit 1; fi
           if [[ "${{ steps.action-assign-labels.outputs.action-message }}" != "" ]]; then echo "want message empty, got ${{ steps.action-assign-labels.outputs.action-message }}"; exit 1; fi
-
-          if [[ "${{ steps.action-assign-labels.outputs.labels-assigned }}" != "" ]]; then echo "want labels-assigned empty, got ${{ steps.action-assign-labels.outputs.labels-assigned }}"; exit 1; fi
-          if [[ "${{ steps.action-assign-labels.outputs.labels-removed }}" != "" ]]; then echo "want labels-removed empty, got ${{ steps.action-assign-labels.outputs.labels-removed }}"; exit 1; fi
