@@ -50,6 +50,10 @@ try {
 
   core.setOutput('action-status', 'VALIDATED');
 
+  const labelsBefore = github.context.payload.pull_request.labels;
+
+  core.setOutput('labels-before-update', labelsBefore.map((l) => l.name));
+
   const payload = JSON.stringify(github.context.payload, undefined, 2);
   console.log(`CC: ${JSON.stringify(conventionalCommits.value)}`);
   console.log(`Payload: ${payload}`);
