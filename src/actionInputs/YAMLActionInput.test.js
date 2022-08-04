@@ -53,44 +53,37 @@ describe('YAMLActionInput', () => {
     },
     {
       title: 'valid yaml file',
-      input: './.github/conventional-commits.test.yml',
+      input: './src/actionInputs/__mocks__/conventional-commits.yml',
       expected: {
         'conventional-commits': [
           {
-            fix: {
-              commit: [
-                'fix',
-                'fixed',
-                'FIX',
-                'FIXED',
-              ],
-              labels: [
-                'bug',
-              ],
-            },
+            type: 'fix',
+            nouns: [
+              'fix',
+              'fixed',
+            ],
+            labels: [
+              'bug',
+            ],
           },
           {
-            feature: {
-              commit: [
-                'feat',
-                'feature',
-                'FEAT',
-                'FEATURE',
-              ],
-              labels: [
-                'enhacement',
-              ],
-            },
+            type: 'feature',
+            nouns: [
+              'feat',
+              'feature',
+            ],
+            labels: [
+              'enhacement',
+            ],
           },
           {
-            breaking_change: {
-              commit: [
-                'BREAKING CHANGE',
-              ],
-              labels: [
-                'BREAKING CHANGE',
-              ],
-            },
+            type: 'breaking_change',
+            nouns: [
+              'BREAKING CHANGE',
+            ],
+            labels: [
+              'BREAKING CHANGE',
+            ],
           },
         ],
       },
