@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 const core = require('@actions/core');
-const github = require('@actions/github');
+const fs = require('fs');
 
 const BoolActionInput = require('./actionInputs/boolActionInput');
 const IntegerActionInput = require('./actionInputs/integerActionInput');
@@ -14,6 +14,8 @@ const inputCleanLabels = 'clear-all-labels-to-start';
 const inputRemoveLabelsNotFound = 'maintain-labels-not-matched';
 const inputApplyChanges = 'apply-changes';
 const inputConventionalCommits = 'conventional-commits';
+
+const validEvents = ['pull_request'];
 
 try {
   core.setOutput('labels-before-update', '');
@@ -48,15 +50,37 @@ try {
     { id: inputConventionalCommits },
   );
 
+  const { eventName } = process.env.GITHUB_EVENT_NAME;
+
+  // if (pullRequestNumber.value === 0) {
+  //   if (eventName === 'pull_request') {
+  //     pullRequestNumber.value = github.context.pull_request.number;
+  //   } else {
+  //     throw new Error(`The current event '${eventName}' need a valid pull_request_number`);
+  //   }
+  // }
+
+  const contextPaylaod = (() => fs.readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }))();
+  console.log('env: ', process.env);
+  console.log('contextEvent', contextPaylaod);
+
   core.setOutput('action-status', 'VALIDATED');
 
-  const labelsBefore = github.context.payload.pull_request.labels;
+  // const labelsBefore = github.context.payload.pull_request.labels;
+  // core.setOutput('labels-before-update', labelsBefore.map((l) => l.name));
 
-  core.setOutput('labels-before-update', labelsBefore.map((l) => l.name));
+  // eslint-disable-next-line dot-notation
+  // const commitsLink = github.context.payload.pull_request['_links'].commits;
 
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  // get all commits of the pull request
+  // const octokit = new github.GitHub(githubToken.value);
+  // const commits = await octokit.pulls.ListCommits({
+
+  // });
+
+  // recovery commits
+
   console.log(`CC: ${JSON.stringify(conventionalCommits.value)}`);
-  console.log(`Payload: ${payload}`);
 
   core.setOutput('action-status', 'PARSED');
 
