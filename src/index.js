@@ -9,6 +9,15 @@ const StringActionInput = require('./actionInputs/stringActionInput');
 const YAMLActionInput = require('./actionInputs/YAMLActionInput');
 
 try {
+  core.setOutput('labels-before-update', []);
+  core.setOutput('labels-added', []);
+  core.setOutput('labels-removed', []);
+  core.setOutput('labels-after-update', []);
+  core.setOutput('action-status', 'START');
+  core.setOutput('action-message', '');
+
+  core.setOutput('action-status', 'VALIDATE');
+
   const pullRequestNumber = new IntegerActionInput(core.getInput('pull-request-number'));
   const githubToken = new StringActionInput(core.getInput('github-token'));
   const cleanLabels = new BoolActionInput(core.getInput('clear-all-labels-to-start'));
@@ -16,9 +25,14 @@ try {
   const notApplyChanges = new BoolActionInput(core.getInput('not-apply-changes'));
   const conventionalCommits = new YAMLActionInput(core.getInput('conventional-commits'));
 
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  core.setOutput('action-status', 'PARSE');
 
+  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  console.log(`CC: ${JSON.stringify(conventionalCommits.value)}`);
   console.log(`Payload: ${payload}`);
+
+  core.setOutput('action-status', 'END');
 } catch (error) {
+  core.setOutput('action-message', error.message);
   core.setFailed(error.message);
 }

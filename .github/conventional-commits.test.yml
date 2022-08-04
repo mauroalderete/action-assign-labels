@@ -1,10 +1,10 @@
 conventional-commits:
-  - fix:
-      commit: ['fix', 'fixed', 'FIX', 'FIXED']
-      labels: ['bug']
-  - feature:
-      commit: ['feat', 'feature', 'FEAT', 'FEATURE']
-      labels: ['enhacement']
-  - breaking_change:
-      commit: ['BREAKING CHANGE']
-      labels: ['BREAKING CHANGE']
+  - type: 'fix'
+    nouns: ['fix', 'fixed', 'FIX', 'FIXED']
+    labels: ['bug']
+  - type: 'feature'
+    nouns: ['feat', 'feature', 'FEAT', 'FEATURE']
+    labels: ['enhacement']
+  - type: 'breaking_change'
+    nouns: ['BREAKING CHANGE']
+    labels: ['BREAKING CHANGE']
