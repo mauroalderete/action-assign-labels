@@ -13,10 +13,8 @@ try {
   core.setOutput('labels-added', []);
   core.setOutput('labels-removed', []);
   core.setOutput('labels-after-update', []);
-  core.setOutput('action-status', 'START');
+  core.setOutput('action-status', 'STARTED');
   core.setOutput('action-message', '');
-
-  core.setOutput('action-status', 'VALIDATE');
 
   const pullRequestNumber = new IntegerActionInput(core.getInput('pull-request-number'));
   const githubToken = new StringActionInput(core.getInput('github-token'));
@@ -25,13 +23,15 @@ try {
   const notApplyChanges = new BoolActionInput(core.getInput('not-apply-changes'));
   const conventionalCommits = new YAMLActionInput(core.getInput('conventional-commits'));
 
-  core.setOutput('action-status', 'PARSE');
+  core.setOutput('action-status', 'VALIDATED');
 
   const payload = JSON.stringify(github.context.payload, undefined, 2);
   console.log(`CC: ${JSON.stringify(conventionalCommits.value)}`);
   console.log(`Payload: ${payload}`);
 
-  core.setOutput('action-status', 'END');
+  core.setOutput('action-status', 'PARSED');
+
+  core.setOutput('action-status', 'ENDED');
 } catch (error) {
   core.setOutput('action-message', error.message);
   core.setFailed(error.message);
