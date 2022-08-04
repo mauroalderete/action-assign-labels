@@ -89,6 +89,7 @@ describe('YAMLActionInput', () => {
       },
     },
   ];
+
   targets.forEach((t) => {
     it(t.title, () => {
       if (t.expected) {
@@ -100,5 +101,14 @@ describe('YAMLActionInput', () => {
         }).toThrow();
       }
     });
+  });
+
+  it('throw with id', () => {
+    const value = undefined;
+    const id = 'input-test';
+
+    expect(() => {
+      const input = new YAMLActionInput(value, { id });
+    }).toThrowError(new Error(`input ${id} value '${value}' can't be undefined`));
   });
 });

@@ -30,6 +30,7 @@ describe('StringActionInput', () => {
       title: 'bool input', input: true,
     },
   ];
+
   targets.forEach((t) => {
     it(t.title, () => {
       if (t.expected) {
@@ -41,5 +42,14 @@ describe('StringActionInput', () => {
         }).toThrow();
       }
     });
+  });
+
+  it('throw with id', () => {
+    const value = undefined;
+    const id = 'input-test';
+
+    expect(() => {
+      const input = new StringActionInput(value, { id });
+    }).toThrowError(new Error(`input ${id} value '${value}' can't be undefined`));
   });
 });

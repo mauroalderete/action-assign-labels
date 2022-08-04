@@ -4,8 +4,12 @@ const ActionInput = require('./actionInput');
 class StringActionInput extends ActionInput {
   #value;
 
-  constructor(value) {
-    super(value, { allowNull: false, allowUndefined: false });
+  #config;
+
+  constructor(value, config) {
+    super(value, config);
+
+    this.#config = super.config;
 
     this.#validate(value);
     this.#value = this.#parse(value);
@@ -17,7 +21,7 @@ class StringActionInput extends ActionInput {
 
   #validate(value) {
     if (typeof value !== 'string') {
-      throw new Error(`input ${value} is not a string data type`);
+      throw new Error(`input ${this.#config.id} with value '${value}' is not a string data type`);
     }
   }
 

@@ -8,8 +8,12 @@ class YAMLActionInput extends StringActionInput {
 
   #value;
 
-  constructor(value) {
-    super(value);
+  #config;
+
+  constructor(value, config) {
+    super(value, config);
+
+    this.#config = super.config;
 
     this.#validate(value);
     this.#parse(value);
@@ -33,7 +37,7 @@ class YAMLActionInput extends StringActionInput {
 
   #validate(value) {
     if (value.trim() === '') {
-      throw new Error("yaml input can't be empty");
+      throw new Error(`yaml input ${this.#config.id} can't be empty`);
     }
   }
 
@@ -45,7 +49,7 @@ class YAMLActionInput extends StringActionInput {
         const content = fs.readFileSync(`${workdir}${value}`, { encoding: 'utf8' });
 
         if (!content) {
-          throw new Error(`Content fo the file '${value}' int '${workdir}' folder is undefined`);
+          throw new Error(`yaml input ${this.#config.id} failed to parse content from the file '${value}' in '${workdir}' folder because is undefined`);
         }
 
         this.#source = {
@@ -53,7 +57,7 @@ class YAMLActionInput extends StringActionInput {
           content,
         };
       } catch (error) {
-        throw new Error(`Failed to read the file '${value}' in '${workdir}' folder: ${error}`);
+        throw new Error(`yaml input ${this.#config.id} failed to read the file '${value}' in '${workdir}' folder: ${error}`);
       }
     } else {
       this.#source = {
@@ -65,7 +69,7 @@ class YAMLActionInput extends StringActionInput {
     try {
       this.#value = yaml.parse(this.#source.content);
     } catch (error) {
-      throw new Error(`Failed to parse YAML content: ${error}`);
+      throw new Error(`yaml input ${this.#config.id} failed to parse YAML content: ${error}`);
     }
   }
 }

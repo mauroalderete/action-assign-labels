@@ -5,9 +5,9 @@ class ActionInput {
   #config;
 
   constructor(value, config) {
-    this.#validate(value);
-
     this.#parseConfig(config);
+
+    this.#validate(value);
 
     this.#value = this.#parse(value);
   }
@@ -16,8 +16,13 @@ class ActionInput {
     return this.#value;
   }
 
+  get config() {
+    return this.#config;
+  }
+
   #parseConfig(config) {
     this.#config = {
+      id: '',
       allowUndefined: false,
       allowNull: false,
     };
@@ -26,11 +31,15 @@ class ActionInput {
       return;
     }
 
-    if (config.allowUndefined !== undefined && config.allowUndefined !== null) {
+    if (config.id) {
+      this.#config.id = config.id;
+    }
+
+    if (config.allowUndefined) {
       this.#config.allowUndefined = config.allowUndefined;
     }
 
-    if (config.allowNull !== undefined && config.allowNull !== null) {
+    if (config.allowNull) {
       this.#config.allowNull = config.allowNull;
     }
   }
@@ -38,10 +47,10 @@ class ActionInput {
   // eslint-disable-next-line no-unused-vars
   #validate(value) {
     if (value === undefined && !this.#config.allowUndefined) {
-      throw new Error(`input value '${value}' can't be undefined`);
+      throw new Error(`input ${this.#config.id} value '${value}' can't be undefined`);
     }
     if (value === null && !this.#config.allowNull) {
-      throw new Error(`input value '${value}' can't be null`);
+      throw new Error(`input ${this.#config.id} value '${value}' can't be null`);
     }
   }
 

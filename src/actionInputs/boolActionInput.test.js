@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-const BoolInput = require('./boolActionInput');
+const BoolActionInput = require('./boolActionInput');
 
 describe('BoolInput', () => {
   it('without input', () => {
     expect(() => {
-      const input = new BoolInput();
+      const input = new BoolActionInput();
     }).toThrow();
   });
 
@@ -41,13 +41,22 @@ describe('BoolInput', () => {
   targets.forEach((t) => {
     it(t.title, () => {
       if (t.expected) {
-        const input = new BoolInput(t.input);
+        const input = new BoolActionInput(t.input);
         expect(input.value).toBe(t.expected);
       } else {
         expect(() => {
-          const input = new BoolInput(null);
+          const input = new BoolActionInput(null);
         }).toThrow();
       }
     });
+  });
+
+  it('throw with id', () => {
+    const value = undefined;
+    const id = 'input-test';
+
+    expect(() => {
+      const input = new BoolActionInput(value, { id });
+    }).toThrowError(new Error(`input ${id} value '${value}' can't be undefined`));
   });
 });

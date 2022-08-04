@@ -19,9 +19,6 @@ describe('ActionInput', () => {
       title: 'null input', input: null, config: undefined,
     },
     {
-      title: 'null input allowed', input: null, config: { allowNull: true }, expected: null,
-    },
-    {
       title: 'string input', input: '', config: undefined, expected: '',
     },
     {
@@ -46,5 +43,14 @@ describe('ActionInput', () => {
         }).toThrow();
       }
     });
+  });
+
+  it('throw with id', () => {
+    const value = undefined;
+    const id = 'input-test';
+
+    expect(() => {
+      const input = new ActionInput(value, { id });
+    }).toThrowError(new Error(`input ${id} value '${value}' can't be undefined`));
   });
 });

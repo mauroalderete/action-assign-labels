@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-const IntegerInput = require('./integerActionInput');
+const IntegerActionInput = require('./integerActionInput');
 
 describe('IntegerInput', () => {
   it('without input', () => {
     expect(() => {
-      const input = new IntegerInput();
+      const input = new IntegerActionInput();
     }).toThrow();
   });
   const targets = [
@@ -42,16 +42,26 @@ describe('IntegerInput', () => {
       title: 'valid positive input', input: '79', expected: 79,
     },
   ];
+
   targets.forEach((t) => {
     it(t.title, () => {
       if (t.expected) {
-        const input = new IntegerInput(t.input);
+        const input = new IntegerActionInput(t.input);
         expect(input.value).toBe(t.expected);
       } else {
         expect(() => {
-          const input = new IntegerInput(null);
+          const input = new IntegerActionInput(null);
         }).toThrow();
       }
     });
+  });
+
+  it('throw with id', () => {
+    const value = undefined;
+    const id = 'input-test';
+
+    expect(() => {
+      const input = new IntegerActionInput(value, { id });
+    }).toThrowError(new Error(`input ${id} value '${value}' can't be undefined`));
   });
 });

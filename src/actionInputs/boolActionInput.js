@@ -4,8 +4,12 @@ const ActionInput = require('./actionInput');
 class BoolActionInput extends ActionInput {
   #value;
 
-  constructor(value) {
-    super(value, { allowUndefined: false, allowNull: false });
+  #config;
+
+  constructor(value, config) {
+    super(value, config);
+
+    this.#config = super.config;
 
     this.#validate(value);
     this.#value = this.#parse(value);
@@ -17,7 +21,7 @@ class BoolActionInput extends ActionInput {
 
   #validate(value) {
     if (value !== 'true' && value !== 'false') {
-      throw new Error(`input '${value}' should be a bool value`);
+      throw new Error(`input ${super.config.id} '${value}' should be a bool value`);
     }
   }
 
