@@ -1,5 +1,3 @@
-%YAML 1.2
----
 conventional-commits:
   - fix:
       commit: ['fix', 'fixed', 'FIX', 'FIXED']
