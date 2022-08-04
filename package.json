@@ -1,0 +1,45 @@
+{
+  "name": "action-assign-labels-from-conventionals-commit",
+  "version": "0.3.0",
+  "description": "Assign labels to pull-request parsing conventional commits standard",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "lint": "eslint -c .eslintrc.json src/**/*.js",
+    "test": "jest",
+    "build": "npm run lint && npm run test && ncc build ./src/index.js --license license.txt --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit.git"
+  },
+  "keywords": [
+    "Github",
+    "Actions",
+    "labels",
+    "pull_request"
+  ],
+  "author": "Mauro Alderete <alderete.mauro@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/issues"
+  },
+  "homepage": "https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit#readme",
+  "volta": {
+    "node": "16.16.0",
+    "npm": "8.11.0"
+  },
+  "dependencies": {
+    "@actions/core": "^1.9.0",
+    "@actions/github": "^5.0.3",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.21.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^28.1.3"
+  }
+}

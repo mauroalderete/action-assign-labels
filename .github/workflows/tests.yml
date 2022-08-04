@@ -20,15 +20,22 @@ jobs:
         with:
           pull-request-number: ${{ github.event.pull_request.number }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          conventional-commits: |
+            conventional-commits:
+              - type: 'fix'
+                nouns: ['fix', 'fixed']
+                labels: ['bug']
+              - type: 'feature'
+                nouns: ['feat', 'feature']
+                labels: ['enhacement']
+              - type: 'breaking_change'
+                nouns: ['BREAKING CHANGE']
+                labels: ['BREAKING CHANGE']
           clear-all-labels-to-start: false
-          remove-labels-not-found: true
-          conventional-commits: './.github/conventional-commits.test.yml'
-          not-apply-changes: false
+          maintain-labels-not-matched: false
+          apply-changes: true
 
       - name: assert
         run: |
           if [[ "${{ steps.action-assign-labels.outputs.action-status }}" != "ENDED" ]]; then echo "want status ENDED, got ${{ steps.action-assign-labels.outputs.action-status }}"; exit 1; fi
           if [[ "${{ steps.action-assign-labels.outputs.action-message }}" != "" ]]; then echo "want message empty, got ${{ steps.action-assign-labels.outputs.action-message }}"; exit 1; fi
-
-          if [[ "${{ steps.action-assign-labels.outputs.labels-assigned }}" != "" ]]; then echo "want labels-assigned empty, got ${{ steps.action-assign-labels.outputs.labels-assigned }}"; exit 1; fi
-          if [[ "${{ steps.action-assign-labels.outputs.labels-removed }}" != "" ]]; then echo "want labels-removed empty, got ${{ steps.action-assign-labels.outputs.labels-removed }}"; exit 1; fi
