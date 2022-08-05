@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const PullrequestService = require('./pullrequest.service');
-const { octokitPullrequestSuccessfullMock, octokitRequestFailMock, octokitCommitsSuccessfullMock } = require('../__mock__/octokit.mock');
+const { octokitPullrequestSuccessfullMock, octokitRequestFailMock, octokitCommitsSuccessfullMock } = require('../__mocks__/octokit.mock');
 
 describe('PullrequestService', () => {
   describe('instance', () => {
