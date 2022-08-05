@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 const fs = require('fs');
 const core = require('@actions/core');
-const { Octokit } = require('@octokit/action');
 
+const { Octokit } = require('@octokit/action');
 const BoolActionInput = require('./actionInputs/boolActionInput');
 const IntegerActionInput = require('./actionInputs/integerActionInput');
 const StringActionInput = require('./actionInputs/stringActionInput');
 const YAMLActionInput = require('./actionInputs/YAMLActionInput');
+const PullrequestService = require('./services/pullrequest.service');
 
 const inputPullRequestNumber = 'pull-request-number';
 const inputGithubToken = 'github-token';
@@ -51,6 +52,8 @@ async function main() {
       { id: inputConventionalCommits },
     );
 
+    core.setOutput('action-status', 'VALIDATED');
+
     const { eventName } = process.env.GITHUB_EVENT_NAME;
     const context = (() => fs.readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }))();
 
@@ -62,37 +65,38 @@ async function main() {
       }
     }
 
-    core.setOutput('action-status', 'VALIDATED');
-
     process.env.GITHUB_TOKEN = githubToken.value;
     const octokit = new Octokit();
     const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+    const pullrequestService = new PullrequestService(octokit);
 
-    const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+    const pullrequest = await pullrequestService.getPullrequest(
       owner,
       repo,
-      pull_number: pullRequestNumber.value,
-    });
-    if (response.status !== 200) {
-      throw new Error(`get pull-request responso with ${response.status}`);
-    }
-    const pullrequest = response.data;
+      pullRequestNumber.value,
+    );
 
     const labelsBefore = pullrequest.labels;
     const labelsBeforeName = labelsBefore.map((l) => l.name);
     core.setOutput('labels-before-update', labelsBeforeName);
 
     // get commits
-    const resp1 = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', {
+
+    const commits = await pullrequestService.getCommits(
       owner,
       repo,
-      pull_number: pullRequestNumber.value,
-    });
-    if (resp1.status !== 200) {
-      throw new Error(`get pull-request' commits response with ${resp1.status}`);
-    }
-    const commits = resp1.data;
+      pullRequestNumber.value,
+    );
     console.log(commits);
+
+    const types = conventionalCommits.value.map((cc) => cc.type);
+
+    // scan commits
+    // commits.forEach((c) => {
+    //   const header = /^(\w*)(?:\(([\w$.\-* ]*)\))?: (.*)$/;
+    //   const [type, scope, body] = header.exec(c.commit.message);
+    //   if ( types.includes(type) )
+    // });
 
     core.setOutput('action-status', 'PARSED');
 
