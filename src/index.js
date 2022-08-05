@@ -82,6 +82,18 @@ async function main() {
     const labelsBeforeName = labelsBefore.map((l) => l.name);
     core.setOutput('labels-before-update', labelsBeforeName);
 
+    // get commits
+    const resp1 = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', {
+      owner,
+      repo,
+      pull_number: pullRequestNumber.value,
+    });
+    if (resp1.status !== 200) {
+      throw new Error(`get pull-request' commits response with ${resp1.status}`);
+    }
+    const commits = resp1.data;
+    console.log(commits);
+
     core.setOutput('action-status', 'PARSED');
 
     core.setOutput('action-status', 'ENDED');
