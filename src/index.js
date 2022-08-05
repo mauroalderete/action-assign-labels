@@ -8,6 +8,7 @@ const IntegerActionInput = require('./actionInputs/integerActionInput');
 const StringActionInput = require('./actionInputs/stringActionInput');
 const YAMLActionInput = require('./actionInputs/YAMLActionInput');
 const PullrequestService = require('./services/pullrequest.service');
+const concom = require('./conventional-commits/conventionalCommits');
 
 const inputPullRequestNumber = 'pull-request-number';
 const inputGithubToken = 'github-token';
@@ -81,22 +82,14 @@ async function main() {
     core.setOutput('labels-before-update', labelsBeforeName);
 
     // get commits
-
     const commits = await pullrequestService.getCommits(
       owner,
       repo,
       pullRequestNumber.value,
     );
-    console.log(commits);
 
-    const types = conventionalCommits.value.map((cc) => cc.type);
-
-    // scan commits
-    // commits.forEach((c) => {
-    //   const header = /^(\w*)(?:\(([\w$.\-* ]*)\))?: (.*)$/;
-    //   const [type, scope, body] = header.exec(c.commit.message);
-    //   if ( types.includes(type) )
-    // });
+    const messages = commits.map((c) => c.commit.message);
+    concom.getTypesInCommits(messages, conventionalCommits.value);
 
     core.setOutput('action-status', 'PARSED');
 
