@@ -1,6 +1,11 @@
 /* eslint-disable no-unused-vars */
 const PullrequestService = require('./pullrequest.service');
-const { octokitPullrequestSuccessfullMock, octokitRequestFailMock, octokitCommitsSuccessfullMock } = require('../__mocks__/octokit.mock');
+const {
+  octokitPullrequestSuccessfullMock,
+  octokitRequestFailMock,
+  octokitCommitsSuccessfullMock,
+  octokitSetLabelsSuccessfullMock,
+} = require('../__mocks__/octokit.mock');
 
 describe('PullrequestService', () => {
   describe('instance', () => {
@@ -103,6 +108,67 @@ describe('PullrequestService', () => {
       expect(async () => {
         const serviceFail = new PullrequestService(octokitRequestFailMock);
         await serviceFail.getCommits('owner', 'repo', 13);
+      }).rejects.toThrow();
+    });
+  });
+
+  describe('set labels to pull request', () => {
+    const service = new PullrequestService(octokitSetLabelsSuccessfullMock);
+    it('validate owner', () => {
+      expect(async () => {
+        await service.setLabels(null, 'repo', 13);
+      }).rejects.toThrow();
+      expect(async () => {
+        await service.setLabels(undefined, 'repo', 13);
+      }).rejects.toThrow();
+    });
+
+    it('validate repo', () => {
+      expect(async () => {
+        await service.setLabels('owner', null, 13);
+      }).rejects.toThrow();
+      expect(async () => {
+        await service.setLabels('owner', undefined, 13);
+      }).rejects.toThrow();
+    });
+
+    it('validate pullNumber', () => {
+      expect(async () => {
+        await service.setLabels('owner', 'repo');
+      }).rejects.toThrow();
+      expect(async () => {
+        await service.setLabels('owner', 'repo', null);
+      }).rejects.toThrow();
+      expect(async () => {
+        await service.setLabels('owner', 'repo', undefined);
+      }).rejects.toThrow();
+    });
+
+    it('validate labels', () => {
+      expect(async () => {
+        await service.setLabels('owner', 'repo', 13);
+      }).rejects.toThrow();
+      expect(async () => {
+        await service.setLabels('owner', 'repo', 13, null);
+      }).rejects.toThrow();
+      expect(async () => {
+        await service.setLabels('owner', 'repo', 13, undefined);
+      }).rejects.toThrow();
+      expect(async () => {
+        await service.setLabels('owner', 'repo', 13, {});
+      }).rejects.toThrow();
+    });
+
+    it('request with status === 200', async () => {
+      const data = await service.setLabels('owner', 'repo', 13, ['bug', 'enhancement']);
+      expect(data[0]).toHaveProperty('name', 'bug');
+      expect(data[1]).toHaveProperty('name', 'enhancement');
+    });
+
+    it('request with status !== 200', () => {
+      expect(async () => {
+        const serviceFail = new PullrequestService(octokitRequestFailMock);
+        await serviceFail.setLabels('owner', 'repo', 13, ['bug', 'enhancement']);
       }).rejects.toThrow();
     });
   });

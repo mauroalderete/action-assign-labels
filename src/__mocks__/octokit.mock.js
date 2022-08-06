@@ -603,6 +603,32 @@ const octokitCommitsSuccessfullMock = {
   }),
 };
 
+const octokitSetLabelsSuccessfullMock = {
+  request: () => ({
+    status: 200,
+    data: [
+      {
+        id: 208045946,
+        node_id: 'MDU6TGFiZWwyMDgwNDU5NDY=',
+        url: 'https://api.github.com/repos/octocat/Hello-World/labels/bug',
+        name: 'bug',
+        description: "Something isn't working",
+        color: 'f29513',
+        default: true,
+      },
+      {
+        id: 208045947,
+        node_id: 'MDU6TGFiZWwyMDgwNDU5NDc=',
+        url: 'https://api.github.com/repos/octocat/Hello-World/labels/enhancement',
+        name: 'enhancement',
+        description: 'New feature or request',
+        color: 'a2eeef',
+        default: false,
+      },
+    ],
+  }),
+};
+
 const octokitRequestFailMock = {
   request: () => ({ status: 404, data: {} }),
 };
@@ -610,5 +636,6 @@ const octokitRequestFailMock = {
 module.exports = {
   octokitPullrequestSuccessfullMock,
   octokitCommitsSuccessfullMock,
+  octokitSetLabelsSuccessfullMock,
   octokitRequestFailMock,
 };
