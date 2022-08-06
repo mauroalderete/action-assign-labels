@@ -19,7 +19,7 @@ describe('ActionInput', () => {
   it('get conventional-commits types from commits using conventional-commits scheme', () => {
     const expected = [
       { type: 'fix', nouns: ['fix', 'fixed'], labels: ['bug'] },
-      { type: 'feature', nouns: ['feat', 'feature'], labels: ['enhacement'] },
+      { type: 'feature', nouns: ['feat', 'feature'], labels: ['enhancement'] },
     ];
 
     expect(concom.getTypesInCommits(commits, cc.value)).toEqual(expected);

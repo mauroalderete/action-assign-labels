@@ -4,7 +4,7 @@ conventional-commits:
     labels: ['bug']
   - type: 'feature'
     nouns: ['feat', 'feature', 'FEAT', 'FEATURE']
-    labels: ['enhacement']
+    labels: ['enhancement']
   - type: 'breaking_change'
     nouns: ['BREAKING CHANGE']
     labels: ['BREAKING CHANGE']
