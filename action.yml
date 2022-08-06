@@ -1,19 +1,16 @@
 name: 'Assign Labels From Conventional Commits'
 description: 'Assign labels to pull-request parsing conventional commits standard'
 inputs:
-  pull-request-number:
-    description: 'The pull request'' number where labels will be assigned'
-    required: true
   github-token:
     description: 'The Github token.'
     required: true
   conventional-commits:
     description: 'String with the YAML object or path to file YAML that contains a list with conventional commits and the labels matching that must be assigned'
     required: true
-  clear-all-labels-to-start:
-    description: 'Should be removed all labels assigned to the pull request before begin.'
+  pull-request-number:
+    description: 'The pull request'' number where labels will be assigned'
     required: false
-    default: 'false'
+    default: '0'
   maintain-labels-not-matched:
     description: 'You should keep the conventional commit tags assigned to the pull-request, even though they are no longer referenced within commits.'
     required: false

@@ -73,7 +73,7 @@ describe('YAMLActionInput', () => {
               'feature',
             ],
             labels: [
-              'enhacement',
+              'enhancement',
             ],
           },
           {
