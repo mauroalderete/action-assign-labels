@@ -8,12 +8,11 @@ const IntegerActionInput = require('./actionInputs/integerActionInput');
 const StringActionInput = require('./actionInputs/stringActionInput');
 const YAMLActionInput = require('./actionInputs/YAMLActionInput');
 const PullrequestService = require('./services/pullrequest.service');
-const concom = require('./conventional-commits/conventionalCommits');
+const concom = require('./conventionalCommits/conventionalCommits');
 
 const inputPullRequestNumber = 'pull-request-number';
 const inputGithubToken = 'github-token';
-const inputCleanLabels = 'clear-all-labels-to-start';
-const inputRemoveLabelsNotFound = 'maintain-labels-not-matched';
+const inputMaintainLabelsNotFound = 'maintain-labels-not-matched';
 const inputApplyChanges = 'apply-changes';
 const inputConventionalCommits = 'conventional-commits';
 
@@ -36,15 +35,11 @@ async function main() {
       core.getInput(inputGithubToken),
       { id: inputGithubToken },
     );
-    const cleanLabels = new BoolActionInput(
-      core.getInput(inputCleanLabels),
-      { id: inputCleanLabels },
+    const maintainLabelsNotFound = new BoolActionInput(
+      core.getInput(inputMaintainLabelsNotFound),
+      { id: inputMaintainLabelsNotFound },
     );
-    const removeLabelsNotFound = new BoolActionInput(
-      core.getInput(inputRemoveLabelsNotFound),
-      { id: inputRemoveLabelsNotFound },
-    );
-    const ApplyChanges = new BoolActionInput(
+    const applyChanges = new BoolActionInput(
       core.getInput(inputApplyChanges),
       { id: inputApplyChanges },
     );

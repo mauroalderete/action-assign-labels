@@ -31,7 +31,6 @@ jobs:
               - type: 'breaking_change'
                 nouns: ['BREAKING CHANGE']
                 labels: ['BREAKING CHANGE']
-          clear-all-labels-to-start: false
           maintain-labels-not-matched: false
           apply-changes: true
 
