@@ -9,6 +9,7 @@ const StringActionInput = require('./actionInputs/stringActionInput');
 const YAMLActionInput = require('./actionInputs/YAMLActionInput');
 const PullrequestService = require('./services/pullrequest.service');
 const concom = require('./conventionalCommits/conventionalCommits');
+const AssignLabelsApp = require('./app/assignlabels.app');
 
 const inputPullRequestNumber = 'pull-request-number';
 const inputGithubToken = 'github-token';
@@ -21,16 +22,12 @@ const validEvents = ['pull_request'];
 async function main() {
   try {
     core.setOutput('labels-before-update', '');
-    core.setOutput('labels-added', '');
+    core.setOutput('labels-assigned', '');
     core.setOutput('labels-removed', '');
-    core.setOutput('labels-after-update', '');
-    core.setOutput('action-status', 'STARTED');
+    core.setOutput('labels-current', '');
     core.setOutput('action-message', '');
+    core.setOutput('action-status', 'STARTED');
 
-    const pullRequestNumber = new IntegerActionInput(
-      core.getInput(inputPullRequestNumber),
-      { id: inputPullRequestNumber },
-    );
     const githubToken = new StringActionInput(
       core.getInput(inputGithubToken),
       { id: inputGithubToken },
@@ -48,46 +45,58 @@ async function main() {
       { id: inputConventionalCommits },
     );
 
-    core.setOutput('action-status', 'VALIDATED');
-
-    const { eventName } = process.env.GITHUB_EVENT_NAME;
-    const context = (() => fs.readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }))();
-
-    if (pullRequestNumber.value === 0) {
-      if (eventName === 'pull_request') {
-        pullRequestNumber.value = context.pull_request.number;
-      } else {
-        throw new Error(`The current event '${eventName}' need a valid pull_request_number`);
-      }
+    let pullrequestNumber;
+    if (process.env.GITHUB_EVENT_NAME === 'pull_request') {
+      const context = (() => fs.readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }))();
+      pullrequestNumber = context.pull_request.number;
+    } else {
+      const tmpPullRequestNumber = new IntegerActionInput(
+        core.getInput(inputPullRequestNumber),
+        { id: inputPullRequestNumber },
+      );
+      pullrequestNumber = tmpPullRequestNumber.value;
     }
 
     process.env.GITHUB_TOKEN = githubToken.value;
     const octokit = new Octokit();
     const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-    const pullrequestService = new PullrequestService(octokit);
 
-    const pullrequest = await pullrequestService.getPullrequest(
-      owner,
-      repo,
-      pullRequestNumber.value,
-    );
+    core.setOutput('action-status', 'VALIDATED');
 
-    const labelsBefore = pullrequest.labels;
-    const labelsBeforeName = labelsBefore.map((l) => l.name);
-    core.setOutput('labels-before-update', labelsBeforeName);
+    let assignLabelsApp;
+    try {
+      assignLabelsApp = new AssignLabelsApp(
+        octokit,
+        {
+          owner,
+          repo,
+          number: pullrequestNumber.value,
+        },
+        {
+          conventionalCommitsScheme: conventionalCommits.value,
+          maintainLabelsNotFound,
+          applyChanges,
+        },
+      );
+    } catch (error) {
+      throw new Error(`failed to try instance assign labels process: ${error}`);
+    }
 
-    // get commits
-    const commits = await pullrequestService.getCommits(
-      owner,
-      repo,
-      pullRequestNumber.value,
-    );
-
-    const messages = commits.map((c) => c.commit.message);
-    concom.getTypesInCommits(messages, conventionalCommits.value);
-
+    let result;
+    try {
+      result = await assignLabelsApp.exec();
+    } catch (error) {
+      throw new Error(`failed to execute assign labels process: ${error}`);
+    }
     core.setOutput('action-status', 'PARSED');
 
+    const [previous, added, removed, current] = result;
+
+    core.setOutput('labels-before-update', previous);
+    core.setOutput('labels-assigned', added);
+    core.setOutput('labels-removed', removed);
+    core.setOutput('labels-current', current);
+    core.setOutput('action-message', '');
     core.setOutput('action-status', 'ENDED');
   } catch (error) {
     core.setOutput('action-message', error.message);
