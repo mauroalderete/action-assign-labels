@@ -77,8 +77,8 @@ async function main() {
         },
         {
           conventionalCommitsScheme: conventionalCommits.value,
-          maintainLabelsNotFound,
-          applyChanges,
+          maintainLabelsNotFound: maintainLabelsNotFound.value,
+          applyChanges: applyChanges.value,
         },
       );
     } catch (error) {
