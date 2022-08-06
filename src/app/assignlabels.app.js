@@ -30,6 +30,8 @@ class AssignLabelsApp {
   async exec() {
     const pullrequestService = new PullrequestService(this.#githubClient);
 
+    console.log('app::exec: prconfig', this.#pullrequestConfig);
+
     const pullrequest = await pullrequestService.getPullrequest(
       this.#pullrequestConfig.owner,
       this.#pullrequestConfig.repo,
