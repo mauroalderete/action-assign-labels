@@ -162,6 +162,70 @@ describe('labellerController', () => {
             removed: ['BREAKING CHANGE'],
           },
         },
+        {
+          title: 'only added with others',
+          input: {
+            currentLabels: ['build'],
+            changeByLabels: ['bug', 'feat'],
+            config: {
+              maintainLabelsNotFound: true,
+              conventionalCommitsScheme: cc.value,
+            },
+          },
+          expect: {
+            next: ['build', 'bug', 'feat'],
+            added: ['bug', 'feat'],
+            removed: [],
+          },
+        },
+        {
+          title: 'add one more with others',
+          input: {
+            currentLabels: ['bug', 'build'],
+            changeByLabels: ['bug', 'feat'],
+            config: {
+              maintainLabelsNotFound: true,
+              conventionalCommitsScheme: cc.value,
+            },
+          },
+          expect: {
+            next: ['bug', 'build', 'feat'],
+            added: ['feat'],
+            removed: [],
+          },
+        },
+        {
+          title: 'add one more and maintain not found with others',
+          input: {
+            currentLabels: ['bug', 'BREAKING CHANGE', 'build'],
+            changeByLabels: ['bug', 'feat'],
+            config: {
+              maintainLabelsNotFound: true,
+              conventionalCommitsScheme: cc.value,
+            },
+          },
+          expect: {
+            next: ['bug', 'BREAKING CHANGE', 'build', 'feat'],
+            added: ['feat'],
+            removed: [],
+          },
+        },
+        {
+          title: 'add one more and remove not found with others',
+          input: {
+            currentLabels: ['bug', 'BREAKING CHANGE', 'build'],
+            changeByLabels: ['bug', 'feat'],
+            config: {
+              maintainLabelsNotFound: false,
+              conventionalCommitsScheme: cc.value,
+            },
+          },
+          expect: {
+            next: ['bug', 'build', 'feat'],
+            added: ['feat'],
+            removed: ['BREAKING CHANGE'],
+          },
+        },
       ];
 
       targets.forEach((t) => {
