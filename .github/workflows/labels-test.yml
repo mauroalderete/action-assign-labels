@@ -1,0 +1,79 @@
+name: Labels Test
+
+on:
+  pull_request:
+    branches: [main]
+    types:
+      [opened, reopened, synchronize, labeled, unlabeled]
+
+jobs:
+  assign-labels:
+    name: Assign labels from conventional-commits
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    outputs:
+      labels-assigned: ${{ steps.action-assign-labels.outputs.labels-assigned }}
+      labels-removed: ${{ steps.action-assign-labels.outputs.labels-removed }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Execute assign labels
+        id: action-assign-labels
+        uses: ./
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          conventional-commits: |
+            conventional-commits:
+              - type: 'fix'
+                nouns: ['fix', 'fixed']
+                labels: ['bug']
+              - type: 'feature'
+                nouns: ['feat', 'feature']
+                labels: ['feature']
+              - type: 'breaking_change'
+                nouns: ['BREAKING CHANGE','major','MAJOR']
+                labels: ['BREAKING CHANGE']
+              - type: 'documentation'
+                nouns: ['doc','docu','document','documentation']
+                labels: ['documentation']
+              - type: 'build'
+                nouns: ['build','rebuild']
+                labels: ['build']
+              - type: 'config'
+                nouns: ['config', 'conf', 'cofiguration', 'configure']
+                labels: ['config']
+          maintain-labels-not-matched: false
+          apply-changes: true
+
+  verify-labels:
+    runs-on: ubuntu-latest
+    name: Verify labels
+    needs: assign-labels
+    if: github.event.pull_request.merged == false && (needs.assign-labels.outputs.labels-assigned != '[]' || needs.assign-labels.outputs.labels-removed != '[]')
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: v0
+
+      - uses: actions/checkout@v3
+        with:
+          repository: mauroalderete/action-verify-labels
+          ref: v0
+          token: ${{ secrets.WORKFLOWS_TOKEN }}
+          path: ./.github/actions/action-verify-labels
+          persist-credentials: false
+
+      - name: Verify labels
+        id: action-verify-labels
+        uses: ./.github/actions/action-verify-labels
+        with:
+          none: question, wontfix, invalid
+          some: bug, feature, BREAKING CHANGE
+          request-review: true
+          request-review-header: '**:bookmark: verify-labels-action**'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
