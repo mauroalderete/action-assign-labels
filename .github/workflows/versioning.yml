@@ -53,21 +53,29 @@ jobs:
         if: github.event.head_commit.committer.username == 'web-flow'
         run: |
           #!/bin/sh
+
+          tar -czvf dist.tar.gz ./dist
+
           # The last commit was committed by GitHub.
           # We assume that the push event come of the a potential pull-request.
           gh release create ${{ steps.semver.outputs.next }} \
           --title 'Release ${{ steps.semver.outputs.next }}' \
           --notes "Changelog Contents :sunglasses:" \
-          --generate-notes
+          --generate-notes \
+          ./dist.tar.gz
 
       - name: Create Release from Commits
         id: create-release-from-commits
         if: github.event.head_commit.committer.username != 'web-flow'
         run: |
           #!/bin/sh
+          
+          tar -czvf dist.tar.gz ./dist
+
           # The last commit was not committed by GitHub.
           # We assume that the push event come directly.
           gh release create ${{ steps.semver.outputs.next }} \
           --title 'Release ${{ steps.semver.outputs.next }}' \
           --notes "Changelog Contents :sunglasses:" \
-          --generate-notes
+          --generate-notes \
+          ./dist.tar.gz
