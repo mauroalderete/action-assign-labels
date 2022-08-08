@@ -29,13 +29,13 @@ jobs:
           conventional-commits: |
             conventional-commits:
               - type: 'fix'
-                nouns: ['fix', 'fixed']
+                nouns: ['FIX', 'Fix', 'fix', 'FIXED', 'Fixed', 'fixed']
                 labels: ['bug']
               - type: 'feature'
-                nouns: ['feat', 'feature']
+                nouns: ['FEATURE', 'Feature', 'feature', 'FEAT', 'Feat', 'feat']
                 labels: ['feature']
               - type: 'breaking_change'
-                nouns: ['BREAKING CHANGE','major','MAJOR']
+                nouns: ['BREAKING CHANGE', 'BREAKING', 'MAJOR']
                 labels: ['BREAKING CHANGE']
               - type: 'documentation'
                 nouns: ['doc','docu','document','documentation']

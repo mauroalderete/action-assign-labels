@@ -1,6 +1,6 @@
 {
   "name": "action-assign-labels-from-conventionals-commit",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "description": "Assign labels to pull-request parsing conventional commits standard",
   "main": "src/index.js",
   "directories": {
