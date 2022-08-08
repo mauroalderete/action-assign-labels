@@ -1,2 +1,2 @@
-# action-assign-labels-from-conventional-commit
+# action-assign-labels
 Assign labels to pull-request parsing conventional commits standard
