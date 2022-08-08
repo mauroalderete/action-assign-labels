@@ -70,6 +70,8 @@ jobs:
         run: |
           #!/bin/sh
           
+          echo "::warning ::There were no pull requests associated with the commits included in this release. Automatically-generated notes were not generated."
+
           tar -czvf dist.tar.gz ./dist
 
           # The last commit was not committed by GitHub.
