@@ -34,7 +34,7 @@
   "dependencies": {
     "@actions/core": "^1.9.0",
     "@octokit/action": "^4.0.4",
-    "yamljs": "^0.3.0"
+    "yaml": "^2.1.1"
   },
   "devDependencies": {
     "eslint": "^8.21.0",
