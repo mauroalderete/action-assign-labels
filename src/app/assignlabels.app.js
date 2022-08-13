@@ -1,5 +1,5 @@
 const { getTypesInCommits } = require('../lib/conventional-commits/conventional-commits');
-const labellerController = require('../labellerController/labellerController');
+const labellerController = require('../lib/label-updater/label-updater');
 const PullrequestService = require('../services/pullrequest.service');
 
 class AssignLabelsApp {
