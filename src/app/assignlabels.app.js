@@ -1,4 +1,4 @@
-const concom = require('../conventionalCommits/conventionalCommits');
+const { getTypesInCommits } = require('../lib/conventional-commits/conventional-commits');
 const labellerController = require('../labellerController/labellerController');
 const PullrequestService = require('../services/pullrequest.service');
 
@@ -45,7 +45,7 @@ class AssignLabelsApp {
       this.#pullrequestConfig.number,
     );
 
-    const types = concom.getTypesInCommits(
+    const types = getTypesInCommits(
       commits.map((c) => c.commit.message),
       this.#inputs.conventionalCommitsScheme,
     );
