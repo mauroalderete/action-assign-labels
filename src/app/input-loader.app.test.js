@@ -43,22 +43,6 @@ describe('inputLoader.app', () => {
       expectedThrow: true,
     },
     {
-      title: 'all with pr fail',
-      input: {
-        'pull-request-number': '0',
-        'github-token': 'asd',
-        'maintain-labels-not-matched': false,
-        'apply-changes': true,
-        'conventional-commits': `%YAML 1.2
-        conventional-commits:
-        - type: 'fix'
-          nouns: ['fix', 'fixed']
-          labels: ['bug']
-        `,
-      },
-      expectedThrow: true,
-    },
-    {
       title: 'all ok',
       input: {
         'pull-request-number': '100',
