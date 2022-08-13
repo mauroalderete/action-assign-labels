@@ -17,7 +17,11 @@ const makeYAMLLoader = (readerSync) => (value, path) => {
   }
 
   try {
-    return yaml.parse(content);
+    const res = yaml.parse(content);
+    if (res === undefined || res === null) {
+      throw new Error('content is null');
+    }
+    return res;
   } catch (error) {
     throw new Error(`yaml input failed to parse YAML content: ${error}`);
   }

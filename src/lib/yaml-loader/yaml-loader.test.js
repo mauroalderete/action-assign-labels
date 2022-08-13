@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
 const { makeYAMLLoader } = require('./yaml-loader');
 
 describe('YAMLLoader.app', () => {
+  // eslint-disable-next-line no-unused-vars
   const readerMock = (path, options) => {
     if (path !== 'conventional-commits.yml') {
       throw new Error('file not found');
@@ -22,7 +22,7 @@ describe('YAMLLoader.app', () => {
 
   it('without input', () => {
     expect(() => {
-      const input = yaml();
+      yaml();
     }).toThrow();
   });
 
@@ -46,12 +46,8 @@ describe('YAMLLoader.app', () => {
       title: 'bool input', input: true,
     },
     {
-      title: 'invalid yaml', input: '%YAML 1.2',
-    },
-    {
       title: 'valid yaml',
-      input: `%YAML 1.2
-      conventional-commits:
+      input: `conventional-commits:
       - type: 'fix'
         nouns: ['fix', 'fixed']
         labels: ['bug']
@@ -110,12 +106,12 @@ describe('YAMLLoader.app', () => {
 
   targets.forEach((t) => {
     it(t.title, () => {
-      if (t.expected) {
+      if (t.expected !== undefined) {
         const input = yaml(t.input);
         expect(input).toEqual(t.expected);
       } else {
         expect(() => {
-          const input = yaml(null);
+          yaml(t.input);
         }).toThrow();
       }
     });

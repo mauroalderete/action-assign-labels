@@ -1,7 +1,7 @@
 const { makeInputConfigurator } = require('../actionInputs/inputConfigurator');
 const { makeInputGetter } = require('../actionInputs/inputGetter');
-const { makeInputsLoader } = require('./inputsLoader.app');
 const { makeYAMLLoader } = require('./YAMLLoader.app');
+const { makeInputsLoader } = require('./input-loader.app');
 
 describe('inputsLoader.app', () => {
   const target = [
@@ -82,12 +82,34 @@ describe('inputsLoader.app', () => {
     },
   ];
 
+  // eslint-disable-next-line no-unused-vars
+  const readerMock = (path, options) => {
+    if (path !== 'conventional-commits.yml') {
+      throw new Error('file not found');
+    }
+
+    return `conventional-commits:
+    - type: 'fix'
+      nouns: ['fix', 'fixed']
+      labels: ['bug']
+    - type: 'feature'
+      nouns: ['feat', 'feature']
+      labels: ['enhancement']
+    - type: 'breaking_change'
+      nouns: ['BREAKING CHANGE']
+      labels: ['BREAKING CHANGE']`;
+  };
+  const yamlLoaderMock = makeYAMLLoader(readerMock);
+
   target.forEach((t) => {
     it(`${t.title} ${t.input}`, () => {
-      const configurator = makeInputConfigurator();
-      const getInputClientMock = makeInputGetter((name) => t.input[name], configurator);
-      const yamlLoader = makeYAMLLoader();
-      const inputsLoader = makeInputsLoader(getInputClientMock, yamlLoader);
+      const stringInputClientMock = (name) => t.input[name];
+      const booleanInputClientMock = (name) => t.input[name];
+      const inputsLoader = makeInputsLoader(
+        stringInputClientMock,
+        booleanInputClientMock,
+        yamlLoaderMock,
+      );
 
       if (t.expectedThrow) {
         expect(() => {
