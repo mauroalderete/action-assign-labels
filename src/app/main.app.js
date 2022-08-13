@@ -1,11 +1,4 @@
-const { makeInputsLoader } = require('./input-loader.app');
-
-const mainApp = (githubCore, yamlLoaderClient) => () => {
-  const loadInputs = makeInputsLoader(
-    githubCore.getInput,
-    githubCore.getBooleanInput,
-    yamlLoaderClient,
-  );
+const mainApp = (githubCore, loadInputs) => () => {
   loadInputs();
 };
 
