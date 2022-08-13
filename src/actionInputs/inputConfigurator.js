@@ -68,6 +68,19 @@ const makeInputConfigurator = () => (value) => {
       );
     },
 
+    use(action) {
+      if (!action) {
+        return;
+      }
+
+      try {
+        action(this);
+        // eslint-disable-next-line consistent-return
+        return this;
+      } catch (error) {
+        throw new Error(`failed to invoke the middleware '${action.name}': ${error}`);
+      }
+    },
   };
 
   return new InputParser(value);

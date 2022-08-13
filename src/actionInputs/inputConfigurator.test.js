@@ -136,6 +136,13 @@ describe('inputConfigurator', () => {
     {
       title: 'toBool', input: false, expectedValue: false, test: toBool,
     },
+    {
+      // eslint-disable-next-line no-param-reassign
+      title: 'use ok', input: 100, expectedValue: 101, test: (input) => config(input).use((opt) => { opt.value += 1; }),
+    },
+    {
+      title: 'use fail', input: 100, expectedThrow: true, test: (input) => config(input).use((v) => { throw new Error(v); }),
+    },
   ];
 
   target.forEach((t) => {
