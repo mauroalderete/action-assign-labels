@@ -1152,11 +1152,11 @@ const octokitRequestFailMock = {
 const strategyOctokitSuccessfullMock = {
   request: (url) => {
     switch (url) {
-      case 'GET /repos/{owner}/{repo}/pulls/{pullNumber}':
+      case 'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}':
         return octokitPullrequestSuccessfullMock.request();
-      case 'GET /repos/{owner}/{repo}/pulls/{pullNumber}/commits':
+      case 'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}/commits':
         return octokitCommitsSuccessfullMock.request();
-      case 'PUT /repos/{owner}/{repo}/issues/{pullNumber}/labels':
+      case 'PUT /repos/{owner}/{repository}/issues/{pullRequestNumber}/labels':
         return octokitSetLabelsSuccessfullMock.request();
       default:
         return octokitPullrequestSuccessfullMock.request();
