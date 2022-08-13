@@ -49,6 +49,25 @@ const makeInputConfigurator = () => (value) => {
       return this;
     },
 
+    toBool() {
+      const trueValue = ['true', 'True', 'TRUE', true];
+      const falseValue = ['false', 'False', 'FALSE', false];
+
+      if (trueValue.includes(this.value)) {
+        this.value = true;
+        return this;
+      }
+
+      if (falseValue.includes(this.value)) {
+        this.value = false;
+        return this;
+      }
+
+      throw new TypeError(
+        `input ${this.value} does not meet YAML 1.2 "Core Schema" specification: Support boolean input list: \`true | True | TRUE | false | False | FALSE\``,
+      );
+    },
+
   };
 
   return new InputParser(value);

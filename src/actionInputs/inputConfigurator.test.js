@@ -13,6 +13,7 @@ describe('inputConfigurator', () => {
   const denyVoid = (input) => config(input).denyVoid();
   const toString = (input) => config(input).toString();
   const toInt = (input) => config(input).toInt();
+  const toBool = (input) => config(input).toBool();
 
   const target = [
     {
@@ -98,6 +99,42 @@ describe('inputConfigurator', () => {
     },
     {
       title: 'toInt int', input: 123, expectedValue: 123, test: toInt,
+    },
+    {
+      title: 'toBool', input: undefined, expectedThrow: true, test: toBool,
+    },
+    {
+      title: 'toBool', input: null, expectedThrow: true, test: toBool,
+    },
+    {
+      title: 'toBool', input: '', expectedThrow: true, test: toBool,
+    },
+    {
+      title: 'toBool', input: 1, expectedThrow: true, test: toBool,
+    },
+    {
+      title: 'toBool string', input: 'true', expectedValue: true, test: toBool,
+    },
+    {
+      title: 'toBool string', input: 'True', expectedValue: true, test: toBool,
+    },
+    {
+      title: 'toBool string', input: 'TRUE', expectedValue: true, test: toBool,
+    },
+    {
+      title: 'toBool', input: true, expectedValue: true, test: toBool,
+    },
+    {
+      title: 'toBool string', input: 'false', expectedValue: false, test: toBool,
+    },
+    {
+      title: 'toBool string', input: 'False', expectedValue: false, test: toBool,
+    },
+    {
+      title: 'toBool string', input: 'FALSE', expectedValue: false, test: toBool,
+    },
+    {
+      title: 'toBool', input: false, expectedValue: false, test: toBool,
     },
   ];
 
