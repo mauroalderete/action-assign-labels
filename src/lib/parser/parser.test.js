@@ -1,19 +1,13 @@
-const { makeInputConfigurator } = require('./inputConfigurator');
+const parser = require('./parser');
 
-describe('inputConfigurator', () => {
-  it('construct', () => {
-
-  });
-
-  const config = makeInputConfigurator();
-
-  const denyUndefined = (input) => config(input).denyUndefined();
-  const denyNull = (input) => config(input).denyNull();
-  const denyEmpty = (input) => config(input).denyEmpty();
-  const denyVoid = (input) => config(input).denyVoid();
-  const toString = (input) => config(input).toString();
-  const toInt = (input) => config(input).toInt();
-  const toBool = (input) => config(input).toBool();
+describe('parser', () => {
+  const denyUndefined = (input) => parser(input).denyUndefined();
+  const denyNull = (input) => parser(input).denyNull();
+  const denyEmpty = (input) => parser(input).denyEmpty();
+  const denyVoid = (input) => parser(input).denyVoid();
+  const toString = (input) => parser(input).toString();
+  const toInt = (input) => parser(input).toInt();
+  const toBool = (input) => parser(input).toBool();
 
   const target = [
     {
@@ -138,10 +132,10 @@ describe('inputConfigurator', () => {
     },
     {
       // eslint-disable-next-line no-param-reassign
-      title: 'use ok', input: 100, expectedValue: 101, test: (input) => config(input).use((opt) => { opt.value += 1; }),
+      title: 'use ok', input: 100, expectedValue: 101, test: (input) => parser(input).use((opt) => { opt.value += 1; }),
     },
     {
-      title: 'use fail', input: 100, expectedThrow: true, test: (input) => config(input).use((v) => { throw new Error(v); }),
+      title: 'use fail', input: 100, expectedThrow: true, test: (input) => parser(input).use((v) => { throw new Error(v); }),
     },
   ];
 
