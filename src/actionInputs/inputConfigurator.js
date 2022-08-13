@@ -45,6 +45,8 @@ const makeInputConfigurator = () => (value) => {
         throw new Error(`input ${this.value} isn't a Int`);
       }
       this.value = number;
+
+      return this;
     },
 
   };
