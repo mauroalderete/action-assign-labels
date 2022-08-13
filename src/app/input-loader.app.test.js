@@ -1,24 +1,22 @@
-const { makeInputConfigurator } = require('../actionInputs/inputConfigurator');
-const { makeInputGetter } = require('../actionInputs/inputGetter');
-const { makeYAMLLoader } = require('./YAMLLoader.app');
-const { makeInputsLoader } = require('./input-loader.app');
+const { makeYAMLLoader } = require('../lib/yaml-loader/yaml-loader');
+const { makeInputLoader } = require('./input-loader.app');
 
-describe('inputsLoader.app', () => {
+describe('inputLoader.app', () => {
   const target = [
     {
-      title: 'numberInput',
+      title: 'object empty',
       input: {},
       expectedThrow: true,
     },
     {
-      title: 'numberInput',
+      title: 'pr',
       input: {
         'pull-request-number': '100',
       },
       expectedThrow: true,
     },
     {
-      title: 'numberInput',
+      title: 'pr+token',
       input: {
         'pull-request-number': '100',
         'github-token': 'asd',
@@ -26,7 +24,7 @@ describe('inputsLoader.app', () => {
       expectedThrow: true,
     },
     {
-      title: 'numberInput',
+      title: 'pr+token+maintain',
       input: {
         'pull-request-number': '100',
         'github-token': 'asd',
@@ -35,7 +33,17 @@ describe('inputsLoader.app', () => {
       expectedThrow: true,
     },
     {
-      title: 'numberInput',
+      title: 'pr+token+maintain+apply',
+      input: {
+        'pull-request-number': '100',
+        'github-token': 'asd',
+        'maintain-labels-not-matched': false,
+        'apply-changes': true,
+      },
+      expectedThrow: true,
+    },
+    {
+      title: 'all with pr fail',
       input: {
         'pull-request-number': '0',
         'github-token': 'asd',
@@ -51,7 +59,7 @@ describe('inputsLoader.app', () => {
       expectedThrow: true,
     },
     {
-      title: 'numberInput',
+      title: 'all ok',
       input: {
         'pull-request-number': '100',
         'github-token': 'asd',
@@ -80,6 +88,31 @@ describe('inputsLoader.app', () => {
         },
       },
     },
+    {
+      title: 'all ok from file',
+      input: {
+        'pull-request-number': '100',
+        'github-token': 'asd',
+        'maintain-labels-not-matched': false,
+        'apply-changes': true,
+        'conventional-commits': 'conventional-commits.yml',
+      },
+      expectedValue: {
+        pullRequestNumber: 100,
+        githubToken: 'asd',
+        maintainLabelsNotFound: false,
+        applyChanges: true,
+        conventionalCommits: {
+          'conventional-commits': [
+            {
+              type: 'fix',
+              nouns: ['fix', 'fixed'],
+              labels: ['bug'],
+            },
+          ],
+        },
+      },
+    },
   ];
 
   // eslint-disable-next-line no-unused-vars
@@ -88,24 +121,20 @@ describe('inputsLoader.app', () => {
       throw new Error('file not found');
     }
 
-    return `conventional-commits:
+    return `%YAML 1.2
+    conventional-commits:
     - type: 'fix'
       nouns: ['fix', 'fixed']
       labels: ['bug']
-    - type: 'feature'
-      nouns: ['feat', 'feature']
-      labels: ['enhancement']
-    - type: 'breaking_change'
-      nouns: ['BREAKING CHANGE']
-      labels: ['BREAKING CHANGE']`;
+    `;
   };
   const yamlLoaderMock = makeYAMLLoader(readerMock);
 
   target.forEach((t) => {
-    it(`${t.title} ${t.input}`, () => {
+    it(`${t.title}`, () => {
       const stringInputClientMock = (name) => t.input[name];
       const booleanInputClientMock = (name) => t.input[name];
-      const inputsLoader = makeInputsLoader(
+      const inputLoader = makeInputLoader(
         stringInputClientMock,
         booleanInputClientMock,
         yamlLoaderMock,
@@ -113,14 +142,14 @@ describe('inputsLoader.app', () => {
 
       if (t.expectedThrow) {
         expect(() => {
-          inputsLoader(t.input);
+          inputLoader(t.input);
         }).toThrow();
       } else {
         expect(() => {
-          inputsLoader(t.input);
+          inputLoader(t.input);
         }).not.toThrow();
 
-        const value = inputsLoader(t.input);
+        const value = inputLoader(t.input);
         expect(value).toEqual(t.expectedValue);
       }
     });
