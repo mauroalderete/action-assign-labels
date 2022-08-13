@@ -1,8 +1,24 @@
 /* eslint-disable no-unused-vars */
-const { makeYAMLLoader } = require('./YAMLLoader.app');
+const { makeYAMLLoader } = require('./yaml-loader');
 
 describe('YAMLLoader.app', () => {
-  const yaml = makeYAMLLoader();
+  const readerMock = (path, options) => {
+    if (path !== 'conventional-commits.yml') {
+      throw new Error('file not found');
+    }
+
+    return `conventional-commits:
+    - type: 'fix'
+      nouns: ['fix', 'fixed']
+      labels: ['bug']
+    - type: 'feature'
+      nouns: ['feat', 'feature']
+      labels: ['enhancement']
+    - type: 'breaking_change'
+      nouns: ['BREAKING CHANGE']
+      labels: ['BREAKING CHANGE']`;
+  };
+  const yaml = makeYAMLLoader(readerMock);
 
   it('without input', () => {
     expect(() => {
@@ -55,7 +71,7 @@ describe('YAMLLoader.app', () => {
     },
     {
       title: 'valid yaml file',
-      input: './src/actionInputs/__mocks__/conventional-commits.yml',
+      input: 'conventional-commits.yml',
       expected: {
         'conventional-commits': [
           {
