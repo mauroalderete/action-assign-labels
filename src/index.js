@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
-// const fs = require('fs');
 const fs = require('fs');
 const core = require('@actions/core');
+const { Octokit } = require('@octokit/action');
+
 const { makeAssignerLabelsApp } = require('./app/assigner-labels.app');
 const { makeInputLoader } = require('./app/input-loader.app');
 const { makeYAMLLoader } = require('./lib/yaml-loader/yaml-loader');
@@ -28,11 +29,15 @@ async function main() {
       core.getBooleanInput,
       yamlLoader,
     );
+
+    const octokit = new Octokit();
+    const pullRequestService = makePullRequestService(octokit);
+
     const assignLabels = makeAssignerLabelsApp(
       loadInput,
       changeLabels,
       getTypesInCommits,
-      makePullRequestService,
+      pullRequestService,
     );
 
     core.setOutput('action-status', 'LOAD_CONTEXT');
