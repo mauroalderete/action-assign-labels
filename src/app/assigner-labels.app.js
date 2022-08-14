@@ -12,7 +12,7 @@ const makeAssignerLabelsApp = (
     inputs.pullRequestNumber = context.pull_request.number;
   }
 
-  const pr = await pullRequestService.getPullrequest(
+  const pr = await pullRequestService.getPullRequest(
     owner,
     repo,
     inputs.pullRequestNumber,

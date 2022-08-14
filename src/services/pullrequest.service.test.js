@@ -11,14 +11,14 @@ describe('PullrequestService', () => {
   describe('get pull request', () => {
     it('request with status === 200', async () => {
       const service = makePullRequestService(octokitPullrequestSuccessfullMock);
-      const data = await service.getPullrequest('owner', 'repo', 13);
+      const data = await service.getPullRequest('owner', 'repo', 13);
       expect(data).toHaveProperty('id');
     });
 
     it('request with status !== 200', () => {
       expect(async () => {
         const serviceFail = makePullRequestService(octokitRequestFailMock);
-        await serviceFail.getPullrequest('owner', 'repo', 13);
+        await serviceFail.getPullRequest('owner', 'repo', 13);
       }).rejects.toThrow();
     });
   });

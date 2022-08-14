@@ -1,5 +1,5 @@
 const makePullRequestService = (githubClient) => ({
-  getPullrequest: async (owner, repository, pullRequestNumber) => {
+  getPullRequest: async (owner, repository, pullRequestNumber) => {
     const response = await githubClient.request('GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}', {
       owner,
       repository,
