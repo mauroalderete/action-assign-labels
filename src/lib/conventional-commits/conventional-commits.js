@@ -16,7 +16,7 @@ function getTypesInCommits(commitMessages, conventionalCommitsScheme) {
   const typesRecognized = [];
 
   commits.forEach((c) => {
-    const header = /^(\w*)(?:\(([\w$.\-* ]*)\))?: (.*)$/;
+    const header = /^([\w\s]*)(?:\(([\w$.\-* ]*)\))?: (.*)$/;
 
     const matched = header.exec(c);
     if (matched) {

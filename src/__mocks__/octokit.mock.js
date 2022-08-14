@@ -1119,6 +1119,35 @@ const octokitCommitsSuccessfullMock = {
   }),
 };
 
+const octokitCommitsSuccessfullNotConventionalCommitsMock = {
+  request: () => ({
+    status: 200,
+    data:
+    [
+      {
+        commit: {
+          message: 'not conventional feat prepare env to test',
+        },
+      },
+      {
+        commit: {
+          message: 'not conventional build add gitignore to ignore tmp folder',
+        },
+      },
+      {
+        commit: {
+          message: "Merge branch 'main' into 5-determine-the-labels-to-change-depending-on-the-conventional-commits-that-will-be-merged",
+        },
+      },
+      {
+        commit: {
+          message: 'not conventional feat get labels before update',
+        },
+      },
+    ],
+  }),
+};
+
 const octokitSetLabelsSuccessfullMock = {
   request: () => ({
     status: 200,
@@ -1169,5 +1198,6 @@ module.exports = {
   octokitCommitsSuccessfullMock,
   octokitSetLabelsSuccessfullMock,
   octokitRequestFailMock,
+  octokitCommitsSuccessfullNotConventionalCommitsMock,
   strategyOctokitSuccessfullMock,
 };

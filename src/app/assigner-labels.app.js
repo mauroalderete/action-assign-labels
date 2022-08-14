@@ -36,7 +36,9 @@ const makeAssignerLabelsApp = (
     inputs.conventionalCommits,
   );
 
-  const labelsToChange = types.map((t) => t.labels).reduce((tp, tc) => tp.concat(tc));
+  const labelsToChange = types.length > 0
+    ? types.map((t) => t.labels).reduce((tp, tc) => tp.concat(tc))
+    : [];
 
   const result = changeLabels(
     labelsBeforeName,

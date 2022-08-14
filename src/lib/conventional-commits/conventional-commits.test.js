@@ -11,6 +11,8 @@ describe('conventional-commits', () => {
     'feat: get pull request info using octokit request',
     'test: context from event path',
     'feat: get labels before update',
+    'BREAKING CHANGE: get labels before update',
+    'feat(fix): get labels before update',
   ];
 
   const conventionalCommits = {
@@ -51,6 +53,7 @@ describe('conventional-commits', () => {
     const expected = [
       { type: 'fix', nouns: ['fix', 'fixed'], labels: ['bug'] },
       { type: 'feature', nouns: ['feat', 'feature'], labels: ['enhancement'] },
+      { type: 'breaking_change', nouns: ['BREAKING CHANGE'], labels: ['BREAKING CHANGE'] },
     ];
 
     expect(getTypesInCommits(commits, conventionalCommits)).toEqual(expected);
