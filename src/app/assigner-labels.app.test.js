@@ -4,7 +4,12 @@ const { makeInputLoader } = require('./input-loader.app');
 const { changeLabels } = require('../lib/label-updater/label-updater');
 const { getTypesInCommits } = require('../lib/conventional-commits/conventional-commits');
 const { makePullRequestService } = require('../services/pullrequest.service');
-const { strategyOctokitSuccessfullMock } = require('../__mocks__/octokit.mock');
+const {
+  strategyOctokitSuccessfullMock,
+  octokitPullrequestSuccessfullMock,
+  octokitSetLabelsSuccessfullMock,
+  octokitCommitsSuccessfullNotConventionalCommitsMock,
+} = require('../__mocks__/octokit.mock');
 
 const githubCoreMock = {
   getInput: (name) => {
@@ -78,6 +83,46 @@ describe('Assign Labels App', () => {
       changeLabels,
       getTypesInCommits,
       GithubClientMock,
+      makePullRequestService,
+    );
+
+    expect(async () => {
+      await app(contextMock);
+    }).not.toThrow();
+
+    const [next, added, removed] = await app(contextMock);
+    expect([next, added, removed]).toEqual([...expected]);
+  });
+});
+
+describe('Assign Labels App without conventional commits matched', () => {
+  it('run', async () => {
+    const expected = [
+      [],
+      [],
+      ['bug'],
+    ];
+
+    function GithubClientMock2() {
+      this.request = (url) => {
+        switch (url) {
+          case 'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}':
+            return octokitPullrequestSuccessfullMock.request();
+          case 'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}/commits':
+            return octokitCommitsSuccessfullNotConventionalCommitsMock.request();
+          case 'PUT /repos/{owner}/{repository}/issues/{pullRequestNumber}/labels':
+            return octokitSetLabelsSuccessfullMock.request();
+          default:
+            return octokitPullrequestSuccessfullMock.request();
+        }
+      };
+    }
+
+    const app = makeAssignerLabelsApp(
+      loadInputsMock,
+      changeLabels,
+      getTypesInCommits,
+      GithubClientMock2,
       makePullRequestService,
     );
 
