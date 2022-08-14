@@ -2,11 +2,13 @@ const makeAssignerLabelsApp = (
   loadInputs,
   changeLabels,
   getTypesInCommits,
-  pullRequestService,
+  GithubClient,
+  makePullRequestService,
 ) => async (context) => {
   const inputs = loadInputs();
 
   process.env.GITHUB_TOKEN = inputs.githubToken;
+  const pullrequestService = makePullRequestService(new GithubClient());
 
   const [owner, repo] = context.repository.full_name.split('/');
 
@@ -14,7 +16,7 @@ const makeAssignerLabelsApp = (
     inputs.pullRequestNumber = context.pull_request.number;
   }
 
-  const pr = await pullRequestService.getPullRequest(
+  const pr = await pullrequestService.getPullRequest(
     owner,
     repo,
     inputs.pullRequestNumber,
@@ -23,7 +25,7 @@ const makeAssignerLabelsApp = (
   const labelsBefore = pr.labels;
   const labelsBeforeName = labelsBefore.map((l) => l.name);
 
-  const commits = await pullRequestService.getCommits(
+  const commits = await pullrequestService.getCommits(
     owner,
     repo,
     inputs.pullRequestNumber,
@@ -48,7 +50,7 @@ const makeAssignerLabelsApp = (
   const [next, added, removed] = result;
 
   if (inputs.applyChanges) {
-    pullRequestService.setLabels(
+    pullrequestService.setLabels(
       owner,
       repo,
       inputs.pullRequestNumber,

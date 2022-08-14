@@ -52,8 +52,6 @@ const loadInputsMock = makeInputLoader(
   yamlLoaderClientMock,
 );
 
-const service = makePullRequestService(strategyOctokitSuccessfullMock);
-
 const contextMock = {
   repository: {
     full_name: 'owner/repo',
@@ -62,6 +60,10 @@ const contextMock = {
     number: 100,
   },
 };
+
+function GithubClientMock() {
+  this.request = strategyOctokitSuccessfullMock.request;
+}
 
 describe('Assign Labels App', () => {
   it('run', async () => {
@@ -75,7 +77,8 @@ describe('Assign Labels App', () => {
       loadInputsMock,
       changeLabels,
       getTypesInCommits,
-      service,
+      GithubClientMock,
+      makePullRequestService,
     );
 
     expect(async () => {

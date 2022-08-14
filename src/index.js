@@ -30,14 +30,12 @@ async function main() {
       yamlLoader,
     );
 
-    const octokit = new Octokit();
-    const pullRequestService = makePullRequestService(octokit);
-
     const assignLabels = makeAssignerLabelsApp(
       loadInput,
       changeLabels,
       getTypesInCommits,
-      pullRequestService,
+      Octokit,
+      makePullRequestService,
     );
 
     core.setOutput('action-status', 'LOAD_CONTEXT');
