@@ -6,6 +6,8 @@ const makeAssignerLabelsApp = (
 ) => async (context) => {
   const inputs = loadInputs();
 
+  process.env.GITHUB_TOKEN = inputs.githubToken;
+
   const [owner, repo] = context.repository.full_name.split('/');
 
   if (context.pull_request.number) {
