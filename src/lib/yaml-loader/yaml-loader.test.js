@@ -1,10 +1,28 @@
-/* eslint-disable no-unused-vars */
-const YAMLActionInput = require('./YAMLActionInput');
+const { makeYAMLLoader } = require('./yaml-loader');
 
-describe('YAMLActionInput', () => {
+describe('YAMLLoader.app', () => {
+  // eslint-disable-next-line no-unused-vars
+  const readerMock = (path, options) => {
+    if (path !== 'conventional-commits.yml') {
+      throw new Error('file not found');
+    }
+
+    return `conventional-commits:
+    - type: 'fix'
+      nouns: ['fix', 'fixed']
+      labels: ['bug']
+    - type: 'feature'
+      nouns: ['feat', 'feature']
+      labels: ['enhancement']
+    - type: 'breaking_change'
+      nouns: ['BREAKING CHANGE']
+      labels: ['BREAKING CHANGE']`;
+  };
+  const yaml = makeYAMLLoader(readerMock);
+
   it('without input', () => {
     expect(() => {
-      const input = new YAMLActionInput();
+      yaml();
     }).toThrow();
   });
 
@@ -28,12 +46,8 @@ describe('YAMLActionInput', () => {
       title: 'bool input', input: true,
     },
     {
-      title: 'invalid yaml', input: '%YAML 1.2',
-    },
-    {
       title: 'valid yaml',
-      input: `%YAML 1.2
-      conventional-commits:
+      input: `conventional-commits:
       - type: 'fix'
         nouns: ['fix', 'fixed']
         labels: ['bug']
@@ -53,7 +67,7 @@ describe('YAMLActionInput', () => {
     },
     {
       title: 'valid yaml file',
-      input: './src/actionInputs/__mocks__/conventional-commits.yml',
+      input: 'conventional-commits.yml',
       expected: {
         'conventional-commits': [
           {
@@ -92,23 +106,14 @@ describe('YAMLActionInput', () => {
 
   targets.forEach((t) => {
     it(t.title, () => {
-      if (t.expected) {
-        const input = new YAMLActionInput(t.input);
-        expect(input.value).toEqual(t.expected);
+      if (t.expected !== undefined) {
+        const input = yaml(t.input);
+        expect(input).toEqual(t.expected);
       } else {
         expect(() => {
-          const input = new YAMLActionInput(null);
+          yaml(t.input);
         }).toThrow();
       }
     });
-  });
-
-  it('throw with id', () => {
-    const value = undefined;
-    const id = 'input-test';
-
-    expect(() => {
-      const input = new YAMLActionInput(value, { id });
-    }).toThrowError(new Error(`input ${id} value '${value}' can't be undefined`));
   });
 });
