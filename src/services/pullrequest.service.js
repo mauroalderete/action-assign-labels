@@ -1,4 +1,4 @@
-const makePullRequstService = (githubClient) => ({
+const makePullRequestService = (githubClient) => ({
   getPullrequest: async (owner, repository, pullRequestNumber) => {
     const response = await githubClient.request('GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}', {
       owner,
@@ -37,4 +37,4 @@ const makePullRequstService = (githubClient) => ({
   },
 });
 
-module.exports = { makePullRequstService };
+module.exports = { makePullRequestService };

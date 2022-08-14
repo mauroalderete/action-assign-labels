@@ -7,7 +7,7 @@ const { makeInputLoader } = require('./app/input-loader.app');
 const { makeYAMLLoader } = require('./lib/yaml-loader/yaml-loader');
 const { changeLabels } = require('./lib/label-updater/label-updater');
 const { getTypesInCommits } = require('./lib/conventional-commits/conventional-commits');
-const { makePullRequstService } = require('./services/pullrequest.service');
+const { makePullRequestService } = require('./services/pullrequest.service');
 const { makeContexter } = require('./services/context.service');
 
 async function main() {
@@ -32,7 +32,7 @@ async function main() {
       loadInput,
       changeLabels,
       getTypesInCommits,
-      makePullRequstService,
+      makePullRequestService,
     );
 
     core.setOutput('action-status', 'LOAD_CONTEXT');

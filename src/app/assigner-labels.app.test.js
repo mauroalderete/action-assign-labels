@@ -3,7 +3,7 @@ const { makeYAMLLoader } = require('../lib/yaml-loader/yaml-loader');
 const { makeInputLoader } = require('./input-loader.app');
 const { changeLabels } = require('../lib/label-updater/label-updater');
 const { getTypesInCommits } = require('../lib/conventional-commits/conventional-commits');
-const { makePullRequstService } = require('../services/pullrequest.service');
+const { makePullRequestService } = require('../services/pullrequest.service');
 const { strategyOctokitSuccessfullMock } = require('../__mocks__/octokit.mock');
 
 const githubCoreMock = {
@@ -52,7 +52,7 @@ const loadInputsMock = makeInputLoader(
   yamlLoaderClientMock,
 );
 
-const service = makePullRequstService(strategyOctokitSuccessfullMock);
+const service = makePullRequestService(strategyOctokitSuccessfullMock);
 
 const contextMock = {
   repository: {
