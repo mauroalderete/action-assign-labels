@@ -16,6 +16,13 @@ describe('inputLoader.app', () => {
       expectedThrow: true,
     },
     {
+      title: 'pr negative',
+      input: {
+        'pull-request-number': '-100',
+      },
+      expectedThrow: true,
+    },
+    {
       title: 'pr+token',
       input: {
         'pull-request-number': '100',
