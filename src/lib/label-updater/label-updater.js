@@ -45,9 +45,7 @@ function changeLabels(current, changeBy, config) {
 
     removed.forEach((r) => {
       const index = next.indexOf(r);
-      if (index !== -1) {
-        next.splice(index, 1);
-      }
+      next.splice(index, 1);
     });
   }
 
