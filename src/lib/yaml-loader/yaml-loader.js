@@ -7,12 +7,8 @@ const makeYAMLLoader = (readerSync) => (value, path) => {
     const source = `${path || ''}${value}`;
     try {
       content = readerSync(source, { encoding: 'utf8' });
-
-      if (!content) {
-        throw new Error(`yaml failed to parse content from the file '${source}' because is undefined`);
-      }
     } catch (error) {
-      throw new Error(`yaml input failed to read the file '${source}': ${error}`);
+      throw new Error(`failed to parse yaml content from the file '${source}': ${error}`);
     }
   }
 
