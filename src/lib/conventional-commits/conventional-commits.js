@@ -1,8 +1,4 @@
 function getTypesInCommits(commitMessages, conventionalCommitsScheme) {
-  if (!commitMessages) {
-    throw new Error('commitMessage is required');
-  }
-
   if (typeof commitMessages !== 'string' && !Array.isArray(commitMessages)) {
     throw new Error('commitMessage must be a string or Array of string');
   }
