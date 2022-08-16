@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 const fs = require('fs');
 const core = require('@actions/core');
-const pullRequestService = require('./services/pullrequest.service');
+const pullRequestService = require('../services/pullrequest.service');
 
-const main = require('./index');
+const app = require('./app');
 
 jest.spyOn(core, 'setOutput').mockImplementation(() => {});
 
@@ -26,7 +26,7 @@ jest.spyOn(core, 'getBooleanInput').mockImplementation((value) => {
   return inputs[value];
 });
 
-jest.mock('./services/pullrequest.service', () => ({
+jest.mock('../services/pullrequest.service', () => ({
   __esModule: true,
   makePullRequestService: (githubClient) => ({
     getPullRequest: async (owner, repository, pullRequestNumber) => ({
@@ -110,7 +110,7 @@ describe('main test', () => {
 
   it('throw when github event path is nod defined', () => {
     expect(async () => {
-      await main();
+      await app();
     }).rejects.toThrow();
   });
 
@@ -145,7 +145,7 @@ describe('main test', () => {
 
     process.env.GITHUB_EVENT_PATH = 'event.json';
 
-    main().then(() => {
+    app().then(() => {
       expect(1).toBe(1);
     }).catch((error) => {
       expect(error).toBe(undefined);
