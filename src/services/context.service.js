@@ -1,6 +1,6 @@
-const makeContexter = (readerAsync) => (path) => {
+const makeContexter = (readerSync) => (path) => {
   try {
-    const context = readerAsync(path, { encoding: 'utf8' });
+    const context = readerSync(path, { encoding: 'utf8' });
     return JSON.parse(context);
   } catch (error) {
     throw new Error(`failed to load context: ${error}`);
