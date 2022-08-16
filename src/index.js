@@ -13,6 +13,7 @@ const { makeContexter } = require('./services/context.service');
 
 const main = async () => {
   try {
+    console.log('main');
     core.setOutput('labels-before-update', '');
     core.setOutput('labels-assigned', '');
     core.setOutput('labels-removed', '');
@@ -53,16 +54,18 @@ const main = async () => {
     core.setOutput('labels-current', current);
     core.setOutput('action-message', '');
     core.setOutput('action-status', 'ENDED');
+    console.log('end');
   } catch (error) {
+    console.log('fail');
     core.setOutput('action-message', error.message);
     core.setFailed(error.message);
     throw new Error(`action failed: ${error}`);
   }
 };
-
+console.log('init', typeof process.env.CI, process.env.CI);
 /* istanbul ignore next */
-if (process.env.CI === true) {
-  main();
+if (process.env.CI === 'true') {
+  main().then().catch((error) => { throw new Error(`${error}`); });
 }
 
 module.exports = main;
