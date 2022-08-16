@@ -137,6 +137,9 @@ describe('parser', () => {
     {
       title: 'use fail', input: 100, expectedThrow: true, test: (input) => parser(input).use((v) => { throw new Error(v); }),
     },
+    {
+      title: 'use ignore', input: 100, expectedValue: 100, test: (input) => parser(input).use(),
+    },
   ];
 
   target.forEach((t) => {

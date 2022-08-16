@@ -78,7 +78,7 @@ class Parser {
 
   use(action) {
     if (!action) {
-      return;
+      return this;
     }
 
     try {

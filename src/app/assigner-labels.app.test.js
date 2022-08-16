@@ -11,7 +11,9 @@ const {
   octokitCommitsSuccessfullNotConventionalCommitsMock,
 } = require('../__mocks__/octokit.mock');
 
-const githubCoreMock = {
+const parser = require('../lib/parser/parser');
+
+const githubCoreMock = (applyChanges) => ({
   getInput: (name) => {
     const inputs = {
       'pull-request-number': '100',
@@ -22,12 +24,12 @@ const githubCoreMock = {
   },
   getBooleanInput: (name) => {
     const inputs = {
-      'maintain-labels-not-matched': 'false',
-      'apply-changes': 'true',
+      'maintain-labels-not-matched': false,
+      'apply-changes': parser(applyChanges).toBool().value,
     };
     return inputs[name];
   },
-};
+});
 
 // eslint-disable-next-line no-unused-vars
 const readerAsyncMock = (path, options) => {
@@ -52,8 +54,8 @@ const readerAsyncMock = (path, options) => {
 const yamlLoaderClientMock = makeYAMLLoader(readerAsyncMock);
 
 const loadInputsMock = makeInputLoader(
-  githubCoreMock.getInput,
-  githubCoreMock.getBooleanInput,
+  githubCoreMock(true).getInput,
+  githubCoreMock(true).getBooleanInput,
   yamlLoaderClientMock,
 );
 
@@ -128,6 +130,74 @@ describe('Assign Labels App without conventional commits matched', () => {
 
     expect(async () => {
       await app(contextMock);
+    }).not.toThrow();
+
+    const [next, added, removed] = await app(contextMock);
+    expect([next, added, removed]).toEqual([...expected]);
+  });
+});
+
+describe('Assign Labels App and not apply-changes', () => {
+  it('run', async () => {
+    const expected = [
+      ['bug', 'enhancement'],
+      ['enhancement'],
+      [],
+    ];
+
+    const loadInputsMock2 = makeInputLoader(
+      githubCoreMock(false).getInput,
+      githubCoreMock(false).getBooleanInput,
+      yamlLoaderClientMock,
+    );
+
+    const app = makeAssignerLabelsApp(
+      loadInputsMock2,
+      changeLabels,
+      getTypesInCommits,
+      GithubClientMock,
+      makePullRequestService,
+    );
+
+    expect(async () => {
+      await app(contextMock);
+    }).not.toThrow();
+
+    const [next, added, removed] = await app(contextMock);
+    expect([next, added, removed]).toEqual([...expected]);
+  });
+});
+
+describe('Assign Labels App and not pull_request event in context', () => {
+  it('run', async () => {
+    const expected = [
+      ['bug', 'enhancement'],
+      ['enhancement'],
+      [],
+    ];
+
+    const loadInputsMock2 = makeInputLoader(
+      githubCoreMock(true).getInput,
+      githubCoreMock(true).getBooleanInput,
+      yamlLoaderClientMock,
+    );
+
+    const app = makeAssignerLabelsApp(
+      loadInputsMock2,
+      changeLabels,
+      getTypesInCommits,
+      GithubClientMock,
+      makePullRequestService,
+    );
+
+    const contextMock2 = {
+      repository: {
+        full_name: 'owner/repo',
+      },
+    };
+
+    expect(async () => {
+      await app(contextMock2);
     }).not.toThrow();
 
     const [next, added, removed] = await app(contextMock);

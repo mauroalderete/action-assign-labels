@@ -16,6 +16,13 @@ describe('inputLoader.app', () => {
       expectedThrow: true,
     },
     {
+      title: 'pr negative',
+      input: {
+        'pull-request-number': '-100',
+      },
+      expectedThrow: true,
+    },
+    {
       title: 'pr+token',
       input: {
         'pull-request-number': '100',
@@ -135,6 +142,12 @@ describe('inputLoader.app', () => {
 
         const value = inputLoader(t.input);
         expect(value).toEqual(t.expectedValue);
+        expect(typeof value.pullRequestNumber).toBe('number');
+        expect(typeof value.githubToken).toBe('string');
+        expect(typeof value.maintainLabelsNotFound).toBe('boolean');
+        expect(typeof value.applyChanges).toBe('boolean');
+        expect(typeof value.conventionalCommits).toBe('object');
+        expect(Array.isArray(value.conventionalCommits['conventional-commits'])).toBe(true);
       }
     });
   });

@@ -12,7 +12,7 @@ const makeAssignerLabelsApp = (
 
   const [owner, repo] = context.repository.full_name.split('/');
 
-  if (context.pull_request.number) {
+  if (context.pull_request && context.pull_request.number) {
     inputs.pullRequestNumber = context.pull_request.number;
   }
 
@@ -51,7 +51,7 @@ const makeAssignerLabelsApp = (
 
   const [next, added, removed] = result;
 
-  if (inputs.applyChanges) {
+  if (inputs.applyChanges === true) {
     pullrequestService.setLabels(
       owner,
       repo,
