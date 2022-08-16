@@ -11,7 +11,7 @@ const { getTypesInCommits } = require('./lib/conventional-commits/conventional-c
 const { makePullRequestService } = require('./services/pullrequest.service');
 const { makeContexter } = require('./services/context.service');
 
-async function main() {
+const main = async () => {
   try {
     core.setOutput('labels-before-update', '');
     core.setOutput('labels-assigned', '');
@@ -56,7 +56,13 @@ async function main() {
   } catch (error) {
     core.setOutput('action-message', error.message);
     core.setFailed(error.message);
+    throw new Error(`action failed: ${error}`);
   }
+};
+
+/* istanbul ignore next */
+if (process.env.CI === true) {
+  main();
 }
 
-main();
+module.exports = main;
