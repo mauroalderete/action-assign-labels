@@ -1,4 +1,8 @@
-/* eslint-disable no-unused-vars */
+/**
+ * Contains a single function that manage the resources to run the assignament of the labels
+ * @module src/app/app
+ */
+
 const fs = require('fs');
 
 const core = require('@actions/core');
@@ -12,18 +16,24 @@ const { getTypesInCommits } = require('../lib/conventional-commits/conventional-
 const { makePullRequestService } = require('../services/pullrequest.service');
 const { makeContexter } = require('../services/context.service');
 
-const app = async () => {
+/**
+ * Instances all dependencies needed to execute the assignament of the labels.
+ * Verifies the availabilty of the context and recovers it.
+ * Initializes output and handles the action state.
+ *
+ * @async
+ * @return {void}
+ */
+module.exports = async () => {
   try {
     core.setOutput('labels-before-update', '');
     core.setOutput('labels-assigned', '');
     core.setOutput('labels-removed', '');
     core.setOutput('labels-current', '');
     core.setOutput('action-message', '');
-    core.setOutput('action-status', 'VALIDATION');
+    core.setOutput('action-status', 'LOAD_DEPENDENCIES');
 
     const yamlLoader = makeYAMLLoader(fs.readFileSync);
-
-    core.setOutput('action-status', 'LOAD_DEPENDENCIES');
 
     const loadInput = makeInputLoader(
       core.getInput,
@@ -40,11 +50,14 @@ const app = async () => {
     );
 
     core.setOutput('action-status', 'LOAD_CONTEXT');
+
     const context = makeContexter(fs.readFileSync)(process.env.GITHUB_EVENT_PATH);
 
     core.setOutput('action-status', 'PARSE_AND_ASSIGN');
+
     const result = await assignLabels(context);
-    core.setOutput('action-status', 'END');
+
+    core.setOutput('action-status', 'OUTPUT');
 
     const [previous, added, removed, current] = result;
 
@@ -60,5 +73,3 @@ const app = async () => {
     throw new Error(`action failed: ${error}`);
   }
 };
-
-module.exports = app;
