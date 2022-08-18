@@ -4,31 +4,17 @@
  */
 
 /**
- * Take identify the commits type into a list the commits
+ * Take identify the commits type into a list of the commits
  * according to a conventional-commits scheme.
  * @param {string[]} commitMessages A list with the commits to parse.
- * Each item in the list be correspond with a single commits,
+ * Each item in the list correspond with a single commits,
  * no matter if its content is multiline or not.
  * @param {conventionalCommitsType} conventionalCommitsScheme
  * See {@link conventionalCommitsType `conventionalCommitsType`}
- * @example
- * const scheme = {
- *   'conventional-commits': [
- *     {
- *       type: 'fix',
- *       nouns: [
- *         'fix',
- *         'fixed',
- *       ],
- *       labels: [
- *         'bug',
- *       ],
- *     },
- *   ]
- * };
  * @returns {string[]} A list with the conventional-commits types,
- * defined into conventional-commits scheme, recognized in the commits list.
- * <p>If there aren't any match the list returned will is empty.</p>
+ * defined in the conventional-commits scheme, is recognized in the commits list.
+ *
+ * If there aren't any matches the list returned will is empty.
  */
 module.exports.getTypesInCommits = (commitMessages, conventionalCommitsScheme) => {
   if (typeof commitMessages !== 'string' && !Array.isArray(commitMessages)) {
@@ -66,11 +52,11 @@ module.exports.getTypesInCommits = (commitMessages, conventionalCommitsScheme) =
 };
 
 /** @typedef {object} conventionalCommitsType
- * @property {object[]} conventional-commits - Object, A conventional commits scheme.
- * @property {string} conventional-commits.type - `string` Type of conventional-commit rule
+ * @property {object[]} conventional-commits Object, A conventional commits scheme.
+ * @property {string} conventional-commits.type `string` Type of conventional-commit rule
  * @property {string[]} conventional-commits.nouns
- * - `string[]` List of the nouns used as prefix the a commit message
+ * `string[]` List of the nouns used as prefixes for the commit message
  * and identify a conventional-commit type
  * @property {string[]} conventional-commits.labels
- * - `string[]` List of the labels that match with a conventional-commit type.
+ * `string[]` List of the labels that match with a conventional-commit type.
  */

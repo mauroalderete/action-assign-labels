@@ -1,5 +1,6 @@
 /**
- * Expose makeYAMLLoader a function that make a parser yaml to javascript object
+ * Expose {@link makeYAMLLoader `makeYAMLLoader`}
+ * a function that makes a parser yaml to javascript object
  * @module src/lib/yaml-loader
  */
 const yamljs = require('yamljs');
@@ -19,20 +20,24 @@ const yamljs = require('yamljs');
 
 /**
  * Parses a yaml object or a yaml file into a javascript json.
- * <p>The function expect recive a yaml object or a yaml filename with a yaml object defined into.
- * <p>If the yaml parameter is a filename,
- * the function combine it with the path passed to access the filer and get his content.</p>
- * <p>If the yaml parameter is a string,
- * the function expect find in this string a yaml object defined.</p>
- * <p>In both cases, it will tries to parse and return a javascript object.
+ *
+ * The function expects to receive a yaml object or a yaml filename with a yaml object defined.
+ *
+ * If the yaml parameter is a filename, the function combines it
+ * with the path passed to access the filer and get its content.
+ *
+ * If the yaml parameter is a string,
+ * the function expects to find in this string a yaml object defined.
+ *
+ * In both cases, it will try to parse and return a javascript object.
  * @callback yamlLoaderFunc
- * @param {string} yaml A filename with path or a yaml object.
- * @returns {Object} A javascript object that represent the yaml object parsed.
+ * @param {string} yaml A filename with a path or a yaml object.
+ * @returns {Object} A javascript object that represents the yaml object parsed.
  */
 
 /**
- * Use the readerSync callback to construct a instance of a function
- * that allows to parse a yaml object into javascript object.
+ * Use the readerSync callback to construct an instance of a function
+ * that allows to parsing a yaml object into a javascript object.
  * @param {readerSyncFunc} readerSync - A readerSync function
  * @returns {yamlLoaderFunc}
  */

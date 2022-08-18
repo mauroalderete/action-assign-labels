@@ -1,5 +1,5 @@
 /**
- * Contains a single function that manage the resources to run the assignament of the labels
+ * It contains a single function that manages the resources to run the assignment of the labels.
  * @module src/app/app
  */
 
@@ -17,8 +17,8 @@ const { makePullRequestService } = require('../services/pullrequest.service');
 const { makeContexter } = require('../services/context.service');
 
 /**
- * Instances all dependencies needed to execute the assignament of the labels.
- * Verifies the availabilty of the context and recovers it.
+ * Instances all dependencies needed to execute the assignment of the labels.
+ * Verifies the availability of the context and recovers it.
  * Initializes output and handles the action state.
  *
  * @async

@@ -1,5 +1,5 @@
 /**
- * Expose a function to handle inputs value configured into the action yaml
+ * Expose a function to handle inputs value configured into the action yaml.
  * @module src/app/input-loader.app
  */
 
@@ -12,7 +12,7 @@ const yamlLoader = require('../lib/yaml-loader/yaml-loader');
 
 /**
  * Construct a {@link inputLoaderFunc `inputLoaderFunc`} function
- * to get, to validate and to transform the inputs defined into action yaml
+ * to get, validate and transform the inputs defined into action yaml.
  * @param {stringInputFunc} stringInput Callback to get strings inputs.
  * See {@link stringInputFunc `stringInputFunc`}
  * @param {booleanInputFunc} booleanInput Callback to get boolean inputs.
@@ -81,9 +81,9 @@ module.exports.makeInputLoader = (
  */
 
 /**
- * Allows to get, to validate and to parse all inputs defined in action yaml.
+ * Allows to get, validate and parse all inputs defined in action yaml.
  * Return a {@link inputs `inputs`} object with all input values treated.
- * Otherwise, it trigger an exception.
+ * Otherwise, it triggers an exception.
  * @callback inputLoaderFunc
  * @return {inputs} See {@link inputs `inputs`}
  */
@@ -91,9 +91,9 @@ module.exports.makeInputLoader = (
 /**
  * Contains all inputs defined in action yaml.
  * @typedef {object} inputs
- * @property {number} pullRequestNumber The pull request's number where labels will be assigned
+ * @property {number} pullRequestNumber The pull request's number where labels will be assigned.
  * @property {string} githubToken The Github token.
- * @property {boolean} maintainLabelsNotFound You should keep the conventional commit tags
+ * @property {boolean} maintainLabelsNotFound You should keep the conventional commit tags.
  * assigned to the pull-request, even though they are no longer referenced within commits.
  * @property {boolean} applyChanges
  * Should will be executing the action and save any change to the repository.

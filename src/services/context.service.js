@@ -1,10 +1,10 @@
 /**
- * Contains functions to handle github context
+ * Contains functions to handle github context.
  * @module src/services/context.service
  */
 
 /**
- * An method like {@link https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/ `fs.readerFileSync()`} sign. It must return a string content of the a source.
+ * An method like {@link https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/ `fs.readerFileSync()`} sign. It must return a string content of a source.
  * @callback readerSyncFunc
  * @param {string} path It takes the relative path of the text file.
  * The path can be of URL type. The file can also be a file descriptor.
@@ -24,7 +24,7 @@
  */
 
 /**
- * Construct a function that allow get a Github Action's context from a source file.
+ * Construct a function that allows getting a Github Action's context from a source file.
  * @param {readerSyncFunc} readerSync - A readerSync function
  * @returns {getContextFunc} Getter Github Action's context function
  */

@@ -1,15 +1,16 @@
 /**
  * Export a function that instances a new {@link Parser `Parser`} object
- * that allow us to validate and to transform a value using chain operations.
+ * that allows us to validate and transform a value using chain operations.
  * @module src/lib/parser
  */
 
 /**
- * Middleware that will used by {@link Parser `Parser`} instance.
- * It should contains custom validations and custom transformers.
- * <p>You can use the setter value member in
- * {@link Parser `Parser`} instance to change the value of parser
- * and pass it a next operation in the chain.</p>
+ * Middleware that will be used by {@link Parser `Parser`} instance.
+ * It should contain custom validations and custom transformers.
+ *
+ * You can use the setter value member in
+ * {@link Parser `Parser`} instance to change the value of the parser
+ * and pass it the next operation in the chain.
  * @callback parserMiddleware
  * @param {module:src/lib/parser~Parser} parser
  * A reference to Parser instances that will execute this middleware
@@ -17,14 +18,16 @@
  */
 
 /**
- * Parse recive a value that you want to validate or to apply a transform operation.
+ * Parse receives a value that you want to validate or to apply a transform operation.
  * @class
- * @classdesc Parser allow validate and transform the value recive when is instanced.
- * All methods return a reference to self, to allow us continue validating or transforming.
- * <p>Include a use method to implement a customizable operation.
- * The last value is available from value set method.</p>
- * <p>In case of a validation is not passed or a transform operation failed,
- * it will emit a expection.</p>
+ * @classdesc The parser allows validation and transforms the value received when is instanced.
+ * All methods return a reference to self, to allow us to continue validating or transforming.
+ *
+ * Include a {@link Parser.use `use`} method to implement a customizable operation.
+ * The last value is available from the value set method.
+ *
+ * In case of validation is not passed or a transform operation failed,
+ * it will emit an expection.
  */
 class Parser {
   #value;
@@ -119,8 +122,10 @@ class Parser {
 
   /**
    * Try cast the value in a boolean. Otherwise, it trigger an exception.
-   * <p>Use YAML 1.2 "Core Schema" specification to cast.</p>
-   * <p>Support boolean input list: \`true | True | TRUE | false | False | FALSE\`</p>
+   *
+   * Use YAML 1.2 "Core Schema" specification to cast.
+   *
+   * Support boolean input list: \`true | True | TRUE | false | False | FALSE\`
    * @returns {this} Self refrence.
    */
   toBool() {
@@ -146,8 +151,9 @@ class Parser {
    * Mounts the specified middleware function.
    * The middleware function is executed passing the {@link Parser `Parser`}
    * self reference as parameter.
-   * <p>You can use the middleware to manipulate the
-   * [value]{@link module:src/lib/parser~Parser.value} member.</p>
+   *
+   * You can use the middleware to manipulate the
+   * [value]{@link module:src/lib/parser~Parser.value} member.
    * @param {parserMiddleware} action
    * @returns {this} Self refrence.
    */
@@ -167,10 +173,10 @@ class Parser {
 }
 
 /**
- * Construct and return a instance of {@link Parser `Parser`}
- * ready to start validate it or transformit it the value setted.
+ * Construct and return an instance of {@link Parser `Parser`}
+ * ready to start to validate or transform the value setted.
  * @param {any} value Any object to validate or transform it
  * @returns {Parser}
- * A instance of {@link Parser `Parser`} with the value setted.
+ * An instance of {@link Parser `Parser`} with the value set.
  */
 module.exports = (value) => new Parser(value);

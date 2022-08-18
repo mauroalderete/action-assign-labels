@@ -1,5 +1,5 @@
 /**
- * Contains functions to handle the changes labels
+ * Contains functions to handle the changes labels.
  * @module src/lib/label-updater
  */
 
@@ -8,13 +8,15 @@ const parser = require('../parser/parser');
 const { conventionalCommitsType } = require('../conventional-commits/conventional-commits');
 
 /**
- * Update a current list labels with the items includes in the other list labels
- * according to a conventional-commits scheme and maintainLabel flag.
- * <p>The conventional-commits scheme is required to identify the labels that
- * must be considereds to update. Any label that isn't in the scheme will ignored.</p>
- * The maintainLabel flag is used to determine
+ * Update current list labels with the items included in the other list labels
+ * according to a conventional-commits scheme and maintainable flag.
+ *
+ * The conventional-commits scheme is required to identify the labels
+ * that must be considered to update. Any label that isn't in the scheme will be ignored.
+ *
+ * The `maintainLabel` flag is used to determine
  * if a label of the current list that isn't in the update list must to remove or conserved.
- * @param {string[]} current List of current 'labels' that may be changed.
+ * @param {string[]} current List of current labels that may be changed.
  * @param {string[]} changeBy List of new labels with which will update the list current labels.
  * @param {labelsConfig} config See {@link labelsConfig `labelsConfig`}
  * @returns {labelsChanged} See {@link labelsChanged `labelsChanged`}
@@ -81,7 +83,7 @@ module.exports.changeLabels = (current, changeBy, config) => {
 
 /**
  * @typedef {Array} labelsChanged
- * @property {string[]} next - Contains the new labels list with all changes applied.
- * @property {string[]} added - Is a list with all labels added to the old list.
- * @property {string[]} removed - Is a list with all labels removed from the old list.
+ * @property {string[]} next Contains the new labels list with all changes applied.
+ * @property {string[]} added Is a list with all labels added to the old list.
+ * @property {string[]} removed Is a list with all labels removed from the old list.
  */
