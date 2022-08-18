@@ -8,7 +8,7 @@ inputs:
     description: 'String with the YAML object or path to file YAML that contains a list with conventional commits and the labels matching that must be assigned'
     required: true
   pull-request-number:
-    description: 'The pull request'' number where labels will be assigned'
+    description: 'The pull request''s number where labels will be assigned'
     required: false
     default: '0'
   maintain-labels-not-matched:

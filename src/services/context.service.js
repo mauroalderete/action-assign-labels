@@ -20,7 +20,7 @@
  * Get a Github Action's context from a source file.
  * @callback getContextFunc
  * @param {path} path - Path to the source file.
- * @returns {object} Github Action's context
+ * @returns {actionContext} Github Action's context
  */
 
 /**
@@ -36,3 +36,37 @@ module.exports.makeContexter = (readerSync) => (path) => {
     throw new Error(`failed to load context: ${error}`);
   }
 };
+
+/**
+ * @typedef {object} actionContext
+ * @property {string} token
+ * @property {string} job
+ * @property {string} ref
+ * @property {string} sha
+ * @property {string} repository
+ * @property {string} repository_owner
+ * @property {string} repositoryUrl
+ * @property {string} run_id
+ * @property {string} run_number
+ * @property {string} retention_days
+ * @property {string} run_attempt
+ * @property {string} actor
+ * @property {string} workflow
+ * @property {string} head_ref
+ * @property {string} base_ref
+ * @property {string} event_name
+ * @property {string} server_url
+ * @property {string} api_url
+ * @property {string} graphql_url
+ * @property {string} ref_name
+ * @property {boolean} ref_protected
+ * @property {string} ref_type
+ * @property {string} secret_source
+ * @property {string} workspace
+ * @property {string} action
+ * @property {string} event_path
+ * @property {string} action_repository
+ * @property {string} action_ref
+ * @property {string} path
+ * @property {string} env
+ */

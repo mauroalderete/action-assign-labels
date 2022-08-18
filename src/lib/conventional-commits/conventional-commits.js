@@ -9,14 +9,8 @@
  * @param {string[]} commitMessages A list with the commits to parse.
  * Each item in the list be correspond with a single commits,
  * no matter if its content is multiline or not.
- * @param {object} conventionalCommitsScheme - Object, A conventional commits scheme.
- * @param {string} conventionalCommitsScheme.conventional_commits[].type
- * - `string` Type of conventional-commit rule
- * @param {string[]} conventionalCommitsScheme.conventional_commits[].nouns
- * - `string[]` List of the nouns used as prefix the a commit message
- * and identify a conventional-commit type
- * @param {string[]} conventionalCommitsScheme.conventional_commits[].labels
- * - `string[]` List of the labels that match with a conventional-commit type.
+ * @param {conventionalCommitsType} conventionalCommitsScheme
+ * See {@link conventionalCommitsType `conventionalCommitsType`}
  * @example
  * const scheme = {
  *   'conventional-commits': [
@@ -70,3 +64,13 @@ module.exports.getTypesInCommits = (commitMessages, conventionalCommitsScheme) =
 
   return typesRecognized;
 };
+
+/** @typedef {object} conventionalCommitsType
+ * @property {object[]} conventional-commits - Object, A conventional commits scheme.
+ * @property {string} conventional-commits.type - `string` Type of conventional-commit rule
+ * @property {string[]} conventional-commits.nouns
+ * - `string[]` List of the nouns used as prefix the a commit message
+ * and identify a conventional-commit type
+ * @property {string[]} conventional-commits.labels
+ * - `string[]` List of the labels that match with a conventional-commit type.
+ */

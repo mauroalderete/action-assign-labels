@@ -4,6 +4,8 @@
  */
 
 const parser = require('../parser/parser');
+// eslint-disable-next-line no-unused-vars
+const { conventionalCommitsType } = require('../conventional-commits/conventional-commits');
 
 /**
  * Update a current list labels with the items includes in the other list labels
@@ -71,11 +73,10 @@ module.exports.changeLabels = (current, changeBy, config) => {
 
 /**
  * @typedef {object} labelsConfig
- * @property {object[]} conventional_commits
- * @property {string} conventional_commits.type
- * @property {string[]} conventional_commits.nouns
- * @property {string[]} conventional_commits.labels
+ * @property {conventionalCommitsType} conventionalCommitsScheme
+ * A conventional-commits scheme. See {@link conventionalCommitsType `conventionalCommitsType`}
  * @property {boolean} maintainLabelsNotFound
+ * Determine if labels not matched must to removed or conserved.
  */
 
 /**

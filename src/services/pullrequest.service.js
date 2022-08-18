@@ -5,9 +5,8 @@
 
 /**
  * Construct a {@link PullRequestService `PullRequestService`} to handle request to GitHub API
- * @param {object} githubClient - A Github client instance
- * @param {(route: string, [parameters]: object) => Promise<*>} githubClient.request
- * - Sends a request based on endpoint options
+ * @param {githubAPIClientType} githubClient - A Github client instance.
+ * Sends a request based on endpoint options. See {@link githubAPIClientType `githubAPIClientType`}
  * @returns {PullRequestService}
  */
 module.exports.makePullRequestService = (githubClient) => {
@@ -82,6 +81,14 @@ module.exports.makePullRequestService = (githubClient) => {
 
   return new PullRequestService();
 };
+
+/**
+ * A Github API client isntance with minimal properties to handle a single REST request.
+ * The sign of his property are like {@link https://github.com/octokit Octokit} instance.
+ * @typedef githubAPIClientType
+ * @property {(route: string, [parameters]: object) => Promise<*>} request
+ * Sends a request based on endpoint options
+ */
 
 /**
  * @typedef {object} pullRequestPayload
