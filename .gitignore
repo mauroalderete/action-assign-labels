@@ -103,3 +103,5 @@ typings/
 .tern-port
 
 .tmp
+out
+doc

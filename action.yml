@@ -8,7 +8,7 @@ inputs:
     description: 'String with the YAML object or path to file YAML that contains a list with conventional commits and the labels matching that must be assigned'
     required: true
   pull-request-number:
-    description: 'The pull request'' number where labels will be assigned'
+    description: 'The pull request''s number where labels will be assigned'
     required: false
     default: '0'
   maintain-labels-not-matched:
@@ -20,13 +20,13 @@ inputs:
     required: false
     default: 'true'
 outputs:
-  labels-before-update:
+  labels-previous:
     description: 'List of the labels assigned before the updating'
   labels-assigned:
     description: 'List of the labels added'
   labels-removed:
     description: 'List of the labels removed'
-  labels-current:
+  labels-next:
     description: 'List of the labels assigned after the updating'
   action-status:
     description: 'Execution status of the action'

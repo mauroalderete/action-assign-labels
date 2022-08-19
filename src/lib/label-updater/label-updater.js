@@ -1,6 +1,27 @@
-const parser = require('../parser/parser');
+/**
+ * Contains functions to handle the changes labels.
+ * @module src/lib/label-updater
+ */
 
-function changeLabels(current, changeBy, config) {
+const parser = require('../parser/parser');
+// eslint-disable-next-line no-unused-vars
+const { conventionalCommitsType } = require('../conventional-commits/conventional-commits');
+
+/**
+ * Update current list labels with the items included in the other list labels
+ * according to a conventional-commits scheme and maintainable flag.
+ *
+ * The conventional-commits scheme is required to identify the labels
+ * that must be considered to update. Any label that isn't in the scheme will be ignored.
+ *
+ * The `maintainLabel` flag is used to determine
+ * if a label of the current list that isn't in the update list must to remove or conserved.
+ * @param {string[]} current List of current labels that may be changed.
+ * @param {string[]} changeBy List of new labels with which will update the list current labels.
+ * @param {labelsConfig} config See {@link labelsConfig `labelsConfig`}
+ * @returns {labelsChanged} See {@link labelsChanged `labelsChanged`}
+ */
+module.exports.changeLabels = (current, changeBy, config) => {
   try {
     parser(current).denyUndefined().denyNull();
   } catch (error) {
@@ -50,6 +71,19 @@ function changeLabels(current, changeBy, config) {
   }
 
   return [next, added, removed];
-}
+};
 
-module.exports = { changeLabels };
+/**
+ * @typedef {object} labelsConfig
+ * @property {conventionalCommitsType} conventionalCommitsScheme
+ * A conventional-commits scheme. See {@link conventionalCommitsType `conventionalCommitsType`}
+ * @property {boolean} maintainLabelsNotFound
+ * Determine if labels not matched must to removed or conserved.
+ */
+
+/**
+ * @typedef {Array} labelsChanged
+ * @property {string[]} next Contains the new labels list with all changes applied.
+ * @property {string[]} added Is a list with all labels added to the old list.
+ * @property {string[]} removed Is a list with all labels removed from the old list.
+ */
