@@ -26,10 +26,10 @@ const { makeContexter } = require('../services/context.service');
  */
 module.exports = async () => {
   try {
-    core.setOutput('labels-before-update', '');
+    core.setOutput('labels-previous', '');
     core.setOutput('labels-assigned', '');
     core.setOutput('labels-removed', '');
-    core.setOutput('labels-current', '');
+    core.setOutput('labels-next', '');
     core.setOutput('action-message', '');
     core.setOutput('action-status', 'LOAD_DEPENDENCIES');
 
@@ -61,10 +61,10 @@ module.exports = async () => {
 
     const [previous, added, removed, current] = result;
 
-    core.setOutput('labels-before-update', previous);
+    core.setOutput('labels-previous', previous);
     core.setOutput('labels-assigned', added);
     core.setOutput('labels-removed', removed);
-    core.setOutput('labels-current', current);
+    core.setOutput('labels-next', current);
     core.setOutput('action-message', '');
     core.setOutput('action-status', 'END');
   } catch (error) {

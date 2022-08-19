@@ -238,10 +238,10 @@ Allows you to extend the assignment conditions to evaluate the outputs snapshots
 
 | Output                            | Description                                            |
 | :-------------------------------- | :----------------------------------------------------- |
-| <nobr>labels-before-update</nobr> | List of the labels assigned before the updating        |
+| <nobr>labels-previous</nobr> | List of the labels assigned before the updating        |
 | <nobr>labels-assigned</nobr>      | List of the labels added                               |
 | <nobr>labels-removed</nobr>       | List of the labels removed                             |
-| <nobr>labels-current</nobr>       | List of the labels assigned after the updating         |
+| <nobr>labels-next</nobr>       | List of the labels assigned after the updating         |
 | <nobr>action-status</nobr>        | Execution status of the action                         |
 | <nobr>action-message</nobr>       | Message associated to the current status of the action |
 
@@ -343,7 +343,7 @@ jobs:
       apply-changes: false
 
   - name: Stuff something if PR not contain a fix commit type
-    if: ${{ contains(fromJson( steps.action-assign-labels.labels-current ), 'bug') }}
+    if: ${{ contains(fromJson( steps.action-assign-labels.labels-next ), 'bug') }}
     run:
       ...
   
