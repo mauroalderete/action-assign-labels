@@ -66,7 +66,7 @@ module.exports = async () => {
     core.setOutput('labels-removed', removed);
     core.setOutput('labels-current', current);
     core.setOutput('action-message', '');
-    core.setOutput('action-status', 'ENDED');
+    core.setOutput('action-status', 'END');
   } catch (error) {
     core.setOutput('action-message', error.message);
     core.setFailed(error.message);
