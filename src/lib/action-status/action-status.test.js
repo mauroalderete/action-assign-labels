@@ -94,7 +94,7 @@ describe('action-status', () => {
 
       const result = {
         'labels-previous': ['a'],
-        'labels-added': ['b', 'b'],
+        'labels-assigned': ['b', 'b'],
         'labels-removed': [],
         'labels-next': ['c'],
       };
@@ -133,7 +133,7 @@ describe('action-status', () => {
 
       const result = {
         'labels-previous': ['a'],
-        'labels-added': ['b', 'b'],
+        'labels-assigned': ['b', 'b'],
         'labels-removed': [],
         'labels-next': ['c'],
       };
@@ -143,7 +143,7 @@ describe('action-status', () => {
       expect(summaryMock.written).toBe(`# Assign resume<br>
 ## Labels affected<br>
 **Previous:** ${JSON.stringify(result['labels-previous'])}<br>
-**Added:** ${JSON.stringify(result['labels-added'])}<br>
+**Assigned:** ${JSON.stringify(result['labels-assigned'])}<br>
 **Removed:** ${JSON.stringify(result['labels-removed'])}<br>
 **Next:** ${JSON.stringify(result['labels-next'])}<br>
 ## :heavy_check_mark: Action status<br>

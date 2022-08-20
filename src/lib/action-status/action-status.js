@@ -85,7 +85,7 @@ class ActionStatus {
         .addBreak()
         .addRaw(`**Previous:** ${JSON.stringify(result['labels-previous'])}`)
         .addBreak()
-        .addRaw(`**Added:** ${JSON.stringify(result['labels-added'])}`)
+        .addRaw(`**Assigned:** ${JSON.stringify(result['labels-assigned'])}`)
         .addBreak()
         .addRaw(`**Removed:** ${JSON.stringify(result['labels-removed'])}`)
         .addBreak()
