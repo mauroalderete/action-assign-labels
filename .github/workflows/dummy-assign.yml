@@ -1,0 +1,49 @@
+name: Dummy-Assign
+
+on:
+  pull_request:
+    branches: [main]
+    types:
+      [opened, reopened, synchronize, labeled, unlabeled]
+
+jobs:
+  assign-labels:
+    name: Dummy Assign labels
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    outputs:
+      labels-assigned: ${{ steps.action-assign-labels.outputs.labels-assigned }}
+      labels-removed: ${{ steps.action-assign-labels.outputs.labels-removed }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Execute dummy assign labels
+        uses: ./
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          conventional-commits: |
+            conventional-commits:
+              - type: 'fix'
+                nouns: ['FIX', 'Fix', 'fix', 'FIXED', 'Fixed', 'fixed']
+                labels: ['bug']
+              - type: 'feature'
+                nouns: ['FEATURE', 'Feature', 'feature', 'FEAT', 'Feat', 'feat']
+                labels: ['feature']
+              - type: 'breaking_change'
+                nouns: ['BREAKING CHANGE', 'BREAKING', 'MAJOR']
+                labels: ['BREAKING CHANGE']
+              - type: 'documentation'
+                nouns: ['doc','docu','document','documentation']
+                labels: ['documentation']
+              - type: 'build'
+                nouns: ['build','rebuild']
+                labels: ['build']
+              - type: 'config'
+                nouns: ['config', 'conf', 'cofiguration', 'configure']
+                labels: ['config']
+          maintain-labels-not-matched: false
+          apply-changes: false

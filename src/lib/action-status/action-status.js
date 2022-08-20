@@ -56,21 +56,21 @@ class ActionStatus {
    */
   summaryConsole(result) {
     if (!result) {
-      this.#setInfo(JSON.stringify({
+      this.#setInfo(`summary: ${JSON.stringify({
         'action-message': this.#m,
         'action-status': this.#s,
-      }));
+      })}`);
       return;
     }
 
-    this.#setInfo(JSON.stringify({
+    this.#setInfo(`summary: ${JSON.stringify({
       'labels-previous': result['labels-previous'],
       'labels-assigned': result['labels-assigned'],
       'labels-removed': result['labels-removed'],
       'labels-next': result['labels-next'],
       'action-message': this.#m,
       'action-status': this.#s,
-    }));
+    })}`);
   }
 
   /**
@@ -78,20 +78,27 @@ class ActionStatus {
    * @param {object} result Result of the action.
    */
   summaryAction(result) {
-    this.#setSummary.addRaw('# Assign resume', true);
+    this.#setSummary.addRaw('# Assign resume').addBreak();
 
     if (this.#s === 'END' && result) {
-      this.#setSummary.addBreak();
-      this.#setSummary.addRaw('## Labels affected', true);
-      this.#setSummary.addRaw(`**Previous:** ${JSON.stringify(result['labels-previous'])}`, true);
-      this.#setSummary.addRaw(`**Added:** ${JSON.stringify(result['labels-added'])}`, true);
-      this.#setSummary.addRaw(`**Removed:** ${JSON.stringify(result['labels-removed'])}`, true);
-      this.#setSummary.addRaw(`**Next:** ${JSON.stringify(result['labels-next'])}`, true);
+      this.#setSummary.addRaw('## Labels affected')
+        .addBreak()
+        .addRaw(`**Previous:** ${JSON.stringify(result['labels-previous'])}`)
+        .addBreak()
+        .addRaw(`**Added:** ${JSON.stringify(result['labels-added'])}`)
+        .addBreak()
+        .addRaw(`**Removed:** ${JSON.stringify(result['labels-removed'])}`)
+        .addBreak()
+        .addRaw(`**Next:** ${JSON.stringify(result['labels-next'])}`)
+        .addBreak();
     }
-    this.#setSummary.addBreak();
-    this.#setSummary.addRaw(`## ${this.#s === 'END' ? ':heavy_check_mark:' : ':x:'} Action status`, true);
-    this.#setSummary.addRaw(`**Status:** ${this.#s}`, true);
-    this.#setSummary.addRaw(`**Message:** ${this.#m}`, true);
+
+    this.#setSummary.addRaw(`## ${this.#s === 'END' ? ':heavy_check_mark:' : ':x:'} Action status`)
+      .addBreak()
+      .addRaw(`**Status:** ${this.#s}`)
+      .addBreak()
+      .addRaw(`**Message:** ${this.#m}`)
+      .write({ overwrite: true });
   }
 }
 

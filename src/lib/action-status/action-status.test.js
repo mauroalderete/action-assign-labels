@@ -3,15 +3,45 @@ const core = require('@actions/core');
 const { ActionStatus } = require('./action-status');
 
 let output = '';
-let raw = '';
-const br = '';
 let info = '';
 
 const EOL = '\n';
 
+class Summary {
+  constructor() {
+    this.buffer = '';
+    this.written = '';
+  }
+
+  clear() {
+    this.buffer = '';
+    this.written = '';
+  }
+
+  addRaw(text, eol) {
+    this.buffer = `${this.buffer}${text}${eol === true ? EOL : ''}`;
+    return this;
+  }
+
+  addBreak() {
+    this.buffer = `${this.buffer}<br>${EOL}`;
+    return this;
+  }
+
+  write(options) {
+    this.written = this.buffer;
+    if (options && options.overwrite) {
+      this.buffer = '';
+    }
+  }
+}
+
+const summaryMock = new Summary();
+
 jest.spyOn(core, 'setOutput').mockImplementation((name, value) => { output = `${name}${value}`; });
-jest.spyOn(core.summary, 'addRaw').mockImplementation((text, eol) => { raw = `${raw}${text}${eol === true ? EOL : ''}`; });
-jest.spyOn(core.summary, 'addBreak').mockImplementation(() => { raw = `${raw}<br>${EOL}`; });
+jest.spyOn(core.summary, 'addRaw').mockImplementation((text, eol) => summaryMock.addRaw(text, eol));
+jest.spyOn(core.summary, 'addBreak').mockImplementation(() => summaryMock.addBreak());
+jest.spyOn(core.summary, 'write').mockImplementation((options) => summaryMock.write(options));
 jest.spyOn(core, 'info').mockImplementation((message) => { info = `${message}`; });
 
 describe('action-status', () => {
@@ -52,10 +82,10 @@ describe('action-status', () => {
       actionStatus.message = 'error';
       actionStatus.summaryConsole();
 
-      expect(info).toBe(JSON.stringify({
+      expect(info).toBe(`summary: ${JSON.stringify({
         'action-message': 'error',
         'action-status': 'some status',
-      }));
+      })}`);
     });
 
     it('wihtout error', () => {
@@ -71,34 +101,33 @@ describe('action-status', () => {
 
       actionStatus.summaryConsole(result);
 
-      expect(info).toBe(JSON.stringify({
+      expect(info).toBe(`summary: ${JSON.stringify({
         'labels-previous': result['labels-previous'],
         'labels-assigned': result['labels-assigned'],
         'labels-removed': result['labels-removed'],
         'labels-next': result['labels-next'],
         'action-message': '',
         'action-status': 'END',
-      }));
+      })}`);
     });
   });
 
   describe('action summary', () => {
     it('with error', () => {
+      summaryMock.clear();
       const actionStatus = new ActionStatus(core.setOutput, core.info, core.summary);
       actionStatus.status = 'some status';
       actionStatus.message = 'error';
       actionStatus.summaryAction();
 
-      expect(raw).toBe(`# Assign resume
-<br>
-## :x: Action status
-**Status:** ${actionStatus.status}
-**Message:** ${actionStatus.message}
-`);
+      expect(summaryMock.written).toBe(`# Assign resume<br>
+## :x: Action status<br>
+**Status:** ${actionStatus.status}<br>
+**Message:** ${actionStatus.message}`);
     });
 
     it('without error', () => {
-      raw = '';
+      summaryMock.clear();
       const actionStatus = new ActionStatus(core.setOutput, core.info, core.summary);
       actionStatus.status = 'END';
 
@@ -111,18 +140,15 @@ describe('action-status', () => {
 
       actionStatus.summaryAction(result);
 
-      expect(raw).toBe(`# Assign resume
-<br>
-## Labels affected
-**Previous:** ${JSON.stringify(result['labels-previous'])}
-**Added:** ${JSON.stringify(result['labels-added'])}
-**Removed:** ${JSON.stringify(result['labels-removed'])}
-**Next:** ${JSON.stringify(result['labels-next'])}
-<br>
-## :heavy_check_mark: Action status
-**Status:** ${actionStatus.status}
-**Message:** ${actionStatus.message}
-`);
+      expect(summaryMock.written).toBe(`# Assign resume<br>
+## Labels affected<br>
+**Previous:** ${JSON.stringify(result['labels-previous'])}<br>
+**Added:** ${JSON.stringify(result['labels-added'])}<br>
+**Removed:** ${JSON.stringify(result['labels-removed'])}<br>
+**Next:** ${JSON.stringify(result['labels-next'])}<br>
+## :heavy_check_mark: Action status<br>
+**Status:** ${actionStatus.status}<br>
+**Message:** ${actionStatus.message}`);
     });
   });
 });

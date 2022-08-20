@@ -7,6 +7,8 @@ const app = require('./app');
 
 jest.spyOn(core, 'setOutput').mockImplementation(() => {});
 
+jest.spyOn(core.summary, 'write').mockImplementation(() => {});
+
 jest.spyOn(core, 'setFailed').mockImplementation(() => {});
 
 jest.spyOn(core, 'getInput').mockImplementation((value) => {

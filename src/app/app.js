@@ -64,6 +64,13 @@ module.exports = async () => {
 
     actionStatus.status = 'END';
 
+    actionStatus.summaryConsole({
+      'labels-previous': previous,
+      'labels-assigned': added,
+      'labels-removed': removed,
+      'labels-next': current,
+    });
+
     actionStatus.summaryAction({
       'labels-previous': previous,
       'labels-assigned': added,
@@ -79,6 +86,7 @@ module.exports = async () => {
     core.setOutput('action-status', 'END');
   } catch (error) {
     actionStatus.message = error.message;
+    actionStatus.summaryConsole();
     actionStatus.summaryAction();
     throw new Error(`action failed: ${error}`);
   }
