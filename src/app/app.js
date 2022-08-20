@@ -15,6 +15,7 @@ const { changeLabels } = require('../lib/label-updater/label-updater');
 const { getTypesInCommits } = require('../lib/conventional-commits/conventional-commits');
 const { makePullRequestService } = require('../services/pullrequest.service');
 const { makeContexter } = require('../services/context.service');
+const { ActionStatus } = require('../lib/action-status/action-status');
 
 /**
  * Instances all dependencies needed to execute the assignment of the labels.
@@ -25,13 +26,16 @@ const { makeContexter } = require('../services/context.service');
  * @return {void}
  */
 module.exports = async () => {
+  const actionStatus = new ActionStatus(core.setOutput, core.info, core.summary);
+
   try {
     core.setOutput('labels-previous', '');
     core.setOutput('labels-assigned', '');
     core.setOutput('labels-removed', '');
     core.setOutput('labels-next', '');
     core.setOutput('action-message', '');
-    core.setOutput('action-status', 'LOAD_DEPENDENCIES');
+
+    actionStatus.status = 'LOAD_DEPENDENCIES';
 
     const yamlLoader = makeYAMLLoader(fs.readFileSync);
 
@@ -49,17 +53,30 @@ module.exports = async () => {
       makePullRequestService,
     );
 
-    core.setOutput('action-status', 'LOAD_CONTEXT');
-
+    actionStatus.status = 'LOAD_CONTEXT';
     const context = makeContexter(fs.readFileSync)(process.env.GITHUB_EVENT_PATH);
 
-    core.setOutput('action-status', 'PARSE_AND_ASSIGN');
-
+    actionStatus.status = 'PARSE_AND_ASSIGN';
     const result = await assignLabels(context);
 
-    core.setOutput('action-status', 'OUTPUT');
-
+    actionStatus.status = 'OUTPUT';
     const [previous, added, removed, current] = result;
+
+    actionStatus.status = 'END';
+
+    actionStatus.summaryConsole({
+      'labels-previous': previous,
+      'labels-assigned': added,
+      'labels-removed': removed,
+      'labels-next': current,
+    });
+
+    actionStatus.summaryAction({
+      'labels-previous': previous,
+      'labels-assigned': added,
+      'labels-removed': removed,
+      'labels-next': current,
+    });
 
     core.setOutput('labels-previous', previous);
     core.setOutput('labels-assigned', added);
@@ -68,8 +85,9 @@ module.exports = async () => {
     core.setOutput('action-message', '');
     core.setOutput('action-status', 'END');
   } catch (error) {
-    core.setOutput('action-message', error.message);
-    core.setFailed(error.message);
+    actionStatus.message = error.message;
+    actionStatus.summaryConsole();
+    actionStatus.summaryAction();
     throw new Error(`action failed: ${error}`);
   }
 };
