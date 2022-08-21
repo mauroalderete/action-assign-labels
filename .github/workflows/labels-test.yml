@@ -60,17 +60,9 @@ jobs:
           fetch-depth: 0
           ref: v0
 
-      - uses: actions/checkout@v3
-        with:
-          repository: mauroalderete/action-verify-labels
-          ref: v0
-          token: ${{ secrets.WORKFLOWS_TOKEN }}
-          path: ./.github/actions/action-verify-labels
-          persist-credentials: false
-
       - name: Verify labels
         id: action-verify-labels
-        uses: ./.github/actions/action-verify-labels
+        uses: mauroalderete/action-verify-labels@v1
         with:
           none: question, wontfix, invalid
           some: bug, feature, BREAKING CHANGE

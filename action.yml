@@ -1,5 +1,6 @@
 name: 'Assign Labels From Conventional Commits'
 description: 'Assign labels to pull-request parsing conventional commits standard'
+author: Mauro Alderete
 inputs:
   github-token:
     description: 'The Github token.'
@@ -35,3 +36,7 @@ outputs:
 runs:
   using: 'node16'
   main: 'dist/index.js'
+
+branding:
+  icon: 'check-square'
+  color: 'orange'
