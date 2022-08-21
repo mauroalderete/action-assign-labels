@@ -10,7 +10,8 @@ const commitsListMock = [
   'feat: get pull request info using octokit request',
   'test: context from event path',
   'feat: get labels before update',
-  'BREAKING CHANGE: get labels before update',
+  `BREAKING CHANGE: get labels before update
+  some multiline comment`,
   'feat(fix): get labels before update',
 ];
 
