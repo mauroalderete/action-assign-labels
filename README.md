@@ -15,6 +15,10 @@
 	<img alt="Semantic Versioning: 2.0.0" src="https://img.shields.io/badge/Semantic--Versioning-2.0.0-a05f79?logo=semantic-release&logoColor=f97ff0">
 </a>
 
+[![Tests](https://github.com/mauroalderete/action-assign-labels/actions/workflows/tests.yml/badge.svg)](https://github.com/mauroalderete/action-assign-labels/actions/workflows/tests.yml)
+[![CodeQL](https://github.com/mauroalderete/action-assign-labels/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mauroalderete/action-assign-labels/actions/workflows/codeql-analysis.yml)
+[![codecov](https://codecov.io/gh/mauroalderete/action-assign-labels/branch/main/graph/badge.svg?token=U6MTOGMQFM)](https://codecov.io/gh/mauroalderete/action-assign-labels)
+
 <a href="https://github.com/mauroalderete/action-assign-labels/issues/new/choose">Report Bug</a>
 ·
 <a href="https://github.com/mauroalderete/action-assign-labels/issues/new/choose">Request Feature</a>
