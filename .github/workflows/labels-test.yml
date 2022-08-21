@@ -38,13 +38,13 @@ jobs:
                 labels: ['BREAKING CHANGE']
               - type: 'documentation'
                 nouns: ['doc','docu','document','documentation']
-                labels: ['documentation']
+                labels: ['documentation','fix']
               - type: 'build'
                 nouns: ['build','rebuild']
                 labels: ['build','fix']
               - type: 'config'
                 nouns: ['config', 'conf', 'cofiguration', 'configure']
-                labels: ['config']
+                labels: ['config','fix']
 
       - name: Verify labels
         id: action-verify-labels
