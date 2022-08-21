@@ -58,7 +58,10 @@ module.exports.changeLabels = (current, changeBy, config) => {
 
   if (!config.maintainLabelsNotFound) {
     const labelsConfigured = config.conventionalCommitsScheme['conventional-commits'].map((cc) => cc.labels).reduce((lp, lc) => lp.concat(lc));
-    labelsConfigured.filter(
+
+    const uniqueLabelsConfigured = [...new Set(labelsConfigured)];
+
+    uniqueLabelsConfigured.filter(
       (lc) => current.includes(lc) && !changeBy.includes(lc),
     ).forEach((toRemove) => {
       removed.push(toRemove);

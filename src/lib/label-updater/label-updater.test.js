@@ -16,7 +16,10 @@ const readerMock = (path, options) => {
     labels: ['enhancement']
   - type: 'breaking_change'
     nouns: ['BREAKING CHANGE']
-    labels: ['BREAKING CHANGE']`;
+    labels: ['BREAKING CHANGE']
+  - type: 'build'
+    nouns: ['build']
+    labels: ['build','bug']`;
 };
 
 const yamlLoader = makeYAMLLoader(readerMock);
@@ -223,7 +226,7 @@ describe('label-updater', () => {
       {
         title: 'add one more and remove not found with others',
         input: {
-          currentLabels: ['bug', 'BREAKING CHANGE', 'build'],
+          currentLabels: ['bug', 'BREAKING CHANGE', 'build', 'chore'],
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: false,
@@ -231,9 +234,9 @@ describe('label-updater', () => {
           },
         },
         expect: {
-          next: ['bug', 'build', 'feat'],
+          next: ['bug', 'chore', 'feat'],
           added: ['feat'],
-          removed: ['BREAKING CHANGE'],
+          removed: ['BREAKING CHANGE', 'build'],
         },
       },
     ];
