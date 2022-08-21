@@ -45,6 +45,16 @@ const conventionalCommitsMock = {
         'BREAKING CHANGE',
       ],
     },
+    {
+      type: 'build',
+      nouns: [
+        'build',
+      ],
+      labels: [
+        'build',
+        'bug',
+      ],
+    },
   ],
 };
 
@@ -89,11 +99,14 @@ describe('conventional-commits', () => {
     it('get conventional-commits types from commits using conventional-commits scheme', () => {
       const expected = [
         { type: 'fix', nouns: ['fix', 'fixed'], labels: ['bug'] },
+        { type: 'build', nouns: ['build'], labels: ['build', 'bug'] },
         { type: 'feature', nouns: ['feat', 'feature'], labels: ['enhancement'] },
         { type: 'breaking_change', nouns: ['BREAKING CHANGE'], labels: ['BREAKING CHANGE'] },
       ];
 
-      expect(getTypesInCommits(commitsListMock, conventionalCommitsMock)).toEqual(expected);
+      const res = getTypesInCommits(commitsListMock, conventionalCommitsMock);
+
+      expect(res).toEqual(expected);
     });
   });
 });

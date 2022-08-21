@@ -48,6 +48,9 @@ const readerAsyncMock = (path, options) => {
   - type: 'breaking_change'
     nouns: ['BREAKING CHANGE']
     labels: ['BREAKING CHANGE']
+  - type: 'build'
+    nouns: ['build']
+    labels: ['bug', 'build']
   `;
 };
 
@@ -75,8 +78,8 @@ function GithubClientMock() {
 describe('Assign Labels App', () => {
   it('run', async () => {
     const expected = [
-      ['bug', 'enhancement'],
-      ['enhancement'],
+      ['bug', 'enhancement', 'build'],
+      ['enhancement', 'build'],
       [],
     ];
 
@@ -140,8 +143,8 @@ describe('Assign Labels App without conventional commits matched', () => {
 describe('Assign Labels App and not apply-changes', () => {
   it('run', async () => {
     const expected = [
-      ['bug', 'enhancement'],
-      ['enhancement'],
+      ['bug', 'enhancement', 'build'],
+      ['enhancement', 'build'],
       [],
     ];
 
@@ -171,8 +174,8 @@ describe('Assign Labels App and not apply-changes', () => {
 describe('Assign Labels App and not pull_request event in context', () => {
   it('run', async () => {
     const expected = [
-      ['bug', 'enhancement'],
-      ['enhancement'],
+      ['bug', 'enhancement', 'build'],
+      ['enhancement', 'build'],
       [],
     ];
 
