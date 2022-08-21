@@ -33,7 +33,7 @@ module.exports.getTypesInCommits = (commitMessages, conventionalCommitsScheme) =
     /**
      * Regexp recovery from {@link https://www.npmjs.com/package/conventional-commits-parser}
      */
-    const header = /^([\w\s]*)(?:\(([\w$.\-* ]*)\))?: (.*)$/;
+    const header = /^([\w\s]*)(?:\(([\w$.\-* ]*)\))?: (.*)$/m;
 
     const matched = header.exec(c);
     if (matched) {
