@@ -28,7 +28,7 @@ jobs:
           branch: main
           majorList: BREAKING CHANGE, BREAKING, MAJOR
           minorList: FEATURE, Feature, feature, FEAT, Feat, feat
-          patchList: FIX, Fix, fix, FIXED, Fixed, fixed
+          patchList: FIX, Fix, fix, FIXED, Fixed, fixed, config, conf, cofiguration, configure, build, rebuild, doc, docu, document, documentation
           patchAll: false
       
       - name: Push tags

@@ -8,7 +8,7 @@ changelog:
         - feature
     - title: 'Fixes :bug:'
       labels:
-        - bug
+        - fix
     - title: Other Changes
       labels:
         - "*"
