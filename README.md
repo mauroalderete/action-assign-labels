@@ -17,7 +17,7 @@
 
 [![Tests](https://github.com/mauroalderete/action-assign-labels/actions/workflows/tests.yml/badge.svg)](https://github.com/mauroalderete/action-assign-labels/actions/workflows/tests.yml)
 [![CodeQL](https://github.com/mauroalderete/action-assign-labels/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mauroalderete/action-assign-labels/actions/workflows/codeql-analysis.yml)
-[![codecov](https://codecov.io/gh/mauroalderete/action-assign-labels/branch/main/graph/badge.svg?token=U6MTOGMQFM)](https://codecov.io/gh/mauroalderete/action-assign-labels)
+[![codecov](https://codecov.io/gh/mauroalderete/action-assign-labels/branch/main/graph/badge.svg?token=CLP8TDLSKG)](https://codecov.io/gh/mauroalderete/action-assign-labels)
 
 <a href="https://github.com/mauroalderete/action-assign-labels/issues/new/choose">Report Bug</a>
 ·
