@@ -29,7 +29,7 @@ jobs:
             conventional-commits:
               - type: 'fix'
                 nouns: ['FIX', 'Fix', 'fix', 'FIXED', 'Fixed', 'fixed']
-                labels: ['bug']
+                labels: ['fix']
               - type: 'feature'
                 nouns: ['FEATURE', 'Feature', 'feature', 'FEAT', 'Feat', 'feat']
                 labels: ['feature']
@@ -41,7 +41,7 @@ jobs:
                 labels: ['documentation']
               - type: 'build'
                 nouns: ['build','rebuild']
-                labels: ['build','bug']
+                labels: ['build','fix']
               - type: 'config'
                 nouns: ['config', 'conf', 'cofiguration', 'configure']
                 labels: ['config']
@@ -51,7 +51,7 @@ jobs:
         uses: mauroalderete/action-verify-labels@v1
         with:
           none: question, wontfix, invalid
-          some: bug, feature, BREAKING CHANGE
+          some: fix, feature, BREAKING CHANGE
           request-review: true
           request-review-header: '**:bookmark: verify-labels-action**'
           github-token: ${{ secrets.GITHUB_TOKEN }}
