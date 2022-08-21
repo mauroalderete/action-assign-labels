@@ -42,7 +42,7 @@ jobs:
                 labels: ['documentation']
               - type: 'build'
                 nouns: ['build','rebuild']
-                labels: ['build']
+                labels: ['build','bug']
               - type: 'config'
                 nouns: ['config', 'conf', 'cofiguration', 'configure']
                 labels: ['config']
