@@ -40,8 +40,11 @@ jobs:
                 nouns: ['doc','docu','document','documentation']
                 labels: ['documentation','fix']
               - type: 'build'
-                nouns: ['build','rebuild', 'build(deps)', 'build(deps-dev)']
+                nouns: ['build','rebuild']
                 labels: ['build','fix']
+              - type: 'dependencies'
+                nouns: ['build(deps)','build(deps-dev)']
+                labels: ['build','dependencies','fix']
               - type: 'config'
                 nouns: ['config', 'conf', 'cofiguration', 'configure']
                 labels: ['config','fix']
