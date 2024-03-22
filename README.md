@@ -379,6 +379,20 @@ cd action-assign-labels
 npm install
 ```
 
+4. Install development tools
+
+```bash
+curl https://get.volta.sh | bash
+export VOLTA_HOME=$HOME/.volta
+export PATH=$VOLTA_HOME:$PATH
+npm install -g @vercel/ncc
+```
+
+For bash, zsh, and fish, the Volta installer updates your console login scripts
+so that you won't need to export `VOLTA_HOME` or update `PATH` again.
+See [Volta's Getting Started page](https://docs.volta.sh/guide/getting-started)
+for more details.
+
 ## Scripts
 
 ### Lint
@@ -403,7 +417,7 @@ npm run build
 
 # :wrench: How to work?
 
-The action runs on ubuntu runner as javascript action through node v16.x.
+The action runs on ubuntu runner as javascript action through node v20.x.
 
 The objective of this project is to provide a scalable project to handle label assignments according to conventional-commits spec. This way can be integrated into most workflow that searches a standard environment development.
 
