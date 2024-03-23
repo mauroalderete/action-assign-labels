@@ -46,7 +46,7 @@ jobs:
                 nouns: ['build(deps)','build(deps-dev)']
                 labels: ['build','dependencies','fix']
               - type: 'config'
-                nouns: ['config', 'conf', 'cofiguration', 'configure']
+                nouns: ['config', 'conf', 'configuration', 'configure']
                 labels: ['config','fix']
 
       - name: Verify labels
