@@ -11,6 +11,7 @@ jobs:
   versioning:
     name: Versioning
     runs-on: ubuntu-latest
+    if: github.repository == 'mauroalderete/action-assign-labels'
     outputs:
       version: ${{ steps.semver.outputs.next }}
     steps:
