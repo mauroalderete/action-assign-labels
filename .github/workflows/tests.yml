@@ -32,7 +32,8 @@ jobs:
         run: npm run test
 
       - name: Uploading coverage file to Codecov
-        uses: codecov/codecov-action@v3
+        if: github.repository == 'mauroalderete/action-assign-labels'
+        uses: codecov/codecov-action@v4
         with:
           name: codecov-umbrella
           fail_ci_if_error: true
