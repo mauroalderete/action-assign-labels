@@ -34,7 +34,7 @@ outputs:
   action-message:
     description: 'Message associated to the current status of the action'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 
 branding:
