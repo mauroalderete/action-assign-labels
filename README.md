@@ -60,6 +60,7 @@
     - [Build](#build)
   - [Deploy](#deploy)
 - [:wrench: How to work?](#wrench-how-to-work)
+- [Supported Versions](#supported-versions)
 - [:shield: License](#shield-license)
 - [:handshake: Contributing to `action-assign-labels`](#handshake-contributing-to-action-assign-labels)
 - [:pray: Support](#pray-support)
@@ -460,6 +461,15 @@ You can find all source code is documented through [jsdoc](https://jsdoc.app/) c
 If you have any questions, felt you free to make a comment through a [issue](https://github.com/mauroalderete/action-assign-labels/issues/new/choose).
 
 If you want to improve `action-assign-labels` o simply report a bug, please check the [contributing](#handshake-contributing-to-action-assign-labels) section to know how to do it.
+
+# Supported Versions
+
+At this time, these are the supported versions:
+
+Version |	Supported
+--- | --- 
+1.5 or higher |	✅
+<= 1.4.9 |	❌ *uses node@16 but [GitHub Action left Node16 support](https://github.blog/changelog/2024-03-07-github-actions-all-actions-will-run-on-node20-instead-of-node16-by-default/)*
 
 # :shield: License
 
