@@ -58,7 +58,9 @@
     - [Lint](#lint)
     - [Unit tests](#unit-tests)
     - [Build](#build)
+  - [Deploy](#deploy)
 - [:wrench: How to work?](#wrench-how-to-work)
+- [Supported Versions](#supported-versions)
 - [:shield: License](#shield-license)
 - [:handshake: Contributing to `action-assign-labels`](#handshake-contributing-to-action-assign-labels)
 - [:pray: Support](#pray-support)
@@ -379,6 +381,20 @@ cd action-assign-labels
 npm install
 ```
 
+4. Install development tools
+
+```bash
+curl https://get.volta.sh | bash
+export VOLTA_HOME=$HOME/.volta
+export PATH=$VOLTA_HOME:$PATH
+npm install -g @vercel/ncc
+```
+
+For bash, zsh, and fish, the Volta installer updates your console login scripts
+so that you won't need to export `VOLTA_HOME` or update `PATH` again.
+See [Volta's Getting Started page](https://docs.volta.sh/guide/getting-started)
+for more details.
+
 ## Scripts
 
 ### Lint
@@ -401,9 +417,23 @@ It execute lint and unit tests previously. It makes a distributable version into
 npm run build
 ```
 
+## Deploy
+
+To deploy and implement the changes in the GitHub Action, you need to generate a new build and push the changes to the repository, including the `dist` folder.
+
+```bash
+npm run build
+```
+
+The `action.yml` invokes the `dist/index.js` when a node runner executes it.
+
+This build command uses `@vercel/ncc` to package the source code into a single file. Follow the GitHub Action guide to [Creating a JavaScript Action](https://docs.github.com/es/actions/creating-actions/creating-a-javascript-action) for more details. 
+
+`ncc` is added as a development dependency.
+
 # :wrench: How to work?
 
-The action runs on ubuntu runner as javascript action through node v16.x.
+The action runs on ubuntu runner as javascript action through node v20.x.
 
 The objective of this project is to provide a scalable project to handle label assignments according to conventional-commits spec. This way can be integrated into most workflow that searches a standard environment development.
 
@@ -431,6 +461,15 @@ You can find all source code is documented through [jsdoc](https://jsdoc.app/) c
 If you have any questions, felt you free to make a comment through a [issue](https://github.com/mauroalderete/action-assign-labels/issues/new/choose).
 
 If you want to improve `action-assign-labels` o simply report a bug, please check the [contributing](#handshake-contributing-to-action-assign-labels) section to know how to do it.
+
+# Supported Versions
+
+At this time, these are the supported versions:
+
+Version |	Supported
+--- | --- 
+1.5 or higher |	✅
+<= 1.4.9 |	❌ *uses node@16 but [GitHub Action left Node16 support](https://github.blog/changelog/2024-03-07-github-actions-all-actions-will-run-on-node20-instead-of-node16-by-default/)*
 
 # :shield: License
 
