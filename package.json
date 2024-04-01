@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit#readme",
   "volta": {
-    "node": "20.11.1",
-    "npm": "10.2.4"
+    "node": "20.12.0",
+    "npm": "10.5.0"
   },
   "dependencies": {
     "@actions/core": "^1.10.1",
