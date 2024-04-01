@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint -c .eslintrc.json src/**/*.js",
     "test": "jest",
-    "build": "npm run lint && npm run test && ncc build ./src/index.js --license license.txt --minify"
+    "build": "npm run lint && npm run test && ncc build ./src/index.js --license license.txt"
   },
   "repository": {
     "type": "git",
