@@ -58,6 +58,7 @@
     - [Lint](#lint)
     - [Unit tests](#unit-tests)
     - [Build](#build)
+  - [Deploy](#deploy)
 - [:wrench: How to work?](#wrench-how-to-work)
 - [:shield: License](#shield-license)
 - [:handshake: Contributing to `action-assign-labels`](#handshake-contributing-to-action-assign-labels)
@@ -414,6 +415,20 @@ It execute lint and unit tests previously. It makes a distributable version into
 ```bash
 npm run build
 ```
+
+## Deploy
+
+To deploy and implement the changes in the GitHub Action, you need to generate a new build and push the changes to the repository, including the `dist` folder.
+
+```bash
+npm run build
+```
+
+The `action.yml` invokes the `dist/index.js` when a node runner executes it.
+
+This build command uses `@vercel/ncc` to package the source code into a single file. Follow the GitHub Action guide to [Creating a JavaScript Action](https://docs.github.com/es/actions/creating-actions/creating-a-javascript-action) for more details. 
+
+`ncc` is added as a development dependency.
 
 # :wrench: How to work?
 
