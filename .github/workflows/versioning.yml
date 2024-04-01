@@ -11,11 +11,12 @@ jobs:
   versioning:
     name: Versioning
     runs-on: ubuntu-latest
+    if: github.repository == 'mauroalderete/action-assign-labels'
     outputs:
       version: ${{ steps.semver.outputs.next }}
     steps:
       - name: Set up repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.push.head.ref }}

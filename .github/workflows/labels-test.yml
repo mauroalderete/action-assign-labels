@@ -15,7 +15,7 @@ jobs:
       labels-assigned: ${{ steps.action-assign-labels.outputs.labels-assigned }}
       labels-removed: ${{ steps.action-assign-labels.outputs.labels-removed }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
@@ -46,7 +46,7 @@ jobs:
                 nouns: ['build(deps)','build(deps-dev)']
                 labels: ['build','dependencies','fix']
               - type: 'config'
-                nouns: ['config', 'conf', 'cofiguration', 'configure']
+                nouns: ['config', 'conf', 'configuration', 'configure']
                 labels: ['config','fix']
 
       - name: Verify labels
