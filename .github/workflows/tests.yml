@@ -34,6 +34,8 @@ jobs:
       - name: Uploading coverage file to Codecov
         if: github.repository == 'mauroalderete/action-assign-labels'
         uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
           name: codecov-umbrella
           fail_ci_if_error: true
