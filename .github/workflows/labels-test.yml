@@ -6,6 +6,11 @@ on:
     types:
       [opened, reopened, synchronize, labeled, unlabeled]
 
+permissions:
+  pull-requests: write
+  issues: write
+  contents: write
+
 jobs:
   labels-test:
     name: Assign and test labels from conventional-commits
