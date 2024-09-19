@@ -9,7 +9,7 @@
  * Sends a request based on endpoint options. See {@link githubAPIClientType `githubAPIClientType`}
  * @returns {PullRequestService}
  */
-module.exports.makePullRequestService = (githubClient) => {
+export const makePullRequestService = (githubClient) => {
   /**
    * clase
    * @class

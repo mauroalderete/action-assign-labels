@@ -1193,7 +1193,7 @@ const strategyOctokitSuccessfullMock = {
   },
 };
 
-module.exports = {
+export {
   octokitPullrequestSuccessfullMock,
   octokitCommitsSuccessfullMock,
   octokitSetLabelsSuccessfullMock,

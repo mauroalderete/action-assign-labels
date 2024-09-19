@@ -4,13 +4,13 @@
  */
 
 // eslint-disable-next-line no-unused-vars
-const loader = require('./input-loader.app');
+import * as loader from './input-loader.app';
 // eslint-disable-next-line no-unused-vars
-const concom = require('../lib/conventional-commits/conventional-commits');
+import * as concom from '../lib/conventional-commits/conventional-commits';
 // eslint-disable-next-line no-unused-vars
-const pullRequestService = require('../services/pullrequest.service');
+import * as pullRequestService from '../services/pullrequest.service';
 // eslint-disable-next-line no-unused-vars
-const contextModule = require('../services/context.service');
+import * as contextModule from '../services/context.service';
 
 /**
  * Construct a {@link assignerLabelsFunc `assignerLabelsFunc`} function
@@ -29,7 +29,7 @@ const contextModule = require('../services/context.service');
  * See {@link pullRequestService.makePullRequestService `makePullRequestService`}
  * @returns {assignerLabelsFunc}
  */
-module.exports.makeAssignerLabelsApp = (
+export const makeAssignerLabelsApp = (
   loadInputs,
   changeLabels,
   getTypesInCommits,

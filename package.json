@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Assign labels to pull-request parsing conventional commits standard",
   "main": "src/index.js",
+  "type": "module",
   "directories": {
     "test": "test"
   },

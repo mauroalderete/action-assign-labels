@@ -28,7 +28,7 @@
  * @param {readerSyncFunc} readerSync - A readerSync function
  * @returns {getContextFunc} Getter Github Action's context function
  */
-module.exports.makeContexter = (readerSync) => (path) => {
+export const makeContexter = (readerSync) => (path) => {
   try {
     const context = readerSync(path, { encoding: 'utf8' });
     return JSON.parse(context);

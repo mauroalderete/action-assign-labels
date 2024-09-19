@@ -3,12 +3,12 @@
  * @module src/app/input-loader.app
  */
 
-const parser = require('../lib/parser/parser');
+import parser from '../lib/parser/parser';
 
 // eslint-disable-next-line no-unused-vars
-const concom = require('../lib/conventional-commits/conventional-commits');
+import concom from '../lib/conventional-commits/conventional-commits';
 // eslint-disable-next-line no-unused-vars
-const yamlLoader = require('../lib/yaml-loader/yaml-loader');
+import yamlLoader from '../lib/yaml-loader/yaml-loader';
 
 /**
  * Construct a {@link inputLoaderFunc `inputLoaderFunc`} function
@@ -21,7 +21,7 @@ const yamlLoader = require('../lib/yaml-loader/yaml-loader');
  * See {@link yamlLoader.yamlLoaderFunc `yamlLoaderFunc`}
  * @returns {inputLoaderFunc}
  */
-module.exports.makeInputLoader = (
+export const makeInputLoader = (
   stringInput,
   booleanInput,
   YAMLLoader,
