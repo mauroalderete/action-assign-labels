@@ -9,7 +9,7 @@
  * Sends a request based on endpoint options. See {@link githubAPIClientType `githubAPIClientType`}
  * @returns {PullRequestService}
  */
-export const makePullRequestService = (githubClient) => {
+const makePullRequestService = (githubClient) => {
   /**
    * clase
    * @class
@@ -623,3 +623,5 @@ export const makePullRequestService = (githubClient) => {
  * @property {string} color
  * @property {boolean} default
  */
+
+export default makePullRequestService;

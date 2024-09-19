@@ -21,7 +21,7 @@ import yamlLoader from '../lib/yaml-loader/yaml-loader';
  * See {@link yamlLoader.yamlLoaderFunc `yamlLoaderFunc`}
  * @returns {inputLoaderFunc}
  */
-export const makeInputLoader = (
+const makeInputLoader = (
   stringInput,
   booleanInput,
   YAMLLoader,
@@ -100,3 +100,5 @@ export const makeInputLoader = (
  * @property {concom.conventionalCommitsType} conventionalCommits A conventional-commits scheme.
  * See {@link concom.conventionalCommitsType `conventionalCommitsType`}
  */
+
+export default makeInputLoader;

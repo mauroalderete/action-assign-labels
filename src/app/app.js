@@ -8,13 +8,13 @@ import fs from 'fs';
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/action';
 
-import { makeAssignerLabelsApp } from './assigner-labels.app.js';
-import { makeInputLoader } from './input-loader.app.js';
+import makeAssignerLabelsApp from './assigner-labels.app.js';
+import makeInputLoader from './input-loader.app.js';
 import { makeYAMLLoader } from '../lib/yaml-loader/yaml-loader.js';
 import { changeLabels } from '../lib/label-updater/label-updater.js';
 import { getTypesInCommits } from '../lib/conventional-commits/conventional-commits.js';
-import { makePullRequestService } from '../services/pullrequest.service.js';
-import { makeContexter } from '../services/context.service.js';
+import makePullRequestService from '../services/pullrequest.service.js';
+import makeContexter from '../services/context.service.js';
 import { ActionStatus } from '../lib/action-status/action-status.js';
 
 /**

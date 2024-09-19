@@ -29,7 +29,7 @@ import * as contextModule from '../services/context.service';
  * See {@link pullRequestService.makePullRequestService `makePullRequestService`}
  * @returns {assignerLabelsFunc}
  */
-export const makeAssignerLabelsApp = (
+const makeAssignerLabelsApp = (
   loadInputs,
   changeLabels,
   getTypesInCommits,
@@ -104,8 +104,8 @@ export const makeAssignerLabelsApp = (
  * @callback assignerLabelsFunc
  * @param {contextModule.actionContext} actionContext Github Action context object.
  * See {@link contextModule.actionContext `actionContext`}
- * @return {labelsChanges} Array with the labels list modified by the function.
- * See {@link labelsChanges `labelsChanges`}
+ * @return {labelsChanged} Array with the labels list modified by the function.
+ * See {@link labelsChanged `labelsChanged`}
  */
 
 /**
@@ -115,3 +115,5 @@ export const makeAssignerLabelsApp = (
  * @property {string[]} added Is a list with all labels added to the old list.
  * @property {string[]} removed Is a list with all labels removed from the old list.
  */
+
+export default makeAssignerLabelsApp;
