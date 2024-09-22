@@ -1,17 +1,18 @@
-const { makeAssignerLabelsApp } = require('./assigner-labels.app');
-const { makeYAMLLoader } = require('../lib/yaml-loader/yaml-loader');
-const { makeInputLoader } = require('./input-loader.app');
-const { changeLabels } = require('../lib/label-updater/label-updater');
-const { getTypesInCommits } = require('../lib/conventional-commits/conventional-commits');
-const { makePullRequestService } = require('../services/pullrequest.service');
+import * as makeAssignerLabelsApp from './assigner-labels.app.js';
+import { makeYAMLLoader } from '../lib/yaml-loader/yaml-loader.js';
+import * as makeInputLoader from './input-loader.app.js';
+import { changeLabels } from '../lib/label-updater/label-updater.js';
+import { getTypesInCommits } from '../lib/conventional-commits/conventional-commits.js';
+import * as makePullRequestService from '../services/pullrequest.service.js';
+import * as parser from '../lib/parser/parser.js';
+
+// TODO: revisar mocks ESM
 const {
   strategyOctokitSuccessfullMock,
   octokitPullrequestSuccessfullMock,
   octokitSetLabelsSuccessfullMock,
   octokitCommitsSuccessfullNotConventionalCommitsMock,
-} = require('../__mocks__/octokit.mock');
-
-const parser = require('../lib/parser/parser');
+} = require('../__mocks__/octokit.mock.js');
 
 const githubCoreMock = (applyChanges) => ({
   getInput: (name) => {

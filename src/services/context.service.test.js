@@ -1,4 +1,4 @@
-const { makeContexter } = require('./context.service');
+import * as makeContexter from './context.service.js';
 
 const expected = {
   pull_request: {

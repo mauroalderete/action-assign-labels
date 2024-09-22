@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-const { makePullRequestService } = require('./pullrequest.service');
-const {
+import * as makePullRequestService from './pullrequest.service.js';
+// TODO: imports mocks ESM
+import {
   octokitPullrequestSuccessfullMock,
   octokitRequestFailMock,
   octokitCommitsSuccessfullMock,
   octokitSetLabelsSuccessfullMock,
-} = require('../__mocks__/octokit.mock');
+} from '../__mocks__/octokit.mock.js';
 
 describe('PullrequestService', () => {
   describe('get pull request', () => {

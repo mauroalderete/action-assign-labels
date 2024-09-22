@@ -3,12 +3,12 @@
  * @module src/app/input-loader.app
  */
 
-import parser from '../lib/parser/parser';
+import parser from '../lib/parser/parser.js';
 
 // eslint-disable-next-line no-unused-vars
-import concom from '../lib/conventional-commits/conventional-commits';
+import concom from '../lib/conventional-commits/conventional-commits.js';
 // eslint-disable-next-line no-unused-vars
-import yamlLoader from '../lib/yaml-loader/yaml-loader';
+import yamlLoader from '../lib/yaml-loader/yaml-loader.js';
 
 /**
  * Construct a {@link inputLoaderFunc `inputLoaderFunc`} function

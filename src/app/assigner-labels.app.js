@@ -4,13 +4,13 @@
  */
 
 // eslint-disable-next-line no-unused-vars
-import * as loader from './input-loader.app';
+import * as loader from './input-loader.app.js';
 // eslint-disable-next-line no-unused-vars
-import * as concom from '../lib/conventional-commits/conventional-commits';
+import * as concom from '../lib/conventional-commits/conventional-commits.js';
 // eslint-disable-next-line no-unused-vars
-import * as pullRequestService from '../services/pullrequest.service';
+import * as pullRequestService from '../services/pullrequest.service.js';
 // eslint-disable-next-line no-unused-vars
-import * as contextModule from '../services/context.service';
+import * as contextModule from '../services/context.service.js';
 
 /**
  * Construct a {@link assignerLabelsFunc `assignerLabelsFunc`} function
