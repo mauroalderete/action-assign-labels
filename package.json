@@ -71,6 +71,9 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/__legacy__/"
     ]
   },
   "dependencies": {
