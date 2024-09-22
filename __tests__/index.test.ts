@@ -3,7 +3,6 @@
  */
 
 import * as main from '../src/main'
-import { Octokit } from '@octokit/action'
 
 // Mock Octokit
 jest.mock('@octokit/action', () => {

@@ -1,5 +1,4 @@
 import * as core from '@actions/core'
-import { Octokit } from '@octokit/action'
 import { wait } from './wait'
 
 /**
@@ -8,6 +7,8 @@ import { wait } from './wait'
  */
 export async function run(): Promise<void> {
   try {
+    const { Octokit } = await import('@octokit/action')
+
     const octokit = new Octokit()
     console.log(octokit)
 

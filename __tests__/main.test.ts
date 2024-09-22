@@ -7,7 +7,6 @@
  */
 
 import * as core from '@actions/core'
-import { Octokit } from '@octokit/action'
 import * as main from '../src/main'
 
 // Mock the action's main function
