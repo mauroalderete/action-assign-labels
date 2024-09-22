@@ -1,5 +1,5 @@
-const { makeYAMLLoader } = require('../lib/yaml-loader/yaml-loader');
-const { makeInputLoader } = require('./input-loader.app');
+import { makeYAMLLoader } from '../lib/yaml-loader/yaml-loader.js';
+import * as makeInputLoader from './input-loader.app.js';
 
 describe('inputLoader.app', () => {
   const target = [

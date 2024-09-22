@@ -4,13 +4,13 @@
  */
 
 // eslint-disable-next-line no-unused-vars
-const loader = require('./input-loader.app');
+import * as loader from './input-loader.app.js';
 // eslint-disable-next-line no-unused-vars
-const concom = require('../lib/conventional-commits/conventional-commits');
+import * as concom from '../lib/conventional-commits/conventional-commits.js';
 // eslint-disable-next-line no-unused-vars
-const pullRequestService = require('../services/pullrequest.service');
+import * as pullRequestService from '../services/pullrequest.service.js';
 // eslint-disable-next-line no-unused-vars
-const contextModule = require('../services/context.service');
+import * as contextModule from '../services/context.service.js';
 
 /**
  * Construct a {@link assignerLabelsFunc `assignerLabelsFunc`} function
@@ -29,7 +29,7 @@ const contextModule = require('../services/context.service');
  * See {@link pullRequestService.makePullRequestService `makePullRequestService`}
  * @returns {assignerLabelsFunc}
  */
-module.exports.makeAssignerLabelsApp = (
+const makeAssignerLabelsApp = (
   loadInputs,
   changeLabels,
   getTypesInCommits,
@@ -104,8 +104,8 @@ module.exports.makeAssignerLabelsApp = (
  * @callback assignerLabelsFunc
  * @param {contextModule.actionContext} actionContext Github Action context object.
  * See {@link contextModule.actionContext `actionContext`}
- * @return {labelsChanges} Array with the labels list modified by the function.
- * See {@link labelsChanges `labelsChanges`}
+ * @return {labelsChanged} Array with the labels list modified by the function.
+ * See {@link labelsChanged `labelsChanged`}
  */
 
 /**
@@ -115,3 +115,5 @@ module.exports.makeAssignerLabelsApp = (
  * @property {string[]} added Is a list with all labels added to the old list.
  * @property {string[]} removed Is a list with all labels removed from the old list.
  */
+
+export default makeAssignerLabelsApp;

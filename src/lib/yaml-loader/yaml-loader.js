@@ -3,7 +3,7 @@
  * a function that makes a parser yaml to javascript object
  * @module src/lib/yaml-loader
  */
-const yamljs = require('yamljs');
+import yamljs from 'yamljs';
 
 /**
  * An method like {@link https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/ `fs.readerFileSync()`} sign. It must return a string content of the a source.
@@ -41,7 +41,7 @@ const yamljs = require('yamljs');
  * @param {readerSyncFunc} readerSync - A readerSync function
  * @returns {yamlLoaderFunc}
  */
-module.exports.makeYAMLLoader = (readerSync) => (yaml) => {
+export const makeYAMLLoader = (readerSync) => (yaml) => {
   let content = yaml;
 
   if (/^([./]?.*)?(\/.*)?\.((yml)|(yaml))$/.test(yaml)) {

@@ -3,9 +3,9 @@
  * @module src/lib/label-updater
  */
 
-const parser = require('../parser/parser');
+import parser from '../parser/parser';
 // eslint-disable-next-line no-unused-vars
-const { conventionalCommitsType } = require('../conventional-commits/conventional-commits');
+import { conventionalCommitsType } from '../conventional-commits/conventional-commits';
 
 /**
  * Update current list labels with the items included in the other list labels
@@ -21,7 +21,7 @@ const { conventionalCommitsType } = require('../conventional-commits/conventiona
  * @param {labelsConfig} config See {@link labelsConfig `labelsConfig`}
  * @returns {labelsChanged} See {@link labelsChanged `labelsChanged`}
  */
-module.exports.changeLabels = (current, changeBy, config) => {
+export const changeLabels = (current, changeBy, config) => {
   try {
     parser(current).denyUndefined().denyNull();
   } catch (error) {

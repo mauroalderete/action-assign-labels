@@ -179,4 +179,4 @@ class Parser {
  * @returns {Parser}
  * An instance of {@link Parser `Parser`} with the value set.
  */
-module.exports = (value) => new Parser(value);
+export default (value) => new Parser(value);

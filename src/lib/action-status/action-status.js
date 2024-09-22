@@ -102,4 +102,4 @@ class ActionStatus {
   }
 }
 
-module.exports = { ActionStatus };
+export { ActionStatus };

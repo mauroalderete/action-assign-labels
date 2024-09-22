@@ -16,7 +16,7 @@
  *
  * If there aren't any matches the list returned will is empty.
  */
-module.exports.getTypesInCommits = (commitMessages, conventionalCommitsScheme) => {
+export const getTypesInCommits = (commitMessages, conventionalCommitsScheme) => {
   if (typeof commitMessages !== 'string' && !Array.isArray(commitMessages)) {
     throw new Error('commitMessage must be a string or Array of string');
   }

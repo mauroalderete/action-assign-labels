@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
-const fs = require('fs');
-const core = require('@actions/core');
-const pullRequestService = require('../services/pullrequest.service');
-
-const app = require('./app');
+import fs from 'fs';
+import * as core from '@actions/core';
+import app from './app.js';
 
 jest.spyOn(core, 'setOutput').mockImplementation(() => {});
 
