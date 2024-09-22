@@ -7,10 +7,26 @@
  */
 
 import * as core from '@actions/core'
+import { Octokit } from '@octokit/action'
 import * as main from '../src/main'
 
 // Mock the action's main function
 const runMock = jest.spyOn(main, 'run')
+
+// Mock Octokit
+jest.mock('@octokit/action', () => {
+  return {
+    Octokit: jest.fn().mockImplementation(() => {
+      return {
+        request: jest.fn().mockResolvedValue({
+          data: {
+            html_url: ''
+          }
+        })
+      }
+    })
+  }
+})
 
 // Other utilities
 const timeRegex = /^\d{2}:\d{2}:\d{2}/

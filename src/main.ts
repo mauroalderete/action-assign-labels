@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import { Octokit } from '@octokit/action'
 import { wait } from './wait'
 
 /**
@@ -7,6 +8,9 @@ import { wait } from './wait'
  */
 export async function run(): Promise<void> {
   try {
+    const octokit = new Octokit()
+    console.log(octokit)
+
     const ms: string = core.getInput('milliseconds')
 
     // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true

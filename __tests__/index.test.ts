@@ -3,6 +3,22 @@
  */
 
 import * as main from '../src/main'
+import { Octokit } from '@octokit/action'
+
+// Mock Octokit
+jest.mock('@octokit/action', () => {
+  return {
+    Octokit: jest.fn().mockImplementation(() => {
+      return {
+        request: jest.fn().mockResolvedValue({
+          data: {
+            html_url: ''
+          }
+        })
+      }
+    })
+  }
+})
 
 // Mock the action's entrypoint
 const runMock = jest.spyOn(main, 'run').mockImplementation()
