@@ -1,6 +1,6 @@
 /**
  * Contains artifacts to handle the action status and the summary generation
-  * @module src/lib/action-status
+ * @module src/lib/action-status
  */
 
 /**
@@ -8,15 +8,15 @@
  * @class ActionStatus
  */
 class ActionStatus {
-  #setOutput;
+  #setOutput
 
-  #setInfo;
+  #setInfo
 
-  #setSummary;
+  #setSummary
 
-  #s;
+  #s
 
-  #m;
+  #m
 
   /**
    * Constructor
@@ -25,29 +25,29 @@ class ActionStatus {
    * @param {(object)} setSummary Instance the summary engine.
    */
   constructor(setOutput, setInfo, setSummary) {
-    this.#setOutput = setOutput;
-    this.#setInfo = setInfo;
-    this.#setSummary = setSummary;
-    this.#s = '';
-    this.#m = '';
+    this.#setOutput = setOutput
+    this.#setInfo = setInfo
+    this.#setSummary = setSummary
+    this.#s = ''
+    this.#m = ''
   }
 
   get status() {
-    return this.#s;
+    return this.#s
   }
 
   set status(status) {
-    this.#s = status;
-    this.#setOutput('action-status', this.#s);
+    this.#s = status
+    this.#setOutput('action-status', this.#s)
   }
 
   get message() {
-    return this.#m;
+    return this.#m
   }
 
   set message(message) {
-    this.#m = message;
-    this.#setOutput('action-message', this.#m);
+    this.#m = message
+    this.#setOutput('action-message', this.#m)
   }
 
   /**
@@ -56,21 +56,25 @@ class ActionStatus {
    */
   summaryConsole(result) {
     if (!result) {
-      this.#setInfo(`summary: ${JSON.stringify({
-        'action-message': this.#m,
-        'action-status': this.#s,
-      })}`);
-      return;
+      this.#setInfo(
+        `summary: ${JSON.stringify({
+          'action-message': this.#m,
+          'action-status': this.#s
+        })}`
+      )
+      return
     }
 
-    this.#setInfo(`summary: ${JSON.stringify({
-      'labels-previous': result['labels-previous'],
-      'labels-assigned': result['labels-assigned'],
-      'labels-removed': result['labels-removed'],
-      'labels-next': result['labels-next'],
-      'action-message': this.#m,
-      'action-status': this.#s,
-    })}`);
+    this.#setInfo(
+      `summary: ${JSON.stringify({
+        'labels-previous': result['labels-previous'],
+        'labels-assigned': result['labels-assigned'],
+        'labels-removed': result['labels-removed'],
+        'labels-next': result['labels-next'],
+        'action-message': this.#m,
+        'action-status': this.#s
+      })}`
+    )
   }
 
   /**
@@ -78,10 +82,11 @@ class ActionStatus {
    * @param {object} result Result of the action.
    */
   summaryAction(result) {
-    this.#setSummary.addRaw('# Assign resume').addBreak();
+    this.#setSummary.addRaw('# Assign resume').addBreak()
 
     if (this.#s === 'END' && result) {
-      this.#setSummary.addRaw('## Labels affected')
+      this.#setSummary
+        .addRaw('## Labels affected')
         .addBreak()
         .addRaw(`**Previous:** ${JSON.stringify(result['labels-previous'])}`)
         .addBreak()
@@ -90,16 +95,19 @@ class ActionStatus {
         .addRaw(`**Removed:** ${JSON.stringify(result['labels-removed'])}`)
         .addBreak()
         .addRaw(`**Next:** ${JSON.stringify(result['labels-next'])}`)
-        .addBreak();
+        .addBreak()
     }
 
-    this.#setSummary.addRaw(`## ${this.#s === 'END' ? ':heavy_check_mark:' : ':x:'} Action status`)
+    this.#setSummary
+      .addRaw(
+        `## ${this.#s === 'END' ? ':heavy_check_mark:' : ':x:'} Action status`
+      )
       .addBreak()
       .addRaw(`**Status:** ${this.#s}`)
       .addBreak()
       .addRaw(`**Message:** ${this.#m}`)
-      .write({ overwrite: true });
+      .write({ overwrite: true })
   }
 }
 
-module.exports = { ActionStatus };
+module.exports = { ActionStatus }

@@ -3,9 +3,11 @@
  * @module src/lib/label-updater
  */
 
-const parser = require('../parser/parser');
+const parser = require('../parser/parser')
 // eslint-disable-next-line no-unused-vars
-const { conventionalCommitsType } = require('../conventional-commits/conventional-commits');
+const {
+  conventionalCommitsType
+} = require('../conventional-commits/conventional-commits')
 
 /**
  * Update current list labels with the items included in the other list labels
@@ -23,15 +25,15 @@ const { conventionalCommitsType } = require('../conventional-commits/conventiona
  */
 module.exports.changeLabels = (current, changeBy, config) => {
   try {
-    parser(current).denyUndefined().denyNull();
+    parser(current).denyUndefined().denyNull()
   } catch (error) {
-    throw new Error(`failed to validate currentLabels: ${error}`);
+    throw new Error(`failed to validate currentLabels: ${error}`)
   }
 
   try {
-    parser(changeBy).denyUndefined().denyNull();
+    parser(changeBy).denyUndefined().denyNull()
   } catch (error) {
-    throw new Error(`failed to validate changeByLabels: ${error}`);
+    throw new Error(`failed to validate changeByLabels: ${error}`)
   }
 
   try {
@@ -39,42 +41,46 @@ module.exports.changeLabels = (current, changeBy, config) => {
     config.maintainLabelsNotFound = parser(config.maintainLabelsNotFound)
       .denyUndefined()
       .denyNull()
-      .toBool().value;
-    parser(config.conventionalCommitsScheme).denyUndefined().denyNull();
+      .toBool().value
+    parser(config.conventionalCommitsScheme).denyUndefined().denyNull()
   } catch (error) {
-    throw new Error(`failed to parse configuration: ${error}`);
+    throw new Error(`failed to parse configuration: ${error}`)
   }
 
-  const next = current;
-  const added = [];
-  const removed = [];
+  const next = current
+  const added = []
+  const removed = []
 
-  changeBy.forEach((l) => {
+  changeBy.forEach(l => {
     if (!next.includes(l)) {
-      next.push(l);
-      added.push(l);
+      next.push(l)
+      added.push(l)
     }
-  });
+  })
 
   if (!config.maintainLabelsNotFound) {
-    const labelsConfigured = config.conventionalCommitsScheme['conventional-commits'].map((cc) => cc.labels).reduce((lp, lc) => lp.concat(lc));
+    const labelsConfigured = config.conventionalCommitsScheme[
+      'conventional-commits'
+    ]
+      .map(cc => cc.labels)
+      .reduce((lp, lc) => lp.concat(lc))
 
-    const uniqueLabelsConfigured = [...new Set(labelsConfigured)];
+    const uniqueLabelsConfigured = [...new Set(labelsConfigured)]
 
-    uniqueLabelsConfigured.filter(
-      (lc) => current.includes(lc) && !changeBy.includes(lc),
-    ).forEach((toRemove) => {
-      removed.push(toRemove);
-    });
+    uniqueLabelsConfigured
+      .filter(lc => current.includes(lc) && !changeBy.includes(lc))
+      .forEach(toRemove => {
+        removed.push(toRemove)
+      })
 
-    removed.forEach((r) => {
-      const index = next.indexOf(r);
-      next.splice(index, 1);
-    });
+    removed.forEach(r => {
+      const index = next.indexOf(r)
+      next.splice(index, 1)
+    })
   }
 
-  return [next, added, removed];
-};
+  return [next, added, removed]
+}
 
 /**
  * @typedef {object} labelsConfig

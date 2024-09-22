@@ -1,43 +1,43 @@
-const { makeYAMLLoader } = require('../lib/yaml-loader/yaml-loader');
-const { makeInputLoader } = require('./input-loader.app');
+const { makeYAMLLoader } = require('../lib/yaml-loader/yaml-loader')
+const { makeInputLoader } = require('./input-loader.app')
 
 describe('inputLoader.app', () => {
   const target = [
     {
       title: 'object empty',
       input: {},
-      expectedThrow: true,
+      expectedThrow: true
     },
     {
       title: 'pr',
       input: {
-        'pull-request-number': '100',
+        'pull-request-number': '100'
       },
-      expectedThrow: true,
+      expectedThrow: true
     },
     {
       title: 'pr negative',
       input: {
-        'pull-request-number': '-100',
+        'pull-request-number': '-100'
       },
-      expectedThrow: true,
+      expectedThrow: true
     },
     {
       title: 'pr+token',
       input: {
         'pull-request-number': '100',
-        'github-token': 'asd',
+        'github-token': 'asd'
       },
-      expectedThrow: true,
+      expectedThrow: true
     },
     {
       title: 'pr+token+maintain',
       input: {
         'pull-request-number': '100',
         'github-token': 'asd',
-        'maintain-labels-not-matched': false,
+        'maintain-labels-not-matched': false
       },
-      expectedThrow: true,
+      expectedThrow: true
     },
     {
       title: 'pr+token+maintain+apply',
@@ -45,9 +45,9 @@ describe('inputLoader.app', () => {
         'pull-request-number': '100',
         'github-token': 'asd',
         'maintain-labels-not-matched': false,
-        'apply-changes': true,
+        'apply-changes': true
       },
-      expectedThrow: true,
+      expectedThrow: true
     },
     {
       title: 'all ok',
@@ -61,7 +61,7 @@ describe('inputLoader.app', () => {
         - type: 'fix'
           nouns: ['fix', 'fixed']
           labels: ['bug']
-        `,
+        `
       },
       expectedValue: {
         pullRequestNumber: 100,
@@ -73,11 +73,11 @@ describe('inputLoader.app', () => {
             {
               type: 'fix',
               nouns: ['fix', 'fixed'],
-              labels: ['bug'],
-            },
-          ],
-        },
-      },
+              labels: ['bug']
+            }
+          ]
+        }
+      }
     },
     {
       title: 'all ok from file',
@@ -86,7 +86,7 @@ describe('inputLoader.app', () => {
         'github-token': 'asd',
         'maintain-labels-not-matched': false,
         'apply-changes': true,
-        'conventional-commits': 'conventional-commits.yml',
+        'conventional-commits': 'conventional-commits.yml'
       },
       expectedValue: {
         pullRequestNumber: 100,
@@ -98,18 +98,18 @@ describe('inputLoader.app', () => {
             {
               type: 'fix',
               nouns: ['fix', 'fixed'],
-              labels: ['bug'],
-            },
-          ],
-        },
-      },
-    },
-  ];
+              labels: ['bug']
+            }
+          ]
+        }
+      }
+    }
+  ]
 
   // eslint-disable-next-line no-unused-vars
   const readerMock = (path, options) => {
     if (path !== 'conventional-commits.yml') {
-      throw new Error('file not found');
+      throw new Error('file not found')
     }
 
     return `%YAML 1.2
@@ -117,38 +117,40 @@ describe('inputLoader.app', () => {
     - type: 'fix'
       nouns: ['fix', 'fixed']
       labels: ['bug']
-    `;
-  };
-  const yamlLoaderMock = makeYAMLLoader(readerMock);
+    `
+  }
+  const yamlLoaderMock = makeYAMLLoader(readerMock)
 
-  target.forEach((t) => {
+  target.forEach(t => {
     it(`${t.title}`, () => {
-      const stringInputClientMock = (name) => t.input[name];
-      const booleanInputClientMock = (name) => t.input[name];
+      const stringInputClientMock = name => t.input[name]
+      const booleanInputClientMock = name => t.input[name]
       const inputLoader = makeInputLoader(
         stringInputClientMock,
         booleanInputClientMock,
-        yamlLoaderMock,
-      );
+        yamlLoaderMock
+      )
 
       if (t.expectedThrow) {
         expect(() => {
-          inputLoader(t.input);
-        }).toThrow();
+          inputLoader(t.input)
+        }).toThrow()
       } else {
         expect(() => {
-          inputLoader(t.input);
-        }).not.toThrow();
+          inputLoader(t.input)
+        }).not.toThrow()
 
-        const value = inputLoader(t.input);
-        expect(value).toEqual(t.expectedValue);
-        expect(typeof value.pullRequestNumber).toBe('number');
-        expect(typeof value.githubToken).toBe('string');
-        expect(typeof value.maintainLabelsNotFound).toBe('boolean');
-        expect(typeof value.applyChanges).toBe('boolean');
-        expect(typeof value.conventionalCommits).toBe('object');
-        expect(Array.isArray(value.conventionalCommits['conventional-commits'])).toBe(true);
+        const value = inputLoader(t.input)
+        expect(value).toEqual(t.expectedValue)
+        expect(typeof value.pullRequestNumber).toBe('number')
+        expect(typeof value.githubToken).toBe('string')
+        expect(typeof value.maintainLabelsNotFound).toBe('boolean')
+        expect(typeof value.applyChanges).toBe('boolean')
+        expect(typeof value.conventionalCommits).toBe('object')
+        expect(
+          Array.isArray(value.conventionalCommits['conventional-commits'])
+        ).toBe(true)
       }
-    });
-  });
-});
+    })
+  })
+})

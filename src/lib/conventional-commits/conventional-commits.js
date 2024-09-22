@@ -16,40 +16,46 @@
  *
  * If there aren't any matches the list returned will is empty.
  */
-module.exports.getTypesInCommits = (commitMessages, conventionalCommitsScheme) => {
+module.exports.getTypesInCommits = (
+  commitMessages,
+  conventionalCommitsScheme
+) => {
   if (typeof commitMessages !== 'string' && !Array.isArray(commitMessages)) {
-    throw new Error('commitMessage must be a string or Array of string');
+    throw new Error('commitMessage must be a string or Array of string')
   }
 
   if (!conventionalCommitsScheme) {
-    throw new Error('conventionalCommitsScheme is required');
+    throw new Error('conventionalCommitsScheme is required')
   }
 
-  const commits = (typeof commitMessages === 'string') ? [commitMessages] : commitMessages;
+  const commits =
+    typeof commitMessages === 'string' ? [commitMessages] : commitMessages
 
-  const typesRecognized = [];
+  const typesRecognized = []
 
-  commits.forEach((c) => {
+  commits.forEach(c => {
     /**
      * Regexp recovery from {@link https://www.npmjs.com/package/conventional-commits-parser}
      */
-    const header = /^([\w\s]*)(?:\(([\w$.\-* ]*)\))?: (.*)$/m;
+    const header = /^([\w\s]*)(?:\(([\w$.\-* ]*)\))?: (.*)$/m
 
-    const matched = header.exec(c);
+    const matched = header.exec(c)
     if (matched) {
-      const noun = matched[1];
-      const type = conventionalCommitsScheme['conventional-commits'].find((cc) => cc.nouns.includes(noun));
+      const noun = matched[1]
+      const type = conventionalCommitsScheme['conventional-commits'].find(cc =>
+        cc.nouns.includes(noun)
+      )
 
       if (type) {
         if (!typesRecognized.includes(type)) {
-          typesRecognized.push(type);
+          typesRecognized.push(type)
         }
       }
     }
-  });
+  })
 
-  return typesRecognized;
-};
+  return typesRecognized
+}
 
 /** @typedef {object} conventionalCommitsType
  * @property {object[]} conventional-commits Object, A conventional commits scheme.

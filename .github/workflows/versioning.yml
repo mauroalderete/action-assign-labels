@@ -3,7 +3,7 @@ name: Versioning
 on:
   push:
     branches:
-      - "main"
+      - 'main'
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
-      
+
       - name: Get next version
         id: semver
         uses: ietf-tools/semver-action@v1
@@ -29,9 +29,12 @@ jobs:
           branch: main
           majorList: BREAKING CHANGE, BREAKING, MAJOR
           minorList: FEATURE, Feature, feature, FEAT, Feat, feat
-          patchList: FIX, Fix, fix, FIXED, Fixed, fixed, config, conf, cofiguration, configure, build, rebuild, doc, docu, document, documentation, dependencies
+          patchList:
+            FIX, Fix, fix, FIXED, Fixed, fixed, config, conf, cofiguration,
+            configure, build, rebuild, doc, docu, document, documentation,
+            dependencies
           patchAll: false
-      
+
       - name: Push tags
         id: push-tags
         run: |
@@ -70,7 +73,7 @@ jobs:
         if: github.event.head_commit.committer.username != 'web-flow'
         run: |
           #!/bin/sh
-          
+
           echo "::warning ::There were no pull requests associated with the commits included in this release. Automatically-generated notes were not generated."
 
           tar -czvf dist.tar.gz ./dist

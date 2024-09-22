@@ -1,10 +1,10 @@
-const { changeLabels } = require('./label-updater');
-const { makeYAMLLoader } = require('../yaml-loader/yaml-loader');
+const { changeLabels } = require('./label-updater')
+const { makeYAMLLoader } = require('../yaml-loader/yaml-loader')
 
 // eslint-disable-next-line no-unused-vars
 const readerMock = (path, options) => {
   if (path !== 'conventional-commits.yml') {
-    throw new Error('file not found');
+    throw new Error('file not found')
   }
 
   return `conventional-commits:
@@ -19,80 +19,104 @@ const readerMock = (path, options) => {
     labels: ['BREAKING CHANGE']
   - type: 'build'
     nouns: ['build']
-    labels: ['build','bug']`;
-};
+    labels: ['build','bug']`
+}
 
-const yamlLoader = makeYAMLLoader(readerMock);
+const yamlLoader = makeYAMLLoader(readerMock)
 
 describe('label-updater', () => {
   describe('validations', () => {
     it('without current labels list', () => {
-      expect(() => { changeLabels(); }).toThrow();
-    });
+      expect(() => {
+        changeLabels()
+      }).toThrow()
+    })
 
     it('undefined current labels list', () => {
-      expect(() => { changeLabels(undefined); }).toThrow();
-    });
+      expect(() => {
+        changeLabels(undefined)
+      }).toThrow()
+    })
 
     it('null current labels list', () => {
-      expect(() => { changeLabels(null); }).toThrow();
-    });
+      expect(() => {
+        changeLabels(null)
+      }).toThrow()
+    })
 
     it('with current labels list invalid', () => {
-      expect(() => { changeLabels({}); }).toThrow();
-    });
+      expect(() => {
+        changeLabels({})
+      }).toThrow()
+    })
 
     it('without change by labels list', () => {
-      expect(() => { changeLabels([]); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([])
+      }).toThrow()
+    })
 
     it('undefined change by labels list', () => {
-      expect(() => { changeLabels([], undefined); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([], undefined)
+      }).toThrow()
+    })
 
     it('null change by labels list', () => {
-      expect(() => { changeLabels([], null); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([], null)
+      }).toThrow()
+    })
 
     it('with change by labels list invalid', () => {
-      expect(() => { changeLabels([], {}); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([], {})
+      }).toThrow()
+    })
 
     it('without config', () => {
-      expect(() => { changeLabels([], []); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([], [])
+      }).toThrow()
+    })
 
     it('undefined config', () => {
-      expect(() => { changeLabels([], [], undefined); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([], [], undefined)
+      }).toThrow()
+    })
 
     it('null config', () => {
-      expect(() => { changeLabels([], [], null); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([], [], null)
+      }).toThrow()
+    })
 
     it('with config invalid object', () => {
-      expect(() => { changeLabels([], [], 'a'); }).toThrow();
-    });
+      expect(() => {
+        changeLabels([], [], 'a')
+      }).toThrow()
+    })
 
     it('config without maintainLabelsNotFound field', () => {
       expect(() => {
         changeLabels([], [], {
-          conventionalCommitsScheme: false,
-        });
-      }).toThrow();
-    });
+          conventionalCommitsScheme: false
+        })
+      }).toThrow()
+    })
 
     it('config without conventionalCommitsScheme field', () => {
       expect(() => {
         changeLabels([], [], {
-          maintainLabelsNotFound: true,
-        });
-      }).toThrow();
-    });
-  });
+          maintainLabelsNotFound: true
+        })
+      }).toThrow()
+    })
+  })
 
   describe('parse', () => {
-    const cc = yamlLoader('conventional-commits.yml');
+    const cc = yamlLoader('conventional-commits.yml')
 
     const targets = [
       {
@@ -102,14 +126,14 @@ describe('label-updater', () => {
           changeByLabels: [],
           config: {
             maintainLabelsNotFound: true,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: [],
           added: [],
-          removed: [],
-        },
+          removed: []
+        }
       },
       {
         title: 'only added',
@@ -118,14 +142,14 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: true,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['bug', 'feat'],
           added: ['bug', 'feat'],
-          removed: [],
-        },
+          removed: []
+        }
       },
       {
         title: 'add one more',
@@ -134,14 +158,14 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: true,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['bug', 'feat'],
           added: ['feat'],
-          removed: [],
-        },
+          removed: []
+        }
       },
       {
         title: 'add one more and maintain not found',
@@ -150,14 +174,14 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: true,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['bug', 'BREAKING CHANGE', 'feat'],
           added: ['feat'],
-          removed: [],
-        },
+          removed: []
+        }
       },
       {
         title: 'add one more and remove not found',
@@ -166,14 +190,14 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: false,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['bug', 'feat'],
           added: ['feat'],
-          removed: ['BREAKING CHANGE'],
-        },
+          removed: ['BREAKING CHANGE']
+        }
       },
       {
         title: 'only added with others',
@@ -182,14 +206,14 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: true,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['build', 'bug', 'feat'],
           added: ['bug', 'feat'],
-          removed: [],
-        },
+          removed: []
+        }
       },
       {
         title: 'add one more with others',
@@ -198,14 +222,14 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: true,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['bug', 'build', 'feat'],
           added: ['feat'],
-          removed: [],
-        },
+          removed: []
+        }
       },
       {
         title: 'add one more and maintain not found with others',
@@ -214,14 +238,14 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: true,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['bug', 'BREAKING CHANGE', 'build', 'feat'],
           added: ['feat'],
-          removed: [],
-        },
+          removed: []
+        }
       },
       {
         title: 'add one more and remove not found with others',
@@ -230,27 +254,33 @@ describe('label-updater', () => {
           changeByLabels: ['bug', 'feat'],
           config: {
             maintainLabelsNotFound: false,
-            conventionalCommitsScheme: cc,
-          },
+            conventionalCommitsScheme: cc
+          }
         },
         expect: {
           next: ['bug', 'chore', 'feat'],
           added: ['feat'],
-          removed: ['BREAKING CHANGE', 'build'],
-        },
-      },
-    ];
+          removed: ['BREAKING CHANGE', 'build']
+        }
+      }
+    ]
 
-    targets.forEach((t) => {
+    targets.forEach(t => {
       it(t.title, () => {
         expect(
           changeLabels(
             t.input.currentLabels,
             t.input.changeByLabels,
-            t.input.config,
-          ),
-        ).toEqual(expect.arrayContaining([t.expect.next, t.expect.added, t.expect.removed]));
-      });
-    });
-  });
-});
+            t.input.config
+          )
+        ).toEqual(
+          expect.arrayContaining([
+            t.expect.next,
+            t.expect.added,
+            t.expect.removed
+          ])
+        )
+      })
+    })
+  })
+})

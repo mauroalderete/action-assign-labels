@@ -30,10 +30,10 @@
  * it will emit an expection.
  */
 class Parser {
-  #value;
+  #value
 
   constructor(value) {
-    this.#value = value;
+    this.#value = value
   }
 
   /**
@@ -41,11 +41,11 @@ class Parser {
    * @type {any}
    */
   get value() {
-    return this.#value;
+    return this.#value
   }
 
   set value(value) {
-    this.#value = value;
+    this.#value = value
   }
 
   /**
@@ -54,10 +54,10 @@ class Parser {
    */
   denyUndefined() {
     if (this.value === undefined) {
-      throw new Error("the value mustn't be undefined");
+      throw new Error("the value mustn't be undefined")
     }
 
-    return this;
+    return this
   }
 
   /**
@@ -66,10 +66,10 @@ class Parser {
    */
   denyNull() {
     if (this.value === null) {
-      throw new Error("the value mustn't be null");
+      throw new Error("the value mustn't be null")
     }
 
-    return this;
+    return this
   }
 
   /**
@@ -79,10 +79,10 @@ class Parser {
    */
   denyEmpty() {
     if (`${this.value}` === '') {
-      throw new Error("the value mustn't be empty");
+      throw new Error("the value mustn't be empty")
     }
 
-    return this;
+    return this
   }
 
   /**
@@ -92,8 +92,8 @@ class Parser {
    * @returns {this} Self reference.
    */
   denyVoid() {
-    this.denyUndefined().denyNull().denyEmpty();
-    return this;
+    this.denyUndefined().denyNull().denyEmpty()
+    return this
   }
 
   /**
@@ -101,8 +101,8 @@ class Parser {
    * @returns {this} Self reference.
    */
   toString() {
-    this.value = `${this.value}`;
-    return this;
+    this.value = `${this.value}`
+    return this
   }
 
   /**
@@ -111,13 +111,13 @@ class Parser {
    * @returns {this} Self reference.
    */
   toInt() {
-    const number = parseInt(this.value, 10);
+    const number = parseInt(this.value, 10)
     if (Number.isNaN(number)) {
-      throw new Error(`input ${this.value} isn't a Int`);
+      throw new Error(`input ${this.value} isn't a Int`)
     }
-    this.value = number;
+    this.value = number
 
-    return this;
+    return this
   }
 
   /**
@@ -129,22 +129,22 @@ class Parser {
    * @returns {this} Self refrence.
    */
   toBool() {
-    const trueValue = ['true', 'True', 'TRUE', true];
-    const falseValue = ['false', 'False', 'FALSE', false];
+    const trueValue = ['true', 'True', 'TRUE', true]
+    const falseValue = ['false', 'False', 'FALSE', false]
 
     if (trueValue.includes(this.value)) {
-      this.value = true;
-      return this;
+      this.value = true
+      return this
     }
 
     if (falseValue.includes(this.value)) {
-      this.value = false;
-      return this;
+      this.value = false
+      return this
     }
 
     throw new TypeError(
-      `input ${this.value} does not meet YAML 1.2 "Core Schema" specification: Support boolean input list: \`true | True | TRUE | false | False | FALSE\``,
-    );
+      `input ${this.value} does not meet YAML 1.2 "Core Schema" specification: Support boolean input list: \`true | True | TRUE | false | False | FALSE\``
+    )
   }
 
   /**
@@ -159,15 +159,17 @@ class Parser {
    */
   use(action) {
     if (!action) {
-      return this;
+      return this
     }
 
     try {
-      action(this);
+      action(this)
       // eslint-disable-next-line consistent-return
-      return this;
+      return this
     } catch (error) {
-      throw new Error(`failed to invoke the middleware '${action.name}': ${error}`);
+      throw new Error(
+        `failed to invoke the middleware '${action.name}': ${error}`
+      )
     }
   }
 }
@@ -179,4 +181,4 @@ class Parser {
  * @returns {Parser}
  * An instance of {@link Parser `Parser`} with the value set.
  */
-module.exports = (value) => new Parser(value);
+module.exports = value => new Parser(value)

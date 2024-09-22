@@ -9,11 +9,16 @@ const octokitPullrequestSuccessfullMock = {
       diff_url: 'https://github.com/octocat/Hello-World/pull/1347.diff',
       patch_url: 'https://github.com/octocat/Hello-World/pull/1347.patch',
       issue_url: 'https://api.github.com/repos/octocat/Hello-World/issues/1347',
-      commits_url: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347/commits',
-      review_comments_url: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347/comments',
-      review_comment_url: 'https://api.github.com/repos/octocat/Hello-World/pulls/comments{/number}',
-      comments_url: 'https://api.github.com/repos/octocat/Hello-World/issues/1347/comments',
-      statuses_url: 'https://api.github.com/repos/octocat/Hello-World/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e',
+      commits_url:
+        'https://api.github.com/repos/octocat/Hello-World/pulls/1347/commits',
+      review_comments_url:
+        'https://api.github.com/repos/octocat/Hello-World/pulls/1347/comments',
+      review_comment_url:
+        'https://api.github.com/repos/octocat/Hello-World/pulls/comments{/number}',
+      comments_url:
+        'https://api.github.com/repos/octocat/Hello-World/issues/1347/comments',
+      statuses_url:
+        'https://api.github.com/repos/octocat/Hello-World/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e',
       number: 1347,
       state: 'open',
       locked: true,
@@ -27,16 +32,19 @@ const octokitPullrequestSuccessfullMock = {
         url: 'https://api.github.com/users/octocat',
         html_url: 'https://github.com/octocat',
         followers_url: 'https://api.github.com/users/octocat/followers',
-        following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+        following_url:
+          'https://api.github.com/users/octocat/following{/other_user}',
         gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-        starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+        starred_url:
+          'https://api.github.com/users/octocat/starred{/owner}{/repo}',
         subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
         organizations_url: 'https://api.github.com/users/octocat/orgs',
         repos_url: 'https://api.github.com/users/octocat/repos',
         events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-        received_events_url: 'https://api.github.com/users/octocat/received_events',
+        received_events_url:
+          'https://api.github.com/users/octocat/received_events',
         type: 'User',
-        site_admin: false,
+        site_admin: false
       },
       body: 'Please pull these awesome changes in!',
       labels: [
@@ -47,13 +55,14 @@ const octokitPullrequestSuccessfullMock = {
           name: 'bug',
           description: "Something isn't working",
           color: 'f29513',
-          default: true,
-        },
+          default: true
+        }
       ],
       milestone: {
         url: 'https://api.github.com/repos/octocat/Hello-World/milestones/1',
         html_url: 'https://github.com/octocat/Hello-World/milestones/v1.0',
-        labels_url: 'https://api.github.com/repos/octocat/Hello-World/milestones/1/labels',
+        labels_url:
+          'https://api.github.com/repos/octocat/Hello-World/milestones/1/labels',
         id: 1002604,
         node_id: 'MDk6TWlsZXN0b25lMTAwMjYwNA==',
         number: 1,
@@ -69,23 +78,27 @@ const octokitPullrequestSuccessfullMock = {
           url: 'https://api.github.com/users/octocat',
           html_url: 'https://github.com/octocat',
           followers_url: 'https://api.github.com/users/octocat/followers',
-          following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+          following_url:
+            'https://api.github.com/users/octocat/following{/other_user}',
           gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
+          starred_url:
+            'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/octocat/subscriptions',
           organizations_url: 'https://api.github.com/users/octocat/orgs',
           repos_url: 'https://api.github.com/users/octocat/repos',
           events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/octocat/received_events',
+          received_events_url:
+            'https://api.github.com/users/octocat/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         open_issues: 4,
         closed_issues: 8,
         created_at: '2011-04-10T20:09:31Z',
         updated_at: '2014-03-03T18:58:10Z',
         closed_at: '2013-02-12T13:22:01Z',
-        due_on: '2012-10-09T23:39:01Z',
+        due_on: '2012-10-09T23:39:01Z'
       },
       active_lock_reason: 'too heated',
       created_at: '2011-01-26T19:01:12Z',
@@ -102,16 +115,19 @@ const octokitPullrequestSuccessfullMock = {
         url: 'https://api.github.com/users/octocat',
         html_url: 'https://github.com/octocat',
         followers_url: 'https://api.github.com/users/octocat/followers',
-        following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+        following_url:
+          'https://api.github.com/users/octocat/following{/other_user}',
         gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-        starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+        starred_url:
+          'https://api.github.com/users/octocat/starred{/owner}{/repo}',
         subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
         organizations_url: 'https://api.github.com/users/octocat/orgs',
         repos_url: 'https://api.github.com/users/octocat/repos',
         events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-        received_events_url: 'https://api.github.com/users/octocat/received_events',
+        received_events_url:
+          'https://api.github.com/users/octocat/received_events',
         type: 'User',
-        site_admin: false,
+        site_admin: false
       },
       assignees: [
         {
@@ -123,16 +139,20 @@ const octokitPullrequestSuccessfullMock = {
           url: 'https://api.github.com/users/octocat',
           html_url: 'https://github.com/octocat',
           followers_url: 'https://api.github.com/users/octocat/followers',
-          following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+          following_url:
+            'https://api.github.com/users/octocat/following{/other_user}',
           gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
+          starred_url:
+            'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/octocat/subscriptions',
           organizations_url: 'https://api.github.com/users/octocat/orgs',
           repos_url: 'https://api.github.com/users/octocat/repos',
           events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/octocat/received_events',
+          received_events_url:
+            'https://api.github.com/users/octocat/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         {
           login: 'hubot',
@@ -143,17 +163,20 @@ const octokitPullrequestSuccessfullMock = {
           url: 'https://api.github.com/users/hubot',
           html_url: 'https://github.com/hubot',
           followers_url: 'https://api.github.com/users/hubot/followers',
-          following_url: 'https://api.github.com/users/hubot/following{/other_user}',
+          following_url:
+            'https://api.github.com/users/hubot/following{/other_user}',
           gists_url: 'https://api.github.com/users/hubot/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/hubot/starred{/owner}{/repo}',
+          starred_url:
+            'https://api.github.com/users/hubot/starred{/owner}{/repo}',
           subscriptions_url: 'https://api.github.com/users/hubot/subscriptions',
           organizations_url: 'https://api.github.com/users/hubot/orgs',
           repos_url: 'https://api.github.com/users/hubot/repos',
           events_url: 'https://api.github.com/users/hubot/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/hubot/received_events',
+          received_events_url:
+            'https://api.github.com/users/hubot/received_events',
           type: 'User',
-          site_admin: true,
-        },
+          site_admin: true
+        }
       ],
       requested_reviewers: [
         {
@@ -165,17 +188,22 @@ const octokitPullrequestSuccessfullMock = {
           url: 'https://api.github.com/users/other_user',
           html_url: 'https://github.com/other_user',
           followers_url: 'https://api.github.com/users/other_user/followers',
-          following_url: 'https://api.github.com/users/other_user/following{/other_user}',
+          following_url:
+            'https://api.github.com/users/other_user/following{/other_user}',
           gists_url: 'https://api.github.com/users/other_user/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/other_user/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/other_user/subscriptions',
+          starred_url:
+            'https://api.github.com/users/other_user/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/other_user/subscriptions',
           organizations_url: 'https://api.github.com/users/other_user/orgs',
           repos_url: 'https://api.github.com/users/other_user/repos',
-          events_url: 'https://api.github.com/users/other_user/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/other_user/received_events',
+          events_url:
+            'https://api.github.com/users/other_user/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/other_user/received_events',
           type: 'User',
-          site_admin: false,
-        },
+          site_admin: false
+        }
       ],
       requested_teams: [
         {
@@ -189,8 +217,8 @@ const octokitPullrequestSuccessfullMock = {
           privacy: 'closed',
           permission: 'admin',
           members_url: 'https://api.github.com/teams/1/members{/member}',
-          repositories_url: 'https://api.github.com/teams/1/repos',
-        },
+          repositories_url: 'https://api.github.com/teams/1/repos'
+        }
       ],
       head: {
         label: 'octocat:new-topic',
@@ -205,16 +233,20 @@ const octokitPullrequestSuccessfullMock = {
           url: 'https://api.github.com/users/octocat',
           html_url: 'https://github.com/octocat',
           followers_url: 'https://api.github.com/users/octocat/followers',
-          following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+          following_url:
+            'https://api.github.com/users/octocat/following{/other_user}',
           gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
+          starred_url:
+            'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/octocat/subscriptions',
           organizations_url: 'https://api.github.com/users/octocat/orgs',
           repos_url: 'https://api.github.com/users/octocat/repos',
           events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/octocat/received_events',
+          received_events_url:
+            'https://api.github.com/users/octocat/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         repo: {
           id: 1296269,
@@ -230,59 +262,93 @@ const octokitPullrequestSuccessfullMock = {
             url: 'https://api.github.com/users/octocat',
             html_url: 'https://github.com/octocat',
             followers_url: 'https://api.github.com/users/octocat/followers',
-            following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+            following_url:
+              'https://api.github.com/users/octocat/following{/other_user}',
             gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-            starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-            subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
+            starred_url:
+              'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+            subscriptions_url:
+              'https://api.github.com/users/octocat/subscriptions',
             organizations_url: 'https://api.github.com/users/octocat/orgs',
             repos_url: 'https://api.github.com/users/octocat/repos',
             events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-            received_events_url: 'https://api.github.com/users/octocat/received_events',
+            received_events_url:
+              'https://api.github.com/users/octocat/received_events',
             type: 'User',
-            site_admin: false,
+            site_admin: false
           },
           private: false,
           html_url: 'https://github.com/octocat/Hello-World',
           description: 'This your first repo!',
           fork: false,
           url: 'https://api.github.com/repos/octocat/Hello-World',
-          archive_url: 'https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}',
-          assignees_url: 'https://api.github.com/repos/octocat/Hello-World/assignees{/user}',
-          blobs_url: 'https://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}',
-          branches_url: 'https://api.github.com/repos/octocat/Hello-World/branches{/branch}',
-          collaborators_url: 'https://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}',
-          comments_url: 'https://api.github.com/repos/octocat/Hello-World/comments{/number}',
-          commits_url: 'https://api.github.com/repos/octocat/Hello-World/commits{/sha}',
-          compare_url: 'https://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}',
-          contents_url: 'https://api.github.com/repos/octocat/Hello-World/contents/{+path}',
-          contributors_url: 'https://api.github.com/repos/octocat/Hello-World/contributors',
-          deployments_url: 'https://api.github.com/repos/octocat/Hello-World/deployments',
-          downloads_url: 'https://api.github.com/repos/octocat/Hello-World/downloads',
+          archive_url:
+            'https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}',
+          assignees_url:
+            'https://api.github.com/repos/octocat/Hello-World/assignees{/user}',
+          blobs_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}',
+          branches_url:
+            'https://api.github.com/repos/octocat/Hello-World/branches{/branch}',
+          collaborators_url:
+            'https://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}',
+          comments_url:
+            'https://api.github.com/repos/octocat/Hello-World/comments{/number}',
+          commits_url:
+            'https://api.github.com/repos/octocat/Hello-World/commits{/sha}',
+          compare_url:
+            'https://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}',
+          contents_url:
+            'https://api.github.com/repos/octocat/Hello-World/contents/{+path}',
+          contributors_url:
+            'https://api.github.com/repos/octocat/Hello-World/contributors',
+          deployments_url:
+            'https://api.github.com/repos/octocat/Hello-World/deployments',
+          downloads_url:
+            'https://api.github.com/repos/octocat/Hello-World/downloads',
           events_url: 'https://api.github.com/repos/octocat/Hello-World/events',
           forks_url: 'https://api.github.com/repos/octocat/Hello-World/forks',
-          git_commits_url: 'https://api.github.com/repos/octocat/Hello-World/git/commits{/sha}',
-          git_refs_url: 'https://api.github.com/repos/octocat/Hello-World/git/refs{/sha}',
-          git_tags_url: 'https://api.github.com/repos/octocat/Hello-World/git/tags{/sha}',
+          git_commits_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/commits{/sha}',
+          git_refs_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/refs{/sha}',
+          git_tags_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/tags{/sha}',
           git_url: 'git:github.com/octocat/Hello-World.git',
-          issue_comment_url: 'https://api.github.com/repos/octocat/Hello-World/issues/comments{/number}',
-          issue_events_url: 'https://api.github.com/repos/octocat/Hello-World/issues/events{/number}',
-          issues_url: 'https://api.github.com/repos/octocat/Hello-World/issues{/number}',
-          keys_url: 'https://api.github.com/repos/octocat/Hello-World/keys{/key_id}',
-          labels_url: 'https://api.github.com/repos/octocat/Hello-World/labels{/name}',
-          languages_url: 'https://api.github.com/repos/octocat/Hello-World/languages',
+          issue_comment_url:
+            'https://api.github.com/repos/octocat/Hello-World/issues/comments{/number}',
+          issue_events_url:
+            'https://api.github.com/repos/octocat/Hello-World/issues/events{/number}',
+          issues_url:
+            'https://api.github.com/repos/octocat/Hello-World/issues{/number}',
+          keys_url:
+            'https://api.github.com/repos/octocat/Hello-World/keys{/key_id}',
+          labels_url:
+            'https://api.github.com/repos/octocat/Hello-World/labels{/name}',
+          languages_url:
+            'https://api.github.com/repos/octocat/Hello-World/languages',
           merges_url: 'https://api.github.com/repos/octocat/Hello-World/merges',
-          milestones_url: 'https://api.github.com/repos/octocat/Hello-World/milestones{/number}',
-          notifications_url: 'https://api.github.com/repos/octocat/Hello-World/notifications{?since,all,participating}',
-          pulls_url: 'https://api.github.com/repos/octocat/Hello-World/pulls{/number}',
-          releases_url: 'https://api.github.com/repos/octocat/Hello-World/releases{/id}',
+          milestones_url:
+            'https://api.github.com/repos/octocat/Hello-World/milestones{/number}',
+          notifications_url:
+            'https://api.github.com/repos/octocat/Hello-World/notifications{?since,all,participating}',
+          pulls_url:
+            'https://api.github.com/repos/octocat/Hello-World/pulls{/number}',
+          releases_url:
+            'https://api.github.com/repos/octocat/Hello-World/releases{/id}',
           ssh_url: 'git@github.com:octocat/Hello-World.git',
-          stargazers_url: 'https://api.github.com/repos/octocat/Hello-World/stargazers',
-          statuses_url: 'https://api.github.com/repos/octocat/Hello-World/statuses/{sha}',
-          subscribers_url: 'https://api.github.com/repos/octocat/Hello-World/subscribers',
-          subscription_url: 'https://api.github.com/repos/octocat/Hello-World/subscription',
+          stargazers_url:
+            'https://api.github.com/repos/octocat/Hello-World/stargazers',
+          statuses_url:
+            'https://api.github.com/repos/octocat/Hello-World/statuses/{sha}',
+          subscribers_url:
+            'https://api.github.com/repos/octocat/Hello-World/subscribers',
+          subscription_url:
+            'https://api.github.com/repos/octocat/Hello-World/subscription',
           tags_url: 'https://api.github.com/repos/octocat/Hello-World/tags',
           teams_url: 'https://api.github.com/repos/octocat/Hello-World/teams',
-          trees_url: 'https://api.github.com/repos/octocat/Hello-World/git/trees{/sha}',
+          trees_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/trees{/sha}',
           clone_url: 'https://github.com/octocat/Hello-World.git',
           mirror_url: 'git:git.example.com/octocat/Hello-World',
           hooks_url: 'https://api.github.com/repos/octocat/Hello-World/hooks',
@@ -295,12 +361,7 @@ const octokitPullrequestSuccessfullMock = {
           size: 108,
           default_branch: 'master',
           open_issues_count: 0,
-          topics: [
-            'octocat',
-            'atom',
-            'electron',
-            'api',
-          ],
+          topics: ['octocat', 'atom', 'electron', 'api'],
           has_issues: true,
           has_projects: true,
           has_wiki: true,
@@ -314,7 +375,7 @@ const octokitPullrequestSuccessfullMock = {
           permissions: {
             admin: false,
             push: false,
-            pull: true,
+            pull: true
           },
           allow_rebase_merge: true,
           temp_clone_token: 'ABTLWHOULUVAXGTRYU7OC2876QJ2O',
@@ -328,10 +389,10 @@ const octokitPullrequestSuccessfullMock = {
             name: 'MIT License',
             url: 'https://api.github.com/licenses/mit',
             spdx_id: 'MIT',
-            node_id: 'MDc6TGljZW5zZW1pdA==',
+            node_id: 'MDc6TGljZW5zZW1pdA=='
           },
-          watchers: 123,
-        },
+          watchers: 123
+        }
       },
       base: {
         label: 'octocat:master',
@@ -346,16 +407,20 @@ const octokitPullrequestSuccessfullMock = {
           url: 'https://api.github.com/users/octocat',
           html_url: 'https://github.com/octocat',
           followers_url: 'https://api.github.com/users/octocat/followers',
-          following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+          following_url:
+            'https://api.github.com/users/octocat/following{/other_user}',
           gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
+          starred_url:
+            'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/octocat/subscriptions',
           organizations_url: 'https://api.github.com/users/octocat/orgs',
           repos_url: 'https://api.github.com/users/octocat/repos',
           events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/octocat/received_events',
+          received_events_url:
+            'https://api.github.com/users/octocat/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         repo: {
           id: 1296269,
@@ -371,59 +436,93 @@ const octokitPullrequestSuccessfullMock = {
             url: 'https://api.github.com/users/octocat',
             html_url: 'https://github.com/octocat',
             followers_url: 'https://api.github.com/users/octocat/followers',
-            following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+            following_url:
+              'https://api.github.com/users/octocat/following{/other_user}',
             gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-            starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
-            subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
+            starred_url:
+              'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+            subscriptions_url:
+              'https://api.github.com/users/octocat/subscriptions',
             organizations_url: 'https://api.github.com/users/octocat/orgs',
             repos_url: 'https://api.github.com/users/octocat/repos',
             events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-            received_events_url: 'https://api.github.com/users/octocat/received_events',
+            received_events_url:
+              'https://api.github.com/users/octocat/received_events',
             type: 'User',
-            site_admin: false,
+            site_admin: false
           },
           private: false,
           html_url: 'https://github.com/octocat/Hello-World',
           description: 'This your first repo!',
           fork: false,
           url: 'https://api.github.com/repos/octocat/Hello-World',
-          archive_url: 'https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}',
-          assignees_url: 'https://api.github.com/repos/octocat/Hello-World/assignees{/user}',
-          blobs_url: 'https://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}',
-          branches_url: 'https://api.github.com/repos/octocat/Hello-World/branches{/branch}',
-          collaborators_url: 'https://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}',
-          comments_url: 'https://api.github.com/repos/octocat/Hello-World/comments{/number}',
-          commits_url: 'https://api.github.com/repos/octocat/Hello-World/commits{/sha}',
-          compare_url: 'https://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}',
-          contents_url: 'https://api.github.com/repos/octocat/Hello-World/contents/{+path}',
-          contributors_url: 'https://api.github.com/repos/octocat/Hello-World/contributors',
-          deployments_url: 'https://api.github.com/repos/octocat/Hello-World/deployments',
-          downloads_url: 'https://api.github.com/repos/octocat/Hello-World/downloads',
+          archive_url:
+            'https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}',
+          assignees_url:
+            'https://api.github.com/repos/octocat/Hello-World/assignees{/user}',
+          blobs_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}',
+          branches_url:
+            'https://api.github.com/repos/octocat/Hello-World/branches{/branch}',
+          collaborators_url:
+            'https://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}',
+          comments_url:
+            'https://api.github.com/repos/octocat/Hello-World/comments{/number}',
+          commits_url:
+            'https://api.github.com/repos/octocat/Hello-World/commits{/sha}',
+          compare_url:
+            'https://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}',
+          contents_url:
+            'https://api.github.com/repos/octocat/Hello-World/contents/{+path}',
+          contributors_url:
+            'https://api.github.com/repos/octocat/Hello-World/contributors',
+          deployments_url:
+            'https://api.github.com/repos/octocat/Hello-World/deployments',
+          downloads_url:
+            'https://api.github.com/repos/octocat/Hello-World/downloads',
           events_url: 'https://api.github.com/repos/octocat/Hello-World/events',
           forks_url: 'https://api.github.com/repos/octocat/Hello-World/forks',
-          git_commits_url: 'https://api.github.com/repos/octocat/Hello-World/git/commits{/sha}',
-          git_refs_url: 'https://api.github.com/repos/octocat/Hello-World/git/refs{/sha}',
-          git_tags_url: 'https://api.github.com/repos/octocat/Hello-World/git/tags{/sha}',
+          git_commits_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/commits{/sha}',
+          git_refs_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/refs{/sha}',
+          git_tags_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/tags{/sha}',
           git_url: 'git:github.com/octocat/Hello-World.git',
-          issue_comment_url: 'https://api.github.com/repos/octocat/Hello-World/issues/comments{/number}',
-          issue_events_url: 'https://api.github.com/repos/octocat/Hello-World/issues/events{/number}',
-          issues_url: 'https://api.github.com/repos/octocat/Hello-World/issues{/number}',
-          keys_url: 'https://api.github.com/repos/octocat/Hello-World/keys{/key_id}',
-          labels_url: 'https://api.github.com/repos/octocat/Hello-World/labels{/name}',
-          languages_url: 'https://api.github.com/repos/octocat/Hello-World/languages',
+          issue_comment_url:
+            'https://api.github.com/repos/octocat/Hello-World/issues/comments{/number}',
+          issue_events_url:
+            'https://api.github.com/repos/octocat/Hello-World/issues/events{/number}',
+          issues_url:
+            'https://api.github.com/repos/octocat/Hello-World/issues{/number}',
+          keys_url:
+            'https://api.github.com/repos/octocat/Hello-World/keys{/key_id}',
+          labels_url:
+            'https://api.github.com/repos/octocat/Hello-World/labels{/name}',
+          languages_url:
+            'https://api.github.com/repos/octocat/Hello-World/languages',
           merges_url: 'https://api.github.com/repos/octocat/Hello-World/merges',
-          milestones_url: 'https://api.github.com/repos/octocat/Hello-World/milestones{/number}',
-          notifications_url: 'https://api.github.com/repos/octocat/Hello-World/notifications{?since,all,participating}',
-          pulls_url: 'https://api.github.com/repos/octocat/Hello-World/pulls{/number}',
-          releases_url: 'https://api.github.com/repos/octocat/Hello-World/releases{/id}',
+          milestones_url:
+            'https://api.github.com/repos/octocat/Hello-World/milestones{/number}',
+          notifications_url:
+            'https://api.github.com/repos/octocat/Hello-World/notifications{?since,all,participating}',
+          pulls_url:
+            'https://api.github.com/repos/octocat/Hello-World/pulls{/number}',
+          releases_url:
+            'https://api.github.com/repos/octocat/Hello-World/releases{/id}',
           ssh_url: 'git@github.com:octocat/Hello-World.git',
-          stargazers_url: 'https://api.github.com/repos/octocat/Hello-World/stargazers',
-          statuses_url: 'https://api.github.com/repos/octocat/Hello-World/statuses/{sha}',
-          subscribers_url: 'https://api.github.com/repos/octocat/Hello-World/subscribers',
-          subscription_url: 'https://api.github.com/repos/octocat/Hello-World/subscription',
+          stargazers_url:
+            'https://api.github.com/repos/octocat/Hello-World/stargazers',
+          statuses_url:
+            'https://api.github.com/repos/octocat/Hello-World/statuses/{sha}',
+          subscribers_url:
+            'https://api.github.com/repos/octocat/Hello-World/subscribers',
+          subscription_url:
+            'https://api.github.com/repos/octocat/Hello-World/subscription',
           tags_url: 'https://api.github.com/repos/octocat/Hello-World/tags',
           teams_url: 'https://api.github.com/repos/octocat/Hello-World/teams',
-          trees_url: 'https://api.github.com/repos/octocat/Hello-World/git/trees{/sha}',
+          trees_url:
+            'https://api.github.com/repos/octocat/Hello-World/git/trees{/sha}',
           clone_url: 'https://github.com/octocat/Hello-World.git',
           mirror_url: 'git:git.example.com/octocat/Hello-World',
           hooks_url: 'https://api.github.com/repos/octocat/Hello-World/hooks',
@@ -436,12 +535,7 @@ const octokitPullrequestSuccessfullMock = {
           size: 108,
           default_branch: 'master',
           open_issues_count: 0,
-          topics: [
-            'octocat',
-            'atom',
-            'electron',
-            'api',
-          ],
+          topics: ['octocat', 'atom', 'electron', 'api'],
           has_issues: true,
           has_projects: true,
           has_wiki: true,
@@ -455,7 +549,7 @@ const octokitPullrequestSuccessfullMock = {
           permissions: {
             admin: false,
             push: false,
-            pull: true,
+            pull: true
           },
           allow_rebase_merge: true,
           temp_clone_token: 'ABTLWHOULUVAXGTRYU7OC2876QJ2O',
@@ -468,36 +562,36 @@ const octokitPullrequestSuccessfullMock = {
             name: 'MIT License',
             url: 'https://api.github.com/licenses/mit',
             spdx_id: 'MIT',
-            node_id: 'MDc6TGljZW5zZW1pdA==',
+            node_id: 'MDc6TGljZW5zZW1pdA=='
           },
-          watchers: 123,
-        },
+          watchers: 123
+        }
       },
       _links: {
         self: {
-          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347',
+          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347'
         },
         html: {
-          href: 'https://github.com/octocat/Hello-World/pull/1347',
+          href: 'https://github.com/octocat/Hello-World/pull/1347'
         },
         issue: {
-          href: 'https://api.github.com/repos/octocat/Hello-World/issues/1347',
+          href: 'https://api.github.com/repos/octocat/Hello-World/issues/1347'
         },
         comments: {
-          href: 'https://api.github.com/repos/octocat/Hello-World/issues/1347/comments',
+          href: 'https://api.github.com/repos/octocat/Hello-World/issues/1347/comments'
         },
         review_comments: {
-          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347/comments',
+          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347/comments'
         },
         review_comment: {
-          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/comments{/number}',
+          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/comments{/number}'
         },
         commits: {
-          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347/commits',
+          href: 'https://api.github.com/repos/octocat/Hello-World/pulls/1347/commits'
         },
         statuses: {
-          href: 'https://api.github.com/repos/octocat/Hello-World/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e',
-        },
+          href: 'https://api.github.com/repos/octocat/Hello-World/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e'
+        }
       },
       author_association: 'OWNER',
       auto_merge: null,
@@ -515,16 +609,19 @@ const octokitPullrequestSuccessfullMock = {
         url: 'https://api.github.com/users/octocat',
         html_url: 'https://github.com/octocat',
         followers_url: 'https://api.github.com/users/octocat/followers',
-        following_url: 'https://api.github.com/users/octocat/following{/other_user}',
+        following_url:
+          'https://api.github.com/users/octocat/following{/other_user}',
         gists_url: 'https://api.github.com/users/octocat/gists{/gist_id}',
-        starred_url: 'https://api.github.com/users/octocat/starred{/owner}{/repo}',
+        starred_url:
+          'https://api.github.com/users/octocat/starred{/owner}{/repo}',
         subscriptions_url: 'https://api.github.com/users/octocat/subscriptions',
         organizations_url: 'https://api.github.com/users/octocat/orgs',
         repos_url: 'https://api.github.com/users/octocat/repos',
         events_url: 'https://api.github.com/users/octocat/events{/privacy}',
-        received_events_url: 'https://api.github.com/users/octocat/received_events',
+        received_events_url:
+          'https://api.github.com/users/octocat/received_events',
         type: 'User',
-        site_admin: false,
+        site_admin: false
       },
       comments: 10,
       review_comments: 0,
@@ -532,19 +629,19 @@ const octokitPullrequestSuccessfullMock = {
       commits: 3,
       additions: 100,
       deletions: 3,
-      changed_files: 5,
-    },
-  }),
-};
+      changed_files: 5
+    }
+  })
+}
 
 const octokitCommitsSuccessfullMock = {
   request: () => ({
     status: 200,
-    data:
-    [
+    data: [
       {
         sha: '8cbd6dbfe02c97107e34b3567a8a35007ac2a449',
-        node_id: 'C_kwDOHwJi8toAKDhjYmQ2ZGJmZTAyYzk3MTA3ZTM0YjM1NjdhOGEzNTAwN2FjMmE0NDk',
+        node_id:
+          'C_kwDOHwJi8toAKDhjYmQ2ZGJmZTAyYzk3MTA3ZTM0YjM1NjdhOGEzNTAwN2FjMmE0NDk',
         commit: {
           author: [Object],
           committer: [Object],
@@ -552,11 +649,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/8cbd6dbfe02c97107e34b3567a8a35007ac2a449',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/8cbd6dbfe02c97107e34b3567a8a35007ac2a449',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/8cbd6dbfe02c97107e34b3567a8a35007ac2a449',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/8cbd6dbfe02c97107e34b3567a8a35007ac2a449/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/8cbd6dbfe02c97107e34b3567a8a35007ac2a449',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/8cbd6dbfe02c97107e34b3567a8a35007ac2a449/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -566,16 +665,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -586,22 +691,29 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: '104a4e55ccc01d7f2903a6c90ae2d0fab9b67866',
-        node_id: 'C_kwDOHwJi8toAKDEwNGE0ZTU1Y2NjMDFkN2YyOTAzYTZjOTBhZTJkMGZhYjliNjc4NjY',
+        node_id:
+          'C_kwDOHwJi8toAKDEwNGE0ZTU1Y2NjMDFkN2YyOTAzYTZjOTBhZTJkMGZhYjliNjc4NjY',
         commit: {
           author: [Object],
           committer: [Object],
@@ -609,11 +721,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/104a4e55ccc01d7f2903a6c90ae2d0fab9b67866',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/104a4e55ccc01d7f2903a6c90ae2d0fab9b67866',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/104a4e55ccc01d7f2903a6c90ae2d0fab9b67866',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/104a4e55ccc01d7f2903a6c90ae2d0fab9b67866/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/104a4e55ccc01d7f2903a6c90ae2d0fab9b67866',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/104a4e55ccc01d7f2903a6c90ae2d0fab9b67866/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -623,16 +737,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -643,34 +763,44 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: '488361a5f575431b657348966f6a6861947e1433',
-        node_id: 'C_kwDOHwJi8toAKDQ4ODM2MWE1ZjU3NTQzMWI2NTczNDg5NjZmNmE2ODYxOTQ3ZTE0MzM',
+        node_id:
+          'C_kwDOHwJi8toAKDQ4ODM2MWE1ZjU3NTQzMWI2NTczNDg5NjZmNmE2ODYxOTQ3ZTE0MzM',
         commit: {
           author: [Object],
           committer: [Object],
-          message: "Merge branch 'main' into 5-determine-the-labels-to-change-depending-on-the-conventional-commits-that-will-be-merged",
+          message:
+            "Merge branch 'main' into 5-determine-the-labels-to-change-depending-on-the-conventional-commits-that-will-be-merged",
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/488361a5f575431b657348966f6a6861947e1433',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/488361a5f575431b657348966f6a6861947e1433',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/488361a5f575431b657348966f6a6861947e1433',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/488361a5f575431b657348966f6a6861947e1433/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/488361a5f575431b657348966f6a6861947e1433',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/488361a5f575431b657348966f6a6861947e1433/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -680,16 +810,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -700,22 +836,29 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object], [Object]],
+        parents: [[Object], [Object]]
       },
       {
         sha: '4ce5ab8ebd9a19c6094ecf408f460657688d06f2',
-        node_id: 'C_kwDOHwJi8toAKDRjZTVhYjhlYmQ5YTE5YzYwOTRlY2Y0MDhmNDYwNjU3Njg4ZDA2ZjI',
+        node_id:
+          'C_kwDOHwJi8toAKDRjZTVhYjhlYmQ5YTE5YzYwOTRlY2Y0MDhmNDYwNjU3Njg4ZDA2ZjI',
         commit: {
           author: [Object],
           committer: [Object],
@@ -723,11 +866,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/4ce5ab8ebd9a19c6094ecf408f460657688d06f2',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/4ce5ab8ebd9a19c6094ecf408f460657688d06f2',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/4ce5ab8ebd9a19c6094ecf408f460657688d06f2',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/4ce5ab8ebd9a19c6094ecf408f460657688d06f2/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/4ce5ab8ebd9a19c6094ecf408f460657688d06f2',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/4ce5ab8ebd9a19c6094ecf408f460657688d06f2/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -737,16 +882,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -757,22 +908,29 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: '37620775fd7ab29168841bcc6c8343e6d7f499e5',
-        node_id: 'C_kwDOHwJi8toAKDM3NjIwNzc1ZmQ3YWIyOTE2ODg0MWJjYzZjODM0M2U2ZDdmNDk5ZTU',
+        node_id:
+          'C_kwDOHwJi8toAKDM3NjIwNzc1ZmQ3YWIyOTE2ODg0MWJjYzZjODM0M2U2ZDdmNDk5ZTU',
         commit: {
           author: [Object],
           committer: [Object],
@@ -780,11 +938,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/37620775fd7ab29168841bcc6c8343e6d7f499e5',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/37620775fd7ab29168841bcc6c8343e6d7f499e5',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/37620775fd7ab29168841bcc6c8343e6d7f499e5',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/37620775fd7ab29168841bcc6c8343e6d7f499e5/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/37620775fd7ab29168841bcc6c8343e6d7f499e5',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/37620775fd7ab29168841bcc6c8343e6d7f499e5/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -794,16 +954,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -814,22 +980,29 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: 'e237fe023a3260ca0ae08190a7dc623c4d6ebb81',
-        node_id: 'C_kwDOHwJi8toAKGUyMzdmZTAyM2EzMjYwY2EwYWUwODE5MGE3ZGM2MjNjNGQ2ZWJiODE',
+        node_id:
+          'C_kwDOHwJi8toAKGUyMzdmZTAyM2EzMjYwY2EwYWUwODE5MGE3ZGM2MjNjNGQ2ZWJiODE',
         commit: {
           author: [Object],
           committer: [Object],
@@ -837,11 +1010,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/e237fe023a3260ca0ae08190a7dc623c4d6ebb81',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/e237fe023a3260ca0ae08190a7dc623c4d6ebb81',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/e237fe023a3260ca0ae08190a7dc623c4d6ebb81',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/e237fe023a3260ca0ae08190a7dc623c4d6ebb81/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/e237fe023a3260ca0ae08190a7dc623c4d6ebb81',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/e237fe023a3260ca0ae08190a7dc623c4d6ebb81/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -851,16 +1026,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -871,22 +1052,29 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: '80fb02bc21990a559596c654a7b6a04a452d731a',
-        node_id: 'C_kwDOHwJi8toAKDgwZmIwMmJjMjE5OTBhNTU5NTk2YzY1NGE3YjZhMDRhNDUyZDczMWE',
+        node_id:
+          'C_kwDOHwJi8toAKDgwZmIwMmJjMjE5OTBhNTU5NTk2YzY1NGE3YjZhMDRhNDUyZDczMWE',
         commit: {
           author: [Object],
           committer: [Object],
@@ -894,11 +1082,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/80fb02bc21990a559596c654a7b6a04a452d731a',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/80fb02bc21990a559596c654a7b6a04a452d731a',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/80fb02bc21990a559596c654a7b6a04a452d731a',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/80fb02bc21990a559596c654a7b6a04a452d731a/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/80fb02bc21990a559596c654a7b6a04a452d731a',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/80fb02bc21990a559596c654a7b6a04a452d731a/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -908,16 +1098,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -928,37 +1124,47 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: '3d690ce773ccd1bd1855607a48427ac861a5bf44',
-        node_id: 'C_kwDOHwJi8toAKDNkNjkwY2U3NzNjY2QxYmQxODU1NjA3YTQ4NDI3YWM4NjFhNWJmNDQ',
+        node_id:
+          'C_kwDOHwJi8toAKDNkNjkwY2U3NzNjY2QxYmQxODU1NjA3YTQ4NDI3YWM4NjFhNWJmNDQ',
         commit: {
           author: [Object],
           committer: [Object],
-          message: 'feat: make service to handle pullrequest request with basic DI to inject any client, add unit test\n'
-            + "I don't make an interface to client, but i use the same api designed to octokit.\n"
-            + '\n'
-            + 'In a future, we could consume some DI library',
+          message:
+            'feat: make service to handle pullrequest request with basic DI to inject any client, add unit test\n' +
+            "I don't make an interface to client, but i use the same api designed to octokit.\n" +
+            '\n' +
+            'In a future, we could consume some DI library',
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/3d690ce773ccd1bd1855607a48427ac861a5bf44',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/3d690ce773ccd1bd1855607a48427ac861a5bf44',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/3d690ce773ccd1bd1855607a48427ac861a5bf44',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/3d690ce773ccd1bd1855607a48427ac861a5bf44/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/3d690ce773ccd1bd1855607a48427ac861a5bf44',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/3d690ce773ccd1bd1855607a48427ac861a5bf44/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -968,16 +1174,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -988,22 +1200,29 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: 'c89c74ba0e0f6585731e2e40bb8cd70f90930a7d',
-        node_id: 'C_kwDOHwJi8toAKGM4OWM3NGJhMGUwZjY1ODU3MzFlMmU0MGJiOGNkNzBmOTA5MzBhN2Q',
+        node_id:
+          'C_kwDOHwJi8toAKGM4OWM3NGJhMGUwZjY1ODU3MzFlMmU0MGJiOGNkNzBmOTA5MzBhN2Q',
         commit: {
           author: [Object],
           committer: [Object],
@@ -1011,11 +1230,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/c89c74ba0e0f6585731e2e40bb8cd70f90930a7d',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/c89c74ba0e0f6585731e2e40bb8cd70f90930a7d',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/c89c74ba0e0f6585731e2e40bb8cd70f90930a7d',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/c89c74ba0e0f6585731e2e40bb8cd70f90930a7d/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/c89c74ba0e0f6585731e2e40bb8cd70f90930a7d',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/c89c74ba0e0f6585731e2e40bb8cd70f90930a7d/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -1025,16 +1246,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -1045,22 +1272,29 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
+        parents: [[Object]]
       },
       {
         sha: '686b6b0645d31161672be44752404887eae1f382',
-        node_id: 'C_kwDOHwJi8toAKDY4NmI2YjA2NDVkMzExNjE2NzJiZTQ0NzUyNDA0ODg3ZWFlMWYzODI',
+        node_id:
+          'C_kwDOHwJi8toAKDY4NmI2YjA2NDVkMzExNjE2NzJiZTQ0NzUyNDA0ODg3ZWFlMWYzODI',
         commit: {
           author: [Object],
           committer: [Object],
@@ -1068,11 +1302,13 @@ const octokitCommitsSuccessfullMock = {
           tree: [Object],
           url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/git/commits/686b6b0645d31161672be44752404887eae1f382',
           comment_count: 0,
-          verification: [Object],
+          verification: [Object]
         },
         url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/686b6b0645d31161672be44752404887eae1f382',
-        html_url: 'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/686b6b0645d31161672be44752404887eae1f382',
-        comments_url: 'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/686b6b0645d31161672be44752404887eae1f382/comments',
+        html_url:
+          'https://github.com/mauroalderete/action-assign-labels-from-conventionals-commit/commit/686b6b0645d31161672be44752404887eae1f382',
+        comments_url:
+          'https://api.github.com/repos/mauroalderete/action-assign-labels-from-conventionals-commit/commits/686b6b0645d31161672be44752404887eae1f382/comments',
         author: {
           login: 'mauroalderete',
           id: 5913821,
@@ -1082,16 +1318,22 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
         committer: {
           login: 'mauroalderete',
@@ -1102,51 +1344,57 @@ const octokitCommitsSuccessfullMock = {
           url: 'https://api.github.com/users/mauroalderete',
           html_url: 'https://github.com/mauroalderete',
           followers_url: 'https://api.github.com/users/mauroalderete/followers',
-          following_url: 'https://api.github.com/users/mauroalderete/following{/other_user}',
-          gists_url: 'https://api.github.com/users/mauroalderete/gists{/gist_id}',
-          starred_url: 'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
-          subscriptions_url: 'https://api.github.com/users/mauroalderete/subscriptions',
+          following_url:
+            'https://api.github.com/users/mauroalderete/following{/other_user}',
+          gists_url:
+            'https://api.github.com/users/mauroalderete/gists{/gist_id}',
+          starred_url:
+            'https://api.github.com/users/mauroalderete/starred{/owner}{/repo}',
+          subscriptions_url:
+            'https://api.github.com/users/mauroalderete/subscriptions',
           organizations_url: 'https://api.github.com/users/mauroalderete/orgs',
           repos_url: 'https://api.github.com/users/mauroalderete/repos',
-          events_url: 'https://api.github.com/users/mauroalderete/events{/privacy}',
-          received_events_url: 'https://api.github.com/users/mauroalderete/received_events',
+          events_url:
+            'https://api.github.com/users/mauroalderete/events{/privacy}',
+          received_events_url:
+            'https://api.github.com/users/mauroalderete/received_events',
           type: 'User',
-          site_admin: false,
+          site_admin: false
         },
-        parents: [[Object]],
-      },
-    ],
-  }),
-};
+        parents: [[Object]]
+      }
+    ]
+  })
+}
 
 const octokitCommitsSuccessfullNotConventionalCommitsMock = {
   request: () => ({
     status: 200,
-    data:
-    [
+    data: [
       {
         commit: {
-          message: 'not conventional feat prepare env to test',
-        },
+          message: 'not conventional feat prepare env to test'
+        }
       },
       {
         commit: {
-          message: 'not conventional build add gitignore to ignore tmp folder',
-        },
+          message: 'not conventional build add gitignore to ignore tmp folder'
+        }
       },
       {
         commit: {
-          message: "Merge branch 'main' into 5-determine-the-labels-to-change-depending-on-the-conventional-commits-that-will-be-merged",
-        },
+          message:
+            "Merge branch 'main' into 5-determine-the-labels-to-change-depending-on-the-conventional-commits-that-will-be-merged"
+        }
       },
       {
         commit: {
-          message: 'not conventional feat get labels before update',
-        },
-      },
-    ],
-  }),
-};
+          message: 'not conventional feat get labels before update'
+        }
+      }
+    ]
+  })
+}
 
 const octokitSetLabelsSuccessfullMock = {
   request: () => ({
@@ -1159,7 +1407,7 @@ const octokitSetLabelsSuccessfullMock = {
         name: 'bug',
         description: "Something isn't working",
         color: 'f29513',
-        default: true,
+        default: true
       },
       {
         id: 208045947,
@@ -1168,30 +1416,30 @@ const octokitSetLabelsSuccessfullMock = {
         name: 'enhancement',
         description: 'New feature or request',
         color: 'a2eeef',
-        default: false,
-      },
-    ],
-  }),
-};
+        default: false
+      }
+    ]
+  })
+}
 
 const octokitRequestFailMock = {
-  request: () => ({ status: 404, data: {} }),
-};
+  request: () => ({ status: 404, data: {} })
+}
 
 const strategyOctokitSuccessfullMock = {
-  request: (url) => {
+  request: url => {
     switch (url) {
       case 'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}':
-        return octokitPullrequestSuccessfullMock.request();
+        return octokitPullrequestSuccessfullMock.request()
       case 'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}/commits':
-        return octokitCommitsSuccessfullMock.request();
+        return octokitCommitsSuccessfullMock.request()
       case 'PUT /repos/{owner}/{repository}/issues/{pullRequestNumber}/labels':
-        return octokitSetLabelsSuccessfullMock.request();
+        return octokitSetLabelsSuccessfullMock.request()
       default:
-        return octokitPullrequestSuccessfullMock.request();
+        return octokitPullrequestSuccessfullMock.request()
     }
-  },
-};
+  }
+}
 
 module.exports = {
   octokitPullrequestSuccessfullMock,
@@ -1199,5 +1447,5 @@ module.exports = {
   octokitSetLabelsSuccessfullMock,
   octokitRequestFailMock,
   octokitCommitsSuccessfullNotConventionalCommitsMock,
-  strategyOctokitSuccessfullMock,
-};
+  strategyOctokitSuccessfullMock
+}

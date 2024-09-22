@@ -3,7 +3,7 @@
  * a function that makes a parser yaml to javascript object
  * @module src/lib/yaml-loader
  */
-const yamljs = require('yamljs');
+const yamljs = require('yamljs')
 
 /**
  * An method like {@link https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/ `fs.readerFileSync()`} sign. It must return a string content of the a source.
@@ -41,24 +41,26 @@ const yamljs = require('yamljs');
  * @param {readerSyncFunc} readerSync - A readerSync function
  * @returns {yamlLoaderFunc}
  */
-module.exports.makeYAMLLoader = (readerSync) => (yaml) => {
-  let content = yaml;
+module.exports.makeYAMLLoader = readerSync => yaml => {
+  let content = yaml
 
   if (/^([./]?.*)?(\/.*)?\.((yml)|(yaml))$/.test(yaml)) {
     try {
-      content = readerSync(yaml, { encoding: 'utf8' });
+      content = readerSync(yaml, { encoding: 'utf8' })
     } catch (error) {
-      throw new Error(`failed to parse yaml content from the file '${yaml}': ${error}`);
+      throw new Error(
+        `failed to parse yaml content from the file '${yaml}': ${error}`
+      )
     }
   }
 
   try {
-    const res = yamljs.parse(content);
+    const res = yamljs.parse(content)
     if (res === undefined || res === null) {
-      throw new Error('content is null');
+      throw new Error('content is null')
     }
-    return res;
+    return res
   } catch (error) {
-    throw new Error(`yaml input failed to parse YAML content: ${error}`);
+    throw new Error(`yaml input failed to parse YAML content: ${error}`)
   }
-};
+}

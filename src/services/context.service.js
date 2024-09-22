@@ -28,14 +28,14 @@
  * @param {readerSyncFunc} readerSync - A readerSync function
  * @returns {getContextFunc} Getter Github Action's context function
  */
-module.exports.makeContexter = (readerSync) => (path) => {
+module.exports.makeContexter = readerSync => path => {
   try {
-    const context = readerSync(path, { encoding: 'utf8' });
-    return JSON.parse(context);
+    const context = readerSync(path, { encoding: 'utf8' })
+    return JSON.parse(context)
   } catch (error) {
-    throw new Error(`failed to load context: ${error}`);
+    throw new Error(`failed to load context: ${error}`)
   }
-};
+}
 
 /**
  * @typedef {object} actionContext

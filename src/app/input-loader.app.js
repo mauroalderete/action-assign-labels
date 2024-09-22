@@ -3,12 +3,12 @@
  * @module src/app/input-loader.app
  */
 
-const parser = require('../lib/parser/parser');
+const parser = require('../lib/parser/parser')
 
 // eslint-disable-next-line no-unused-vars
-const concom = require('../lib/conventional-commits/conventional-commits');
+const concom = require('../lib/conventional-commits/conventional-commits')
 // eslint-disable-next-line no-unused-vars
-const yamlLoader = require('../lib/yaml-loader/yaml-loader');
+const yamlLoader = require('../lib/yaml-loader/yaml-loader')
 
 /**
  * Construct a {@link inputLoaderFunc `inputLoaderFunc`} function
@@ -21,43 +21,47 @@ const yamlLoader = require('../lib/yaml-loader/yaml-loader');
  * See {@link yamlLoader.yamlLoaderFunc `yamlLoaderFunc`}
  * @returns {inputLoaderFunc}
  */
-module.exports.makeInputLoader = (
-  stringInput,
-  booleanInput,
-  YAMLLoader,
-) => () => {
-  try {
-    let pullRequestNumber = stringInput('pull-request-number');
-    pullRequestNumber = parser(pullRequestNumber).toInt().use((p) => {
-      if (p.value < 0) {
-        throw new Error(`value ${p.value} of the pull-request-number must be a positive number`);
-      }
-    }).value;
+module.exports.makeInputLoader =
+  (stringInput, booleanInput, YAMLLoader) => () => {
+    try {
+      let pullRequestNumber = stringInput('pull-request-number')
+      pullRequestNumber = parser(pullRequestNumber)
+        .toInt()
+        .use(p => {
+          if (p.value < 0) {
+            throw new Error(
+              `value ${p.value} of the pull-request-number must be a positive number`
+            )
+          }
+        }).value
 
-    const githubToken = stringInput('github-token', { required: true });
-    const maintainLabelsNotFound = booleanInput('maintain-labels-not-matched');
-    const applyChanges = booleanInput('apply-changes');
-    let conventionalCommits = stringInput('conventional-commits');
-    conventionalCommits = parser(conventionalCommits).use((p) => {
-      try {
-        // eslint-disable-next-line no-param-reassign
-        p.value = YAMLLoader(p.value);
-      } catch (error) {
-        throw new Error(`failed to parse yaml from ${p.value} :${error}`);
-      }
-    }).denyUndefined().denyNull().value;
+      const githubToken = stringInput('github-token', { required: true })
+      const maintainLabelsNotFound = booleanInput('maintain-labels-not-matched')
+      const applyChanges = booleanInput('apply-changes')
+      let conventionalCommits = stringInput('conventional-commits')
+      conventionalCommits = parser(conventionalCommits)
+        .use(p => {
+          try {
+            // eslint-disable-next-line no-param-reassign
+            p.value = YAMLLoader(p.value)
+          } catch (error) {
+            throw new Error(`failed to parse yaml from ${p.value} :${error}`)
+          }
+        })
+        .denyUndefined()
+        .denyNull().value
 
-    return {
-      pullRequestNumber,
-      githubToken,
-      maintainLabelsNotFound,
-      applyChanges,
-      conventionalCommits,
-    };
-  } catch (error) {
-    throw new Error(`failed to load inputs: ${error}`);
+      return {
+        pullRequestNumber,
+        githubToken,
+        maintainLabelsNotFound,
+        applyChanges,
+        conventionalCommits
+      }
+    } catch (error) {
+      throw new Error(`failed to load inputs: ${error}`)
+    }
   }
-};
 
 /**
  * Gets the value of an input.

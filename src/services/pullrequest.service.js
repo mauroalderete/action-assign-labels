@@ -9,7 +9,7 @@
  * Sends a request based on endpoint options. See {@link githubAPIClientType `githubAPIClientType`}
  * @returns {PullRequestService}
  */
-module.exports.makePullRequestService = (githubClient) => {
+module.exports.makePullRequestService = githubClient => {
   /**
    * clase
    * @class
@@ -23,19 +23,24 @@ module.exports.makePullRequestService = (githubClient) => {
      * @return {Promise<pullRequestPayload>} See {@link pullRequestPayload `pullRequestPayload`}
      */
     this.getPullRequest = async (owner, repository, pullRequestNumber) => {
-      const response = await githubClient.request('GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}', {
-        owner,
-        repository,
-        pullRequestNumber,
-      });
+      const response = await githubClient.request(
+        'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}',
+        {
+          owner,
+          repository,
+          pullRequestNumber
+        }
+      )
       if (response.status !== 200) {
-        throw new Error(`get pull-request info return ${response.status} status`);
+        throw new Error(
+          `get pull-request info return ${response.status} status`
+        )
       }
       /**
        * @type pullRequestPayload
        */
-      return response.data;
-    };
+      return response.data
+    }
 
     /**
      * Get a list of the commits payload.
@@ -46,16 +51,21 @@ module.exports.makePullRequestService = (githubClient) => {
      * @returns {commitPayload[]} See {@link commitPayload `commitPayload`}
      */
     this.getCommits = async (owner, repository, pullRequestNumber) => {
-      const response = await githubClient.request('GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}/commits', {
-        owner,
-        repository,
-        pullRequestNumber,
-      });
+      const response = await githubClient.request(
+        'GET /repos/{owner}/{repository}/pulls/{pullRequestNumber}/commits',
+        {
+          owner,
+          repository,
+          pullRequestNumber
+        }
+      )
       if (response.status !== 200) {
-        throw new Error(`get pull-request' commits return ${response.status} status`);
+        throw new Error(
+          `get pull-request' commits return ${response.status} status`
+        )
       }
-      return response.data;
-    };
+      return response.data
+    }
 
     /**
      * Assign a list of labels in a pull request.
@@ -66,21 +76,24 @@ module.exports.makePullRequestService = (githubClient) => {
      * @returns {labelPayload[]} See {@link labelPayload `labelPayload`}
      */
     this.setLabels = async (owner, repository, pullRequestNumber, labels) => {
-      const response = await githubClient.request('PUT /repos/{owner}/{repository}/issues/{pullRequestNumber}/labels', {
-        owner,
-        repository,
-        pullRequestNumber,
-        labels,
-      });
+      const response = await githubClient.request(
+        'PUT /repos/{owner}/{repository}/issues/{pullRequestNumber}/labels',
+        {
+          owner,
+          repository,
+          pullRequestNumber,
+          labels
+        }
+      )
       if (response.status !== 200) {
-        throw new Error(`set labels failed with ${response.status} status`);
+        throw new Error(`set labels failed with ${response.status} status`)
       }
-      return response.data;
-    };
+      return response.data
+    }
   }
 
-  return new PullRequestService();
-};
+  return new PullRequestService()
+}
 
 /**
  * A Github API client instance with minimal properties to handle a single REST request.

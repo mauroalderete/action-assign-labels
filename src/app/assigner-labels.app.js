@@ -4,13 +4,13 @@
  */
 
 // eslint-disable-next-line no-unused-vars
-const loader = require('./input-loader.app');
+const loader = require('./input-loader.app')
 // eslint-disable-next-line no-unused-vars
-const concom = require('../lib/conventional-commits/conventional-commits');
+const concom = require('../lib/conventional-commits/conventional-commits')
 // eslint-disable-next-line no-unused-vars
-const pullRequestService = require('../services/pullrequest.service');
+const pullRequestService = require('../services/pullrequest.service')
 // eslint-disable-next-line no-unused-vars
-const contextModule = require('../services/context.service');
+const contextModule = require('../services/context.service')
 
 /**
  * Construct a {@link assignerLabelsFunc `assignerLabelsFunc`} function
@@ -29,70 +29,64 @@ const contextModule = require('../services/context.service');
  * See {@link pullRequestService.makePullRequestService `makePullRequestService`}
  * @returns {assignerLabelsFunc}
  */
-module.exports.makeAssignerLabelsApp = (
-  loadInputs,
-  changeLabels,
-  getTypesInCommits,
-  GithubClient,
-  makePullRequestService,
-) => async (actionContext) => {
-  const inputs = loadInputs();
+module.exports.makeAssignerLabelsApp =
+  (
+    loadInputs,
+    changeLabels,
+    getTypesInCommits,
+    GithubClient,
+    makePullRequestService
+  ) =>
+  async actionContext => {
+    const inputs = loadInputs()
 
-  process.env.GITHUB_TOKEN = inputs.githubToken;
-  const pullrequestService = makePullRequestService(new GithubClient());
+    process.env.GITHUB_TOKEN = inputs.githubToken
+    const pullrequestService = makePullRequestService(new GithubClient())
 
-  const [owner, repo] = actionContext.repository.full_name.split('/');
+    const [owner, repo] = actionContext.repository.full_name.split('/')
 
-  if (actionContext.pull_request && actionContext.pull_request.number) {
-    inputs.pullRequestNumber = actionContext.pull_request.number;
-  }
+    if (actionContext.pull_request && actionContext.pull_request.number) {
+      inputs.pullRequestNumber = actionContext.pull_request.number
+    }
 
-  const pr = await pullrequestService.getPullRequest(
-    owner,
-    repo,
-    inputs.pullRequestNumber,
-  );
-
-  const labelsBefore = pr.labels;
-  const labelsBeforeName = labelsBefore.map((l) => l.name);
-
-  const commits = await pullrequestService.getCommits(
-    owner,
-    repo,
-    inputs.pullRequestNumber,
-  );
-
-  const types = getTypesInCommits(
-    commits.map((c) => c.commit.message),
-    inputs.conventionalCommits,
-  );
-
-  const labelsToChange = types.length > 0
-    ? types.map((t) => t.labels).reduce((tp, tc) => tp.concat(tc))
-    : [];
-
-  const result = changeLabels(
-    labelsBeforeName,
-    labelsToChange,
-    {
-      maintainLabelsNotFound: inputs.maintainLabelsNotFound,
-      conventionalCommitsScheme: inputs.conventionalCommits,
-    },
-  );
-
-  const [next, added, removed] = result;
-
-  if (inputs.applyChanges === true) {
-    pullrequestService.setLabels(
+    const pr = await pullrequestService.getPullRequest(
       owner,
       repo,
-      inputs.pullRequestNumber,
-      next,
-    );
-  }
+      inputs.pullRequestNumber
+    )
 
-  return [labelsBeforeName, added, removed, next];
-};
+    const labelsBefore = pr.labels
+    const labelsBeforeName = labelsBefore.map(l => l.name)
+
+    const commits = await pullrequestService.getCommits(
+      owner,
+      repo,
+      inputs.pullRequestNumber
+    )
+
+    const types = getTypesInCommits(
+      commits.map(c => c.commit.message),
+      inputs.conventionalCommits
+    )
+
+    const labelsToChange =
+      types.length > 0
+        ? types.map(t => t.labels).reduce((tp, tc) => tp.concat(tc))
+        : []
+
+    const result = changeLabels(labelsBeforeName, labelsToChange, {
+      maintainLabelsNotFound: inputs.maintainLabelsNotFound,
+      conventionalCommitsScheme: inputs.conventionalCommits
+    })
+
+    const [next, added, removed] = result
+
+    if (inputs.applyChanges === true) {
+      pullrequestService.setLabels(owner, repo, inputs.pullRequestNumber, next)
+    }
+
+    return [labelsBeforeName, added, removed, next]
+  }
 
 /**
  * Parse inputs and pull request payload to find the conventional-commits
