@@ -433,7 +433,7 @@ This build command uses `@vercel/ncc` to package the source code into a single f
 
 # :wrench: How to work?
 
-The action runs on ubuntu runner as javascript action through node v20.x.
+The action runs on ubuntu runner as javascript action through node v24.x.
 
 The objective of this project is to provide a scalable project to handle label assignments according to conventional-commits spec. This way can be integrated into most workflow that searches a standard environment development.
 
